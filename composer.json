@@ -1,5 +1,12 @@
 {
     "name": "heise/shariff",
+    "version": "1.0.0",
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/heiseonline/shariff-backend-php.git"
+        }
+    ],
     "bin": ["index.php"],
     "authors": [
         {
