@@ -1,0 +1,11 @@
+{
+	"cache": {
+		"ttl": 60
+	},
+	"domain": "www.heise.de",
+	"services": [
+		"GooglePlus",
+		"Twitter",
+		"Facebook"
+	]
+}

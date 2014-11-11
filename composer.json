@@ -1,0 +1,20 @@
+{
+    "name": "heise/shariff",
+    "bin": ["index.php"],
+    "authors": [
+        {
+            "name": "Philipp Busse",
+            "email": "pmb@heise.de"
+        }
+    ],
+    "require": {
+    	"php": ">=5.4.0",
+        "guzzlehttp/guzzle": "*",
+        "zendframework/zend-cache": "*",
+        "zendframework/zend-config": "*",
+        "zendframework/zend-json": "*"
+    },
+    "autoload": {
+        "psr-4": { "Heise\\Shariff\\": "src" }
+    }
+}
