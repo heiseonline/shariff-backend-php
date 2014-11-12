@@ -34,7 +34,7 @@ Testing your installation
 If the backend runs under `http://example.com/my-shariff-backend/`, calling the URL `http://example.com/my-shariff-backend/?url=http%3A%2F%2Fwww.example.com` should return a JSON structure with numbers in it, e.g.:
 
 ```json
-{"facebook":1452,"twitter":404,"gplus":23}
+{"facebook":1452,"twitter":404,"googleplus":23}
 ```
 
 

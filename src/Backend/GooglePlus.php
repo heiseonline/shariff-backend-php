@@ -7,7 +7,7 @@ class GooglePlus extends Request implements ServiceInterface
 
     public function getName()
     {
-        return 'gplus';
+        return 'googleplus';
     }
 
     public function getRequest($url)

@@ -19,11 +19,11 @@ class ShariffTest extends \PHPUnit_Framework_TestCase
         // print_r($counts);
 
         $this->assertArrayHasKey('facebook', $counts);
-        $this->assertArrayHasKey('gplus', $counts);
+        $this->assertArrayHasKey('googleplus', $counts);
         // $this->assertArrayHasKey('twitter', $counts);
 
         $this->assertGreaterThan(0, $counts['facebook']);
-        $this->assertGreaterThan(0, $counts['gplus']);
+        $this->assertGreaterThan(0, $counts['googleplus']);
         // $this->assertGreaterThan(0, $counts['twitter']);
     }
 
