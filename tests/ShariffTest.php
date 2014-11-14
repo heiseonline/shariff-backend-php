@@ -10,7 +10,7 @@ class ShariffTest extends \PHPUnit_Framework_TestCase
     {
         $shariff = new Backend([
             "domain"   => 'www.heise.de',
-            "cache"    => ["ttl" => 0],
+            "cache"    => ["ttl" => 1],
             "services" => ["Facebook", "GooglePlus", "Twitter"]
         ]);
 
