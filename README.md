@@ -3,6 +3,8 @@ Shariff PHP Backend
 
 Shariff is used to determine how often a page is shared in social media, but without generating requests from the displaying page to the social sites.
 
+![Shariff](shariff-logo.png)
+
 This document describes the PHP backend. The following backends are also available:
 
 * [https://github.com/heiseonline/shariff-backend-node](shariff-backend-node)
