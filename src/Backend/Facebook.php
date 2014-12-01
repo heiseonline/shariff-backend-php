@@ -14,12 +14,12 @@ class Facebook extends Request implements ServiceInterface
     {
         $facebookURL = 'https://api.facebook.com/method/fql.query';
         $facebookURL .= '?format=json';
-        $facebookURL .= '&query=select like_count from link_stat where url="' . $url . '"';
+        $facebookURL .= '&query=select share_count from link_stat where url="' . $url . '"';
         return $this->createRequest($facebookURL);
     }
 
     public function extractCount($data)
     {
-        return $data[0]['like_count'];
+        return $data[0]['share_count'];
     }
 }
