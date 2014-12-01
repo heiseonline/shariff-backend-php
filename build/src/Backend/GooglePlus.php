@@ -27,7 +27,7 @@ class GooglePlus extends Request implements ServiceInterface
             'key'        => 'p',
             'apiVersion' => 'v1',
         ];
-        return $this->createRequest($gPlusUrl, 'POST', $json);
+        return $this->createRequest($gPlusUrl, 'POST', ['json' => $json]);
     }
 
     public function extractCount($data)
