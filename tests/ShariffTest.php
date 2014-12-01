@@ -20,11 +20,11 @@ class ShariffTest extends \PHPUnit_Framework_TestCase
 
         $this->assertArrayHasKey('facebook', $counts);
         $this->assertArrayHasKey('googleplus', $counts);
-        // $this->assertArrayHasKey('twitter', $counts);
+        $this->assertArrayHasKey('twitter', $counts);
 
         $this->assertGreaterThan(0, $counts['facebook']);
         $this->assertGreaterThan(0, $counts['googleplus']);
-        // $this->assertGreaterThan(0, $counts['twitter']);
+        $this->assertGreaterThan(0, $counts['twitter']);
     }
 
     public function testInvalidDomain()

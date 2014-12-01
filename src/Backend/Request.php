@@ -11,13 +11,17 @@ abstract class Request
         $this->client = new \GuzzleHttp\Client();
     }
 
-    protected function createRequest($url, $method = 'GET', $json = null)
+    protected function createRequest($url, $method = 'GET', $options = [])
     {
+        // $defaults = ['future' => true, 'debug' => true];
+        $defaults = ['future' => true];
+
         $req = $this->client->createRequest(
             $method,
             $url,
-            ['future' => true, 'json' => $json]
+            array_merge($defaults, $options)
         );
+
         return $req;
     }
 }
