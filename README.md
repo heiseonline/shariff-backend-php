@@ -13,7 +13,7 @@ This document describes the PHP backend. The following backends are also availab
 Requirements
 ---------------
 
-To run Shariff PHP Backend on your server your need:
+To run Shariff PHP Backend on your server you need:
 
 * PHP 5.4 or greater
 
