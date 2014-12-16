@@ -10,6 +10,13 @@ This document describes the PHP backend. The following backends are also availab
 * [shariff-backend-node](https://github.com/heiseonline/shariff-backend-node)
 * [shariff-backend-perl](https://github.com/heiseonline/shariff-backend-perl)
 
+Requirements
+---------------
+
+To run Shariff PHP Backend on your server you need:
+
+* PHP 5.4 or greater
+
 Installing the Shariff backend on you own server
 ------------------------------------------------
 
