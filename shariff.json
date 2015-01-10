@@ -6,6 +6,7 @@
 	"services": [
 		"GooglePlus",
 		"Twitter",
-		"Facebook"
+		"Facebook",
+		"Pinterest"
 	]
 }
