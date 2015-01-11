@@ -43,7 +43,7 @@ Testing your installation
 If the backend runs under `http://example.com/my-shariff-backend/`, calling the URL `http://example.com/my-shariff-backend/?url=http%3A%2F%2Fwww.example.com` should return a JSON structure with numbers in it, e.g.:
 
 ```json
-{"facebook":1452,"twitter":404,"googleplus":23}
+{"facebook":1452,"twitter":404,"googleplus":23,"linkedin":118,"flattr":0,"pinterest":3}
 ```
 
 
@@ -55,6 +55,11 @@ If you need more control, you can invoke Shariff in your own PHP code. The follo
 ```php
 use Heise\Shariff\Backend;
 
+$options = [
+	"domain"   => 'www.heise.de',
+	"cache"    => ["ttl" => 1],
+	"services" => ["Facebook", "GooglePlus", "Twitter", "LinkedIn", "Flattr", "Pinterest"]
+]
 $shariff = Backend->new($options);
 $counts = $backend->get("http://www.heise.de/");
 echo $counts["facebook"];
