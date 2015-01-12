@@ -5,7 +5,7 @@ use Heise\Shariff\Backend;
 
 class ShariffTest extends \PHPUnit_Framework_TestCase
 {
-    protected $services = [
+    protected $services = array(
         "Facebook",
         "Flattr",
         "GooglePlus",
@@ -14,19 +14,17 @@ class ShariffTest extends \PHPUnit_Framework_TestCase
         "Reddit",
         "StumbleUpon",
         "Twitter"
-    ];
+    );
 
     public function testShariff()
     {
-        $shariff = new Backend([
+        $shariff = new Backend(array(
             "domain"   => 'www.heise.de',
-            "cache"    => ["ttl" => 1],
+            "cache"    => array("ttl" => 1),
             "services" => $this->services
-        ]);
+        ));
 
         $counts = $shariff->get('http://www.heise.de');
-
-        // print_r($counts);
 
         $this->assertArrayHasKey('facebook', $counts);
         $this->assertArrayHasKey('flattr', $counts);
@@ -44,19 +42,20 @@ class ShariffTest extends \PHPUnit_Framework_TestCase
         $this->assertGreaterThan(0, $counts['reddit']);
         $this->assertGreaterThan(0, $counts['stumbleupon']);
         $this->assertGreaterThan(0, $counts['twitter']);
-        //$this->assertGreaterThan(0, $counts['flattr']); // It's actual 0
+        $this->assertGreaterThan(-1, $counts['flattr']);
     }
 
     public function testInvalidDomain()
     {
-        $shariff = new Backend([
+        $shariff = new Backend(array(
             "domain"   => 'www.heise.de',
-            "cache"    => ["ttl" => 0],
+            "cache"    => array("ttl" => 0),
             "services" => $this->services
-        ]);
+        ));
 
         $counts = $shariff->get('http://example.com');
 
         $this->assertNull($counts);
     }
 }
+

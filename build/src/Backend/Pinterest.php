@@ -1,4 +1,5 @@
 <?php
+
 namespace Heise\Shariff\Backend;
 
 use GuzzleHttp\Event\CompleteEvent;
@@ -15,10 +16,9 @@ class Pinterest extends Request implements ServiceInterface
 
     public function getRequest($url)
     {
-        $url = 'http://api.pinterest.com/v1/urls/count.json?callback=x&url=' . urlencode($url);
+        $url = 'http://api.pinterest.com/v1/urls/count.json?callback=x&url='.urlencode($url);
         $request = $this->createRequest($url);
         $request->getEmitter()->on('complete', function (CompleteEvent $e) {
-
             // Stripping the 'callback function' from the response
             $body = $e->getResponse()->getBody()->getContents();
             $e->intercept(new Response(200, array(), (Stream::factory(mb_substr($body, 2, mb_strlen($body) - 3)))));
@@ -31,3 +31,4 @@ class Pinterest extends Request implements ServiceInterface
         return $data['count'];
     }
 }
+

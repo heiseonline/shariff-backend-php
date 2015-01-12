@@ -21,11 +21,11 @@ class GooglePlus extends Request implements ServiceInterface
                 'id'      => $url,
                 'source'  => 'widget',
                 'userId'  => '@viewer',
-                'groupId' => '@self',
-        ),
+                'groupId' => '@self'
+            ),
             'jsonrpc'    => '2.0',
             'key'        => 'p',
-            'apiVersion' => 'v1',
+            'apiVersion' => 'v1'
         );
         return $this->createRequest($gPlusUrl, 'POST', array('json' => $json));
     }
@@ -35,3 +35,4 @@ class GooglePlus extends Request implements ServiceInterface
         return $data['result']['metadata']['globalCounts']['count'];
     }
 }
+

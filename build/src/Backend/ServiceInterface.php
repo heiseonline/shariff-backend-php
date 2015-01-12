@@ -1,4 +1,5 @@
 <?php
+
 namespace Heise\Shariff\Backend;
 
 interface ServiceInterface
@@ -7,3 +8,4 @@ interface ServiceInterface
     public function extractCount($data);
     public function getName();
 }
+

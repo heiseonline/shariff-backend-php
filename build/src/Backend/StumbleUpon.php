@@ -17,6 +17,7 @@ class StumbleUpon extends Request implements ServiceInterface
 
     public function extractCount($data)
     {
-        return ($data['result']['views']) ? $data['result']['views'] : 0;
+        return (isset($data['result']['views'])) ? $data['result']['views'] : 0;
     }
 }
+

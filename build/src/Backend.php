@@ -1,4 +1,5 @@
 <?php
+
 namespace Heise\Shariff;
 
 use GuzzleHttp\Client;
@@ -61,7 +62,7 @@ class Backend
     {
 
         // Aenderungen an der Konfiguration invalidieren den Cache
-        $cache_key = md5($url . $this->baseCacheKey);
+        $cache_key = md5($url.$this->baseCacheKey);
 
         if (!filter_var($url, FILTER_VALIDATE_URL)) {
             return null;
@@ -99,3 +100,4 @@ class Backend
         return $counts;
     }
 }
+

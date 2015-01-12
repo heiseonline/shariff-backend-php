@@ -18,6 +18,7 @@ class Flattr extends Request implements ServiceInterface
 
     public function extractCount($data)
     {
-        return ( isset($data['flattrs'])) ? $data['flattrs'] : 0;
+        return (isset($data['flattrs'])) ? $data['flattrs'] : 0;
     }
 }
+
