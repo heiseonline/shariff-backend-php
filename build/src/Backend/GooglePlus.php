@@ -22,11 +22,11 @@ class GooglePlus extends Request implements ServiceInterface
                 'source'  => 'widget',
                 'userId'  => '@viewer',
                 'groupId' => '@self',
-	    ),
+        ),
             'jsonrpc'    => '2.0',
             'key'        => 'p',
             'apiVersion' => 'v1',
-	);
+        );
         return $this->createRequest($gPlusUrl, 'POST', array('json' => $json));
     }
 
