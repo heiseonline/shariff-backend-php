@@ -11,7 +11,8 @@ class LinkedIn extends Request implements ServiceInterface
 
     public function getRequest($url)
     {
-        return $this->createRequest('https://www.linkedin.com/countserv/count/share?url=' . urlencode($url). '&lang=de_DE&format=json');
+        $url = 'https://www.linkedin.com/countserv/count/share?url=' . urlencode($url). '&lang=de_DE&format=json';
+        return $this->createRequest($url);
     }
 
     public function extractCount($data)
