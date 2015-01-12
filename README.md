@@ -43,7 +43,7 @@ Testing your installation
 If the backend runs under `http://example.com/my-shariff-backend/`, calling the URL `http://example.com/my-shariff-backend/?url=http%3A%2F%2Fwww.example.com` should return a JSON structure with numbers in it, e.g.:
 
 ```json
-{"facebook":1452,"twitter":404,"googleplus":23,"linkedin":118,"flattr":0,"pinterest":3}
+{"facebook":1452,"twitter":404,"googleplus":23,"linkedin":118,"reddit":7,"stumbleupon":4325,"flattr":0,"pinterest":3}
 ```
 
 
@@ -58,7 +58,7 @@ use Heise\Shariff\Backend;
 $options = [
 	"domain"   => 'www.heise.de',
 	"cache"    => ["ttl" => 1],
-	"services" => ["Facebook", "GooglePlus", "Twitter", "LinkedIn", "Flattr", "Pinterest"]
+	"services" => ["Facebook", "GooglePlus", "Twitter", "LinkedIn", "Reddit", "StumbleUpon", "Flattr", "Pinterest"]
 ]
 $shariff = Backend->new($options);
 $counts = $backend->get("http://www.heise.de/");

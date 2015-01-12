@@ -15,7 +15,7 @@ class Application
             return;
         }
 
-        $reader = new \Zend\Config\Reader\Json();
+        $reader = new Json();
 
         $shariff = new Backend($reader->fromFile('shariff.json'));
         echo json_encode($shariff->get($_GET["url"]));

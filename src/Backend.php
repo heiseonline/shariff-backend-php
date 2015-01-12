@@ -11,7 +11,7 @@ class Backend
     protected $cache;
     protected $client;
     protected $domain;
-    protected $services = [];
+    protected $services = array();
 
     public function __construct($config)
     {
@@ -34,7 +34,7 @@ class Backend
 
     private function getServicesByName($serviceNames)
     {
-        $services = [];
+        $services = array();
         foreach ($serviceNames as $serviceName) {
             $service = new \ReflectionClass("Heise\Shariff\Backend\\$serviceName");
             foreach ($service->getInterfaceNames() as $interface) {
@@ -84,7 +84,7 @@ class Backend
 
         $results = Pool::batch($this->client, $requests);
 
-        $counts = [];
+        $counts = array();
         $i = 0;
         foreach ($this->services as $service) {
             if (method_exists($results[$i], "json")) {

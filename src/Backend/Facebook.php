@@ -12,19 +12,11 @@ class Facebook extends Request implements ServiceInterface
 
     public function getRequest($url)
     {
-        $facebookURL = 'https://graph.facebook.com/?id=' . $url . '"';
-        return $this->createRequest($facebookURL);
+        return $this->createRequest('https://graph.facebook.com/?id=' . $url . '"');
     }
 
     public function extractCount($data)
     {
-        if( isset($data['shares']) )
-        {
-            return $data['shares'];
-        }
-        else
-        {
-            return 0;
-        }
+        return ( isset($data['shares']) ) ? $data['shares'] : 0;
     }
 }

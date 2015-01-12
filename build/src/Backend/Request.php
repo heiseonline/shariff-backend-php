@@ -13,8 +13,8 @@ abstract class Request
 
     protected function createRequest($url, $method = 'GET', $options = [])
     {
-        // $defaults = ['future' => true, 'debug' => true];
-        $defaults = ['future' => true];
+        // $defaults = array('future' => true, 'debug' => true);
+        $defaults = array('future' => true);
 
         $req = $this->client->createRequest(
             $method,
