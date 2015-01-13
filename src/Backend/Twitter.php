@@ -20,4 +20,3 @@ class Twitter extends Request implements ServiceInterface
         return $data['count'];
     }
 }
-

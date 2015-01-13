@@ -28,4 +28,3 @@ abstract class Request
         return $req;
     }
 }
-

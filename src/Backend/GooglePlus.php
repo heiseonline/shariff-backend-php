@@ -35,4 +35,3 @@ class GooglePlus extends Request implements ServiceInterface
         return $data['result']['metadata']['globalCounts']['count'];
     }
 }
-

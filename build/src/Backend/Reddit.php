@@ -24,4 +24,3 @@ class Reddit extends Request implements ServiceInterface
         return $count;
     }
 }
-

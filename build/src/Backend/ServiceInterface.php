@@ -8,4 +8,3 @@ interface ServiceInterface
     public function extractCount($data);
     public function getName();
 }
-

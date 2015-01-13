@@ -31,4 +31,3 @@ class Pinterest extends Request implements ServiceInterface
         return $data['count'];
     }
 }
-

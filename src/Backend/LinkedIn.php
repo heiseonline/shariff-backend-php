@@ -21,4 +21,3 @@ class LinkedIn extends Request implements ServiceInterface
         return $data['count'];
     }
 }
-

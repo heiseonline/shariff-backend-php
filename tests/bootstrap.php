@@ -5,4 +5,3 @@ if (!$loader) {
     $loader = require __DIR__.'/../../../../vendor/autoload.php';
 }
 $loader->addPsr4('Heise\\Tests\\Shariff\\', __DIR__);
-

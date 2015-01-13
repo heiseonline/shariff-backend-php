@@ -21,4 +21,3 @@ class Flattr extends Request implements ServiceInterface
         return (isset($data['flattrs'])) ? $data['flattrs'] : 0;
     }
 }
-

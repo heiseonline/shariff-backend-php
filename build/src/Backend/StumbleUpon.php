@@ -20,4 +20,3 @@ class StumbleUpon extends Request implements ServiceInterface
         return (isset($data['result']['views'])) ? $data['result']['views'] : 0;
     }
 }
-
