@@ -1,5 +1,25 @@
 # CHANGELOG
 
+## 5.1.0 - 2014-12-19
+
+* Pool class no longer uses recursion when a request is intercepted.
+* The size of a Pool can now be dynamically adjusted using a callback.
+  See https://github.com/guzzle/guzzle/pull/943.
+* Setting a request option to `null` when creating a request with a client will
+  ensure that the option is not set. This allows you to overwrite default
+  request options on a per-request basis.
+  See https://github.com/guzzle/guzzle/pull/937.
+* Added the ability to limit which protocols are allowed for redirects by
+  specifying a `protocols` array in the `allow_redirects` request option.
+* Nested futures due to retries are now resolved when waiting for synchronous
+  responses. See https://github.com/guzzle/guzzle/pull/947.
+* `"0"` is now an allowed URI path. See
+  https://github.com/guzzle/guzzle/pull/935.
+* `Query` no longer typehints on the `$query` argument in the constructor,
+  allowing for strings and arrays.
+* Exceptions thrown in the `end` event are now correctly wrapped with Guzzle
+  specific exceptions if necessary.
+
 ## 5.0.3 - 2014-11-03
 
 This change updates query strings so that they are treated as un-encoded values
@@ -84,7 +104,7 @@ interfaces.
   moved to `GuzzleHttp\Utils::jsonDecode`. `GuzzleHttp\get_path` moved to
   `GuzzleHttp\Utils::getPath`. `GuzzleHttp\set_path` moved to
   `GuzzleHttp\Utils::setPath`. `GuzzleHttp\batch` should now be
-  `GuzzleHttp\Pool::batch`, which returns a bjectStorage`. Using functions.php
+  `GuzzleHttp\Pool::batch`, which returns an objectStorage`. Using functions.php
   caused problems for many users: they aren't PSR-4 compliant, require an
   explicit include, and needed an if-guard to ensure that the functions are not
   declared multiple times.
@@ -359,7 +379,7 @@ interfaces.
 * Bug fix: FilterIterator now relies on `\Iterator` instead of `\Traversable`.
 * Bug fix: Gracefully handling malformed responses in RequestMediator::writeResponseBody()
 * Bug fix: Replaced call to canCache with canCacheRequest in the CallbackCanCacheStrategy of the CachePlugin
-* Bug fix: Visiting XML attributes first before visting XML children when serializing requests
+* Bug fix: Visiting XML attributes first before visiting XML children when serializing requests
 * Bug fix: Properly parsing headers that contain commas contained in quotes
 * Bug fix: mimetype guessing based on a filename is now case-insensitive
 
@@ -517,7 +537,7 @@ interfaces.
 ## 3.5.0 - 2013-05-13
 
 * Bug: Fixed a regression so that request responses are parsed only once per oncomplete event rather than multiple times
-* Bug: Better cleanup of one-time events accross the board (when an event is meant to fire once, it will now remove
+* Bug: Better cleanup of one-time events across the board (when an event is meant to fire once, it will now remove
   itself from the EventDispatcher)
 * Bug: `Guzzle\Log\MessageFormatter` now properly writes "total_time" and "connect_time" values
 * Bug: Cloning an EntityEnclosingRequest now clones the EntityBody too
