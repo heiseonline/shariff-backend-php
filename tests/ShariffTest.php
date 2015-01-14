@@ -13,7 +13,8 @@ class ShariffTest extends \PHPUnit_Framework_TestCase
         "Pinterest",
         "Reddit",
         "StumbleUpon",
-        "Twitter"
+        "Twitter",
+        "Xing"
     );
 
     public function testShariff()
@@ -34,6 +35,7 @@ class ShariffTest extends \PHPUnit_Framework_TestCase
         $this->assertArrayHasKey('reddit', $counts);
         $this->assertArrayHasKey('stumbleupon', $counts);
         $this->assertArrayHasKey('twitter', $counts);
+        $this->assertArrayHasKey('xing', $counts);
 
         $this->assertGreaterThan(0, $counts['facebook']);
         $this->assertGreaterThan(0, $counts['googleplus']);
@@ -43,6 +45,7 @@ class ShariffTest extends \PHPUnit_Framework_TestCase
         $this->assertGreaterThan(0, $counts['stumbleupon']);
         $this->assertGreaterThan(0, $counts['twitter']);
         $this->assertGreaterThan(-1, $counts['flattr']);
+		$this->assertGreaterThan(0, $counts['xing']);
     }
 
     public function testInvalidDomain()
