@@ -91,7 +91,10 @@ class Backend
             if (method_exists($results[$i], "json")) {
                 $count = $service->extractCount($results[$i]->json());
                 $counts[ $service->getName() ] = $count;
-            }
+            } else {
+				$counts[ $service->getName()."_error" ] = $results[$i]->getMessage();
+				echo "\n// Error in service ".$service->getName()." in ".$results[$i]->getFile().":".$results[$i]->getLine()."\n// ".$results[$i]->getMessage()."\n";
+			}
             $i++;
         }
 
