@@ -17,7 +17,7 @@ abstract class Request
     protected function createRequest($url, $method = 'GET', $options = array())
     {
         // $defaults = array('future' => true, 'debug' => true);
-        $defaults = array('future' => true);
+        $defaults = array('future' => true, 'config' => array('curl' => array(CURLOPT_SSL_VERIFYPEER => false)));
 
         $req = $this->client->createRequest(
             $method,
