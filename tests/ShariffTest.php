@@ -28,27 +28,32 @@ class ShariffTest extends \PHPUnit_Framework_TestCase
         $counts = $shariff->get('http://www.heise.de');
 
         $this->assertArrayHasKey('facebook', $counts);
-        $this->assertArrayHasKey('flattr', $counts);
-        $this->assertArrayHasKey('googleplus', $counts);
-        $this->assertArrayHasKey('linkedin', $counts);
-        $this->assertArrayHasKey('pinterest', $counts);
-        $this->assertArrayHasKey('reddit', $counts);
-        $this->assertArrayHasKey('stumbleupon', $counts);
-        $this->assertArrayHasKey('twitter', $counts);
-        if (!getenv("TRAVIS")) {
-            // It seems Xing is blocking Travis from time to time - maybe coused by DOS protection
-            $this->assertArrayHasKey('xing', $counts);
-        }
-
         $this->assertGreaterThan(0, $counts['facebook']);
-        $this->assertGreaterThan(0, $counts['googleplus']);
-        $this->assertGreaterThan(0, $counts['linkedin']);
-        $this->assertGreaterThan(0, $counts['pinterest']);
-        $this->assertGreaterThan(0, $counts['reddit']);
-        $this->assertGreaterThan(0, $counts['stumbleupon']);
-        $this->assertGreaterThan(0, $counts['twitter']);
+
+        $this->assertArrayHasKey('flattr', $counts);
         $this->assertGreaterThan(-1, $counts['flattr']);
+
+        $this->assertArrayHasKey('googleplus', $counts);
+        $this->assertGreaterThan(0, $counts['googleplus']);
+
+        $this->assertArrayHasKey('linkedin', $counts);
+        $this->assertGreaterThan(0, $counts['linkedin']);
+
+        $this->assertArrayHasKey('pinterest', $counts);
+        $this->assertGreaterThan(0, $counts['pinterest']);
+
+        $this->assertArrayHasKey('reddit', $counts);
+        $this->assertGreaterThan(0, $counts['reddit']);
+
+        $this->assertArrayHasKey('stumbleupon', $counts);
+        $this->assertGreaterThan(0, $counts['stumbleupon']);
+
+        $this->assertArrayHasKey('twitter', $counts);
+        $this->assertGreaterThan(0, $counts['twitter']);
+
+        // It seems Xing is blocking Travis from time to time - maybe coused by DOS protection
         if (!getenv("TRAVIS")) {
+            $this->assertArrayHasKey('xing', $counts);
             $this->assertGreaterThan(0, $counts['xing']);
         }
     }
