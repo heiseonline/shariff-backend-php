@@ -100,7 +100,7 @@ class Backend
         foreach ($this->services as $service) {
             if (method_exists($results[$i], "json")) {
                 try {
-                    $counts[ $service->getName() ] = $service->extractCount($results[$i]->json());
+                    $counts[ $service->getName() ] = intval($service->extractCount($results[$i]->json()));
                 } catch (\Exception $e) { }
             }
             $i++;
