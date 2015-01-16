@@ -101,9 +101,9 @@ class Backend
             if (method_exists($results[$i], "json")) {
                 try {
                     $counts[ $service->getName() ] = intval($service->extractCount($results[$i]->json()));
-				} catch (\Exception $e) {
-					// Skip service if broken
-				}
+                } catch (\Exception $e) {
+                    // Skip service if broken
+                }
             }
             $i++;
         }
