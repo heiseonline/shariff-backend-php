@@ -9,8 +9,20 @@ This document describes the PHP backend. The following backends are also availab
 * [shariff-backend-node](https://github.com/heiseonline/shariff-backend-node)
 * [shariff-backend-perl](https://github.com/heiseonline/shariff-backend-perl)
 
+Supported services
+------------------
+- Facebook
+- Flattr
+- GooglePlus
+- LinkedIn
+- Pinterest
+- Reddit
+- StumbleUpon
+- Twitter
+- Xing
+
 Requirements
----------------
+------------
 
 To run Shariff PHP Backend on your server you need:
 
@@ -27,9 +39,9 @@ This zip file contains contains a configuration file `shariff.json`. The followi
 |-------------|------|-------------|
 | `cache`    | `object`  | File cache settings described below |
 | `domain`   | `string` | Domain for which share counts may be requested |
-| `services` | `array` | List of services to be enabled. Available: `Facebook`, `GooglePlus`, `Twitter` |
+| `services` | `array` | List of services to be enabled. See [Supported services](#supported-services). |
 
-Cache settings:
+##### Cache settings:
 
 | Key         | Type | Description |
 |-------------|------|-------------|

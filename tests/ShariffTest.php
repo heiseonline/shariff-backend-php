@@ -13,7 +13,8 @@ class ShariffTest extends \PHPUnit_Framework_TestCase
         "Pinterest",
         "Reddit",
         "StumbleUpon",
-        "Twitter"
+        "Twitter",
+        "Xing"
     );
 
     public function testShariff()
@@ -27,22 +28,43 @@ class ShariffTest extends \PHPUnit_Framework_TestCase
         $counts = $shariff->get('http://www.heise.de');
 
         $this->assertArrayHasKey('facebook', $counts);
-        $this->assertArrayHasKey('flattr', $counts);
-        $this->assertArrayHasKey('googleplus', $counts);
-        $this->assertArrayHasKey('linkedin', $counts);
-        $this->assertArrayHasKey('pinterest', $counts);
-        $this->assertArrayHasKey('reddit', $counts);
-        $this->assertArrayHasKey('stumbleupon', $counts);
-        $this->assertArrayHasKey('twitter', $counts);
+        $this->assertInternalType('int', $counts['facebook']);
+        $this->assertGreaterThanOrEqual(0, $counts['facebook']);
 
-        $this->assertGreaterThan(0, $counts['facebook']);
-        $this->assertGreaterThan(0, $counts['googleplus']);
-        $this->assertGreaterThan(0, $counts['linkedin']);
-        $this->assertGreaterThan(0, $counts['pinterest']);
-        $this->assertGreaterThan(0, $counts['reddit']);
-        $this->assertGreaterThan(0, $counts['stumbleupon']);
-        $this->assertGreaterThan(0, $counts['twitter']);
-        $this->assertGreaterThan(-1, $counts['flattr']);
+        $this->assertArrayHasKey('flattr', $counts);
+        $this->assertInternalType('int', $counts['flattr']);
+        $this->assertGreaterThanOrEqual(0, $counts['flattr']);
+
+        $this->assertArrayHasKey('googleplus', $counts);
+        $this->assertInternalType('int', $counts['googleplus']);
+        $this->assertGreaterThanOrEqual(0, $counts['googleplus']);
+
+        $this->assertArrayHasKey('linkedin', $counts);
+        $this->assertInternalType('int', $counts['linkedin']);
+        $this->assertGreaterThanOrEqual(0, $counts['linkedin']);
+
+        $this->assertArrayHasKey('pinterest', $counts);
+        $this->assertInternalType('int', $counts['pinterest']);
+        $this->assertGreaterThanOrEqual(0, $counts['pinterest']);
+
+        $this->assertArrayHasKey('reddit', $counts);
+        $this->assertInternalType('int', $counts['reddit']);
+        $this->assertGreaterThanOrEqual(0, $counts['reddit']);
+
+        $this->assertArrayHasKey('stumbleupon', $counts);
+        $this->assertInternalType('int', $counts['stumbleupon']);
+        $this->assertGreaterThanOrEqual(0, $counts['stumbleupon']);
+
+        $this->assertArrayHasKey('twitter', $counts);
+        $this->assertInternalType('int', $counts['twitter']);
+        $this->assertGreaterThanOrEqual(0, $counts['twitter']);
+
+        // It seems Xing is blocking Travis from time to time - maybe caused by DOS protection
+        if (!getenv("TRAVIS")) {
+            $this->assertArrayHasKey('xing', $counts);
+            $this->assertInternalType('int', $counts['xing']);
+            $this->assertGreaterThanOrEqual(0, $counts['xing']);
+        }
     }
 
     public function testInvalidDomain()
