@@ -30,6 +30,16 @@ class Backend
         $options->setNamespace('Shariff');
         $options->setTtl($config["cache"]["ttl"]);
 
+        if (function_exists('register_postsend_function')) {
+            // for hhvm installations: executing after response / session close
+            register_postsend_function(function() {
+                $this->cache->clearExpired();
+            });
+        } else {
+            // default
+            $this->cache->clearExpired();
+        }
+
         $this->services = $this->getServicesByName($config["services"]);
     }
 
@@ -89,8 +99,11 @@ class Backend
         $i = 0;
         foreach ($this->services as $service) {
             if (method_exists($results[$i], "json")) {
-                $count = $service->extractCount($results[$i]->json());
-                $counts[ $service->getName() ] = $count;
+                try {
+                    $counts[ $service->getName() ] = intval($service->extractCount($results[$i]->json()));
+                } catch (\Exception $e) {
+                    // Skip service if broken
+                }
             }
             $i++;
         }
