@@ -45,9 +45,14 @@ class Facebook extends Request implements ServiceInterface
             try {
                 return $this->client->createRequest(
                     'GET',
-                    sprintf('https://graph.facebook.com/oauth/access_token?client_id=%s&client_secret=%s&grant_type=client_credentials', $this->config['app_id'], $this->config['secret'])
+                    sprintf(
+                        'https://graph.facebook.com/oauth/access_token?client_id=%s&client_secret=%s&grant_type=client_credentials',
+                        $this->config['app_id'],
+                        $this->config['secret']
+                    )
                 )->send()->getBody(true);
-            } catch(\Exception $e) { }
+            } catch (\Exception $e) {
+            }
         }
         return null;
     }
