@@ -9,10 +9,11 @@ use Zend\Cache\Storage\Adapter\Filesystem;
 class Backend
 {
 
+    protected $baseCacheKey;
     protected $cache;
     protected $client;
     protected $domain;
-    protected $services = array();
+    protected $services;
 
     public function __construct($config)
     {
