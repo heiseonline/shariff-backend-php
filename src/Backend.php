@@ -30,17 +30,21 @@ class Backend
         $options->setNamespace('Shariff');
         $options->setTtl($config["cache"]["ttl"]);
 
-        $this->services = $this->getServicesByName($config["services"]);
+        $this->services = $this->getServicesByName($config["services"], $config);
     }
 
-    private function getServicesByName($serviceNames)
+    private function getServicesByName($serviceNames, $config)
     {
         $services = array();
         foreach ($serviceNames as $serviceName) {
             $service = new \ReflectionClass("Heise\Shariff\Backend\\$serviceName");
             foreach ($service->getInterfaceNames() as $interface) {
                 if ($interface === 'Heise\Shariff\Backend\ServiceInterface') {
-                    $services[] = $service->newInstance();
+                    $newService = $service->newInstance();
+                    if (isset($config[$serviceName])) {
+                        $newService->setConfig($config[$serviceName]);
+                    }
+                    $services[] = $newService;
                 }
             }
         }
