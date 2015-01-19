@@ -48,12 +48,8 @@ class Backend
     {
         $services = array();
         foreach ($serviceNames as $serviceName) {
-            $service = new \ReflectionClass("Heise\Shariff\Backend\\$serviceName");
-            foreach ($service->getInterfaceNames() as $interface) {
-                if ($interface === 'Heise\Shariff\Backend\ServiceInterface') {
-                    $services[] = $service->newInstance();
-                }
-            }
+            $serviceName = 'Heise\Shariff\Backend\\'.$serviceName;
+            $services[] = new $serviceName();
         }
         return $services;
     }
