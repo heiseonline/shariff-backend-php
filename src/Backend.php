@@ -9,10 +9,11 @@ use Zend\Cache\Storage\Adapter\Filesystem;
 class Backend
 {
 
+    protected $baseCacheKey;
     protected $cache;
     protected $client;
     protected $domain;
-    protected $services = array();
+    protected $services;
 
     public function __construct($config)
     {
@@ -30,6 +31,16 @@ class Backend
         $options->setNamespace('Shariff');
         $options->setTtl($config["cache"]["ttl"]);
 
+        if (function_exists('register_postsend_function')) {
+            // for hhvm installations: executing after response / session close
+            register_postsend_function(function() {
+                $this->cache->clearExpired();
+            });
+        } else {
+            // default
+            $this->cache->clearExpired();
+        }
+
         $this->services = $this->getServicesByName($config["services"]);
     }
 
@@ -37,12 +48,8 @@ class Backend
     {
         $services = array();
         foreach ($serviceNames as $serviceName) {
-            $service = new \ReflectionClass("Heise\Shariff\Backend\\$serviceName");
-            foreach ($service->getInterfaceNames() as $interface) {
-                if ($interface === 'Heise\Shariff\Backend\ServiceInterface') {
-                    $services[] = $service->newInstance();
-                }
-            }
+            $serviceName = 'Heise\Shariff\Backend\\'.$serviceName;
+            $services[] = new $serviceName();
         }
         return $services;
     }
@@ -89,8 +96,11 @@ class Backend
         $i = 0;
         foreach ($this->services as $service) {
             if (method_exists($results[$i], "json")) {
-                $count = $service->extractCount($results[$i]->json());
-                $counts[ $service->getName() ] = intval($count);
+                try {
+                    $counts[ $service->getName() ] = intval($service->extractCount($results[$i]->json()));
+                } catch (\Exception $e) {
+                    // Skip service if broken
+                }
             }
             $i++;
         }
