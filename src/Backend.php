@@ -33,7 +33,7 @@ class Backend
 
         if (function_exists('register_postsend_function')) {
             // for hhvm installations: executing after response / session close
-            register_postsend_function(function() {
+            register_postsend_function(function () {
                 $this->cache->clearExpired();
             });
         } else {
