@@ -27,4 +27,9 @@ abstract class Request
 
         return $req;
     }
+
+    public function setConfig(array $config)
+    {
+        // convenience implementation empty
+    }
 }

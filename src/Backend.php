@@ -41,15 +41,19 @@ class Backend
             $this->cache->clearExpired();
         }
 
-        $this->services = $this->getServicesByName($config["services"]);
+        $this->services = $this->getServicesByName($config["services"], $config);
     }
 
-    private function getServicesByName($serviceNames)
+    private function getServicesByName($serviceNames, $config)
     {
         $services = array();
         foreach ($serviceNames as $serviceName) {
             $serviceName = 'Heise\Shariff\Backend\\'.$serviceName;
-            $services[] = new $serviceName();
+            $newService = new $serviceName();
+            if (isset($config[$serviceName])) {
+                $newService->setConfig($config[$serviceName]);
+            }
+            $services[] = $newService;
         }
         return $services;
     }
