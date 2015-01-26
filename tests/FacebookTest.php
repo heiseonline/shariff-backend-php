@@ -1,13 +1,6 @@
 <?php
-/**
- * www.valiton.com
- *
- * @author Uwe Jäger <uwe.jaeger@valiton.com>
- */
-
 
 namespace Heise\Tests\Shariff;
-
 
 use GuzzleHttp\Message\Request;
 use GuzzleHttp\Message\Response;
@@ -43,7 +36,8 @@ class FacebookTest extends \PHPUnit_Framework_TestCase
             ->method('createRequest')
             ->with(
                 'GET',
-                'https://graph.facebook.com/oauth/access_token?client_id=foo&client_secret=bar&grant_type=client_credentials'
+                'https://graph.facebook.com/oauth/access_token'
+                    . '?client_id=foo&client_secret=bar&grant_type=client_credentials'
             )
         ;
 
@@ -79,7 +73,10 @@ class FacebookTest extends \PHPUnit_Framework_TestCase
         $facebook = new Facebook($client);
         $facebook->setConfig(array('app_id' => 'foo', 'secret' => 'bar'));
         $url = $facebook->getRequest('http://www.heise.de')->getUrl();
-        $this->assertEquals('https://graph.facebook.com/v2.2/?id='.urlencode('http://www.heise.de'). '&access_token=token', $url);
+        $this->assertEquals(
+            'https://graph.facebook.com/v2.2/?id='.urlencode('http://www.heise.de'). '&access_token=token',
+            $url
+        );
     }
 
     public function createRequest($method, $url, $options)

@@ -1,13 +1,6 @@
 <?php
-/**
- * www.valiton.com
- *
- * @author Uwe Jäger <uwe.jaeger@valiton.com>
- */
-
 
 namespace Heise\Tests\Shariff;
-
 
 use GuzzleHttp\Client;
 use Heise\Shariff\Backend\ServiceFactory;
@@ -28,7 +21,10 @@ class ServiceFactoryTest extends \PHPUnit_Framework_TestCase
         $serviceFactory = new ServiceFactory(new Client());
         $serviceFactory->registerService('MockService', $mockService);
 
-        $services = $serviceFactory->getServicesByName(array('MockService'), array('MockService' => array('foo' => 'bar')));
+        $services = $serviceFactory->getServicesByName(
+            array('MockService'),
+            array('MockService' => array('foo' => 'bar'))
+        );
         $this->assertCount(1, $services);
     }
 
@@ -44,8 +40,10 @@ class ServiceFactoryTest extends \PHPUnit_Framework_TestCase
         $serviceFactory = new ServiceFactory(new Client());
         $serviceFactory->registerService('MockService', $mockService);
 
-        $services = $serviceFactory->getServicesByName(array('MockService'), array('OtherService' => array('foo' => 'bar')));
+        $services = $serviceFactory->getServicesByName(
+            array('MockService'),
+            array('OtherService' => array('foo' => 'bar'))
+        );
         $this->assertCount(1, $services);
     }
-
 }

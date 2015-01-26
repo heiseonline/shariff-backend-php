@@ -1,13 +1,6 @@
 <?php
-/**
- * www.valiton.com
- *
- * @author Uwe Jäger <uwe.jaeger@valiton.com>
- */
-
 
 namespace Heise\Shariff\Backend;
-
 
 use GuzzleHttp\Client;
 use GuzzleHttp\Pool;
@@ -94,5 +87,4 @@ class BackendManager
 
         return $counts;
     }
-
 }

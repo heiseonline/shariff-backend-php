@@ -39,7 +39,13 @@ class Backend
         }
 
         $serviceFactory = new ServiceFactory($client);
-        $this->backendManager = new BackendManager($baseCacheKey, $cache, $client, $domain, $serviceFactory->getServicesByName($config['services'], $config));
+        $this->backendManager = new BackendManager(
+            $baseCacheKey,
+            $cache,
+            $client,
+            $domain,
+            $serviceFactory->getServicesByName($config['services'], $config)
+        );
     }
 
 

@@ -1,13 +1,6 @@
 <?php
-/**
- * www.valiton.com
- *
- * @author Uwe Jäger <uwe.jaeger@valiton.com>
- */
-
 
 namespace Heise\Shariff\Backend;
-
 
 use GuzzleHttp\Client;
 
@@ -54,5 +47,4 @@ class ServiceFactory
 
         return $service;
     }
-
 }
