@@ -48,6 +48,28 @@ This zip file contains contains a configuration file `shariff.json`. The followi
 | `ttl` | `integer` | Time that the counts are cached (in seconds) |
 | `cacheDir` | `string` | Directory used for the cache. Default: system temp directory |
 
+##### Service Settings
+
+To pass config options to a service, you can add them to the json as well under the name of the service.
+Currently only the Facebook service has options for an facebook application id and client secret in order to
+use the graph api id method to get the current share count.
+
+| Key         | Type | Description |
+|-------------|------|-------------|
+| `servicename` | `object` | options for the service |
+
+##### Facebook service options
+
+To use the graph api id method to fetch the share count you need to set up an application at facebook.com and pass in the
+application id and client secret to the options. It seems that the id method returns the most current share count, but it
+can be only used with an registered application.
+
+| Key         | Type | Description |
+|-------------|------|-------------|
+| `app_id` | `string` | the id of your facebook application |
+| `secret` | `string` | the client secret of your facebook application |
+
+
 Testing your installation
 -------------------------
 
