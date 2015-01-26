@@ -37,7 +37,7 @@ class FacebookTest extends \PHPUnit_Framework_TestCase
             ->with(
                 'GET',
                 'https://graph.facebook.com/oauth/access_token'
-                    . '?client_id=foo&client_secret=bar&grant_type=client_credentials'
+                  . '?client_id=foo&client_secret=bar&grant_type=client_credentials'
             )
         ;
 
