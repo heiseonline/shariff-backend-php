@@ -4,7 +4,6 @@ namespace Heise\Shariff\Backend;
 
 class Facebook extends Request implements ServiceInterface
 {
-    protected $config;
 
     public function getName()
     {
@@ -32,11 +31,6 @@ class Facebook extends Request implements ServiceInterface
         }
 
         return null;
-    }
-
-    public function setConfig(array $config)
-    {
-        $this->config = $config;
     }
 
     protected function getAccesToken()
