@@ -48,6 +48,15 @@ This zip file contains contains a configuration file `shariff.json`. The followi
 | `ttl` | `integer` | Time that the counts are cached (in seconds) |
 | `cacheDir` | `string` | Directory used for the cache. Default: system temp directory |
 
+##### Client options
+
+The backend uses [Guzzle](http://docs.guzzlephp.org/en/latest/) as HTTP client. Guzzle has many options that you can set, e.g. timeout and connect_timeout. See http://docs.guzzlephp.org/en/latest/clients.html#request-options for a detailed list.
+In order to set those options pass them in the json with the key "client".
+
+| Key         | Type | Description |
+|-------------|------|-------------|
+| `client` | `object` | Guzzle request options |
+
 ##### Service Settings
 
 To pass config options to a service, you can add them to the json as well under the name of the service. Currently only the Facebook service has options for an facebook application id and client secret in order to use the graph api id method to get the current share count.

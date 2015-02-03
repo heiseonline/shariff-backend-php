@@ -15,7 +15,11 @@ class Backend
     public function __construct($config)
     {
         $domain = $config["domain"];
-        $client = new Client();
+        $clientOptions = [];
+        if (isset($config['client'])) {
+            $clientOptions = $config['client'];
+        }
+        $client = new Client(['defaults' => $clientOptions]);
         $baseCacheKey = md5(json_encode($config));
 
         $cache = new Filesystem();
