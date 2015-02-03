@@ -11,20 +11,20 @@ class FacebookTest extends \PHPUnit_Framework_TestCase
     public function testConfig()
     {
         $client = $this->getMockBuilder('GuzzleHttp\Client')
-            ->disableOriginalConstructor()
-            ->getMock();
+          ->disableOriginalConstructor()
+          ->getMock();
 
         $response = $this->getMockBuilder('GuzzleHttp\Message\ResponseInterface')
-            ->getMock();
+          ->getMock();
 
         $response
-            ->method('getBody')
-            ->willReturn('access_token=tokem')
+          ->method('getBody')
+          ->willReturn('access_token=tokem')
         ;
 
         $client
-            ->method('send')
-            ->willReturn($response)
+          ->method('send')
+          ->willReturn($response)
         ;
 
         $client
@@ -33,12 +33,12 @@ class FacebookTest extends \PHPUnit_Framework_TestCase
         ;
 
         $client->expects($this->at(0))
-            ->method('createRequest')
-            ->with(
-                'GET',
-                'https://graph.facebook.com/oauth/access_token'
-                  . '?client_id=foo&client_secret=bar&grant_type=client_credentials'
-            )
+          ->method('createRequest')
+          ->with(
+              'GET',
+              'https://graph.facebook.com/oauth/access_token'
+              . '?client_id=foo&client_secret=bar&grant_type=client_credentials'
+          )
         ;
 
         $facebook = new Facebook($client);
