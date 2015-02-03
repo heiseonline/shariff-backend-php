@@ -6,12 +6,15 @@ use GuzzleHttp\Client;
 
 abstract class Request
 {
-
+    /** @var Client */
     protected $client;
 
-    public function __construct()
+    /** @var array */
+    protected $config;
+
+    public function __construct(Client $client)
     {
-        $this->client = new Client();
+        $this->client = $client;
     }
 
     protected function createRequest($url, $method = 'GET', $options = array())
@@ -26,5 +29,10 @@ abstract class Request
         );
 
         return $req;
+    }
+
+    public function setConfig(array $config)
+    {
+        $this->config = $config;
     }
 }
