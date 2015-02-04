@@ -93,17 +93,17 @@ class ShariffTest extends \PHPUnit_Framework_TestCase
 
     public function testCacheOptions()
     {
+        $this->setExpectedException('Zend\Cache\Exception\OutOfSpaceException');
         $shariff = new Backend(array(
             "domain"   => 'www.heise.de',
             "cache"    => array(
-                "adapter" => "Dba",
-                "adapterOptions" => array("pathname" => tempnam(sys_get_temp_dir(), 'shariff')),
+                "adapter" => "Memory",
+                "adapterOptions" => array("memoryLimit" => 10),
                 "ttl" => 0
             ),
             "services" => $this->services
         ));
-
         $counts = $shariff->get('http://www.heise.de');
-        $this->assertGreaterThan(0, count($counts));
+        $this->fail('10 bytes should not be enough for the cache');
     }
 }
