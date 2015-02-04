@@ -110,4 +110,22 @@ class ShariffTest extends \PHPUnit_Framework_TestCase
         $counts = $shariff->get('http://www.heise.de');
         $this->fail('10 bytes should not be enough for the cache');
     }
+
+    public function testClientOptions()
+    {
+        $shariff = new Backend(array(
+            "domain"   => 'www.heise.de',
+            "cache"    => array("ttl" => 1),
+            "services" => $this->services,
+            "client" => array(
+                "timeout" => 0.005,
+                "connect_timeout" => 0.005
+            )
+        ));
+
+        $counts = $shariff->get('http://www.heise.de');
+
+        // expect no response in 5 ms
+        $this->assertCount(0, $counts);
+    }
 }
