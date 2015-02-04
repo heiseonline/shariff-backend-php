@@ -228,27 +228,27 @@ class Client implements ClientInterface
         $trans = new Transaction($this, $request, $isFuture);
         $fn = $this->fsm;
 
-        // Ensure a future response is returned if one was requested.
-        if ($isFuture) {
-            try {
-                $fn($trans);
+        try {
+            $fn($trans);
+            if ($isFuture) {
                 // Turn the normal response into a future if needed.
                 return $trans->response instanceof FutureInterface
                     ? $trans->response
                     : new FutureResponse(new FulfilledPromise($trans->response));
-            } catch (RequestException $e) {
-                // Wrap the exception in a promise if the user asked for a future.
+            }
+            // Resolve deep futures if this is not a future
+            // transaction. This accounts for things like retries
+            // that do not have an immediate side-effect.
+            while ($trans->response instanceof FutureInterface) {
+                $trans->response = $trans->response->wait();
+            }
+            return $trans->response;
+        } catch (\Exception $e) {
+            if ($isFuture) {
+                // Wrap the exception in a promise
                 return new FutureResponse(new RejectedPromise($e));
             }
-        } else {
-            try {
-                $fn($trans);
-                return $trans->response instanceof FutureInterface
-                    ? $trans->response->wait()
-                    : $trans->response;
-            } catch (\Exception $e) {
-                throw RequestException::wrapException($trans->request, $e);
-            }
+            throw RequestException::wrapException($trans->request, $e);
         }
     }
 
@@ -281,9 +281,10 @@ class Client implements ClientInterface
     /**
      * Expand a URI template and inherit from the base URL if it's relative
      *
-     * @param string|array $url URL or URI template to expand
-     *
+     * @param string|array $url URL or an array of the URI template to expand
+     *                          followed by a hash of template varnames.
      * @return string
+     * @throws \InvalidArgumentException
      */
     private function buildUrl($url)
     {
@@ -292,6 +293,11 @@ class Client implements ClientInterface
             return strpos($url, '://')
                 ? (string) $url
                 : (string) $this->baseUrl->combine($url);
+        }
+
+        if (!isset($url[1])) {
+            throw new \InvalidArgumentException('You must provide a hash of '
+                . 'varname options in the second element of a URL array.');
         }
 
         // Absolute URL
@@ -309,7 +315,12 @@ class Client implements ClientInterface
     {
         if (!isset($config['base_url'])) {
             $this->baseUrl = new Url('', '');
-        } elseif (is_array($config['base_url'])) {
+        } elseif (!is_array($config['base_url'])) {
+            $this->baseUrl = Url::fromString($config['base_url']);
+        } elseif (count($config['base_url']) < 2) {
+            throw new \InvalidArgumentException('You must provide a hash of '
+                . 'varname options in the second element of a base_url array.');
+        } else {
             $this->baseUrl = Url::fromString(
                 Utils::uriTemplate(
                     $config['base_url'][0],
@@ -317,8 +328,6 @@ class Client implements ClientInterface
                 )
             );
             $config['base_url'] = (string) $this->baseUrl;
-        } else {
-            $this->baseUrl = Url::fromString($config['base_url']);
         }
     }
 
@@ -389,6 +398,6 @@ class Client implements ClientInterface
      */
     public function sendAll($requests, array $options = [])
     {
-        (new Pool($this, $requests, $options))->wait();
+        Pool::send($this, $requests, $options);
     }
 }
