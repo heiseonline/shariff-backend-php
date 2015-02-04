@@ -79,4 +79,35 @@ class ShariffTest extends \PHPUnit_Framework_TestCase
 
         $this->assertNull($counts);
     }
+
+    public function testApcCache()
+    {
+        if ('hhvm' == getenv('TRAVIS_PHP_VERSION')) {
+            $this->markTestSkipped('APC seems to work for hhvm');
+        }
+
+        $this->setExpectedException('Zend\Cache\Exception\ExtensionNotLoadedException');
+        $shariff = new Backend(array(
+            "domain"   => 'www.heise.de',
+            "cache"    => array("adapter" => "Apc", "ttl" => 0),
+            "services" => $this->services
+        ));
+        $this->fail('APC should not be enabled for test');
+    }
+
+    public function testCacheOptions()
+    {
+        $this->setExpectedException('Zend\Cache\Exception\OutOfSpaceException');
+        $shariff = new Backend(array(
+            "domain"   => 'www.heise.de',
+            "cache"    => array(
+                "adapter" => "Memory",
+                "adapterOptions" => array("memoryLimit" => 10),
+                "ttl" => 0
+            ),
+            "services" => $this->services
+        ));
+        $counts = $shariff->get('http://www.heise.de');
+        $this->fail('10 bytes should not be enough for the cache');
+    }
 }

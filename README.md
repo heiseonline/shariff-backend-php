@@ -43,10 +43,14 @@ This zip file contains contains a configuration file `shariff.json`. The followi
 
 ##### Cache settings:
 
+By default Shariff uses the Filesystem cache. By specifying a different adapter from Zend\Cache\Storage\Adapter you can tell Shariff to use another cache. Also you can specify options for that cache adapter
+
 | Key         | Type | Description |
 |-------------|------|-------------|
 | `ttl` | `integer` | Time that the counts are cached (in seconds) |
 | `cacheDir` | `string` | Directory used for the cache. Default: system temp directory |
+| `adapter` | `string` | Name of cache adapter (e.g. Apc, Memcache, etc.) |
+| `adapterOptions` | `object` | Options for the cache adapter |
 
 ##### Service Settings
 
