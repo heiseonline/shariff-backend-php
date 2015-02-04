@@ -82,6 +82,10 @@ class ShariffTest extends \PHPUnit_Framework_TestCase
 
     public function testApcCache()
     {
+        if ('hhvm' == getenv('TRAVIS_PHP_VERSION')) {
+            $this->markTestSkipped('APC seems to work for hhvm');
+        }
+
         $this->setExpectedException('Zend\Cache\Exception\ExtensionNotLoadedException');
         $shariff = new Backend(array(
             "domain"   => 'www.heise.de',
