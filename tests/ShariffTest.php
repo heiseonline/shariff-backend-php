@@ -79,4 +79,31 @@ class ShariffTest extends \PHPUnit_Framework_TestCase
 
         $this->assertNull($counts);
     }
+
+    public function testApcCache()
+    {
+        $this->setExpectedException('Zend\Cache\Exception\ExtensionNotLoadedException');
+        $shariff = new Backend(array(
+            "domain"   => 'www.heise.de',
+            "cache"    => array("adapter" => "Apc", "ttl" => 0),
+            "services" => $this->services
+        ));
+        $this->fail('APC should not be enabled for test');
+    }
+
+    public function testCacheOptions()
+    {
+        $shariff = new Backend(array(
+            "domain"   => 'www.heise.de',
+            "cache"    => array(
+                "adapter" => "Dba",
+                "adapterOptions" => array("pathname" => tempnam(sys_get_temp_dir(), 'shariff')),
+                "ttl" => 0
+            ),
+            "services" => $this->services
+        ));
+
+        $counts = $shariff->get('http://www.heise.de');
+        $this->assertGreaterThan(0, count($counts));
+    }
 }
