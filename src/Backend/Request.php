@@ -4,6 +4,11 @@ namespace Heise\Shariff\Backend;
 
 use GuzzleHttp\Client;
 
+/**
+ * Class Request
+ *
+ * @package Heise\Shariff\Backend
+ */
 abstract class Request
 {
     /** @var Client */
@@ -12,11 +17,20 @@ abstract class Request
     /** @var array */
     protected $config;
 
+    /**
+     * @param Client $client
+     */
     public function __construct(Client $client)
     {
         $this->client = $client;
     }
 
+    /**
+     * @param string $url
+     * @param string $method
+     * @param array $options
+     * @return \GuzzleHttp\Message\Request
+     */
     protected function createRequest($url, $method = 'GET', $options = array())
     {
         // $defaults = array('future' => true, 'debug' => true);
@@ -31,6 +45,9 @@ abstract class Request
         return $req;
     }
 
+    /**
+     * @param array $config
+     */
     public function setConfig(array $config)
     {
         $this->config = $config;

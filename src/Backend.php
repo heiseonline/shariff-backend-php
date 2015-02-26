@@ -5,16 +5,23 @@ namespace Heise\Shariff;
 use GuzzleHttp\Client;
 use Heise\Shariff\Backend\BackendManager;
 use Heise\Shariff\Backend\ServiceFactory;
-use Zend\Cache\Storage\Adapter\Filesystem;
 use Zend\Cache\Storage\Adapter\FilesystemOptions;
 use Zend\Cache\Storage\ClearExpiredInterface;
 use Zend\Cache\StorageFactory;
 
+/**
+ * Class Backend
+ *
+ * @package Heise\Shariff
+ */
 class Backend
 {
     /** @var BackendManager */
     protected $backendManager;
 
+    /**
+     * @param array $config
+     */
     public function __construct($config)
     {
         $domain = $config["domain"];
@@ -74,7 +81,10 @@ class Backend
         );
     }
 
-
+    /**
+     * @param string $url
+     * @return array
+     */
     public function get($url)
     {
         return $this->backendManager->get($url);

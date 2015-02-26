@@ -6,6 +6,11 @@ use GuzzleHttp\Client;
 use GuzzleHttp\Pool;
 use Zend\Cache\Storage\StorageInterface;
 
+/**
+ * Class BackendManager
+ *
+ * @package Heise\Shariff\Backend
+ */
 class BackendManager
 {
     /** @var string */
@@ -23,6 +28,13 @@ class BackendManager
     /** @var ServiceInterface[] */
     protected $services;
 
+    /**
+     * @param $baseCacheKey
+     * @param $cache
+     * @param $client
+     * @param $domain
+     * @param $services
+     */
     public function __construct($baseCacheKey, $cache, $client, $domain, $services)
     {
         $this->baseCacheKey = $baseCacheKey;
@@ -32,6 +44,10 @@ class BackendManager
         $this->services = $services;
     }
 
+    /**
+     * @param string $url
+     * @return bool
+     */
     private function isValidDomain($url)
     {
         if ($this->domain) {
@@ -43,6 +59,10 @@ class BackendManager
         return true;
     }
 
+    /**
+     * @param string $url
+     * @return array|mixed|null
+     */
     public function get($url)
     {
 
@@ -63,6 +83,7 @@ class BackendManager
 
         $requests = array_map(
             function ($service) use ($url) {
+                /** @var ServiceInterface $service */
                 return $service->getRequest($url);
             },
             $this->services
@@ -75,7 +96,7 @@ class BackendManager
         foreach ($this->services as $service) {
             if (method_exists($results[$i], "json")) {
                 try {
-                    $counts[ $service->getName() ] = intval($service->extractCount($results[$i]->json()));
+                    $counts[ $service->getName() ] = (int)$service->extractCount($results[$i]->json());
                 } catch (\Exception $e) {
                     // Skip service if broken
                 }
