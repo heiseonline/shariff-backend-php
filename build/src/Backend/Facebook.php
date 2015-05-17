@@ -2,17 +2,28 @@
 
 namespace Heise\Shariff\Backend;
 
+/**
+ * Class Facebook
+ *
+ * @package Heise\Shariff\Backend
+ */
 class Facebook extends Request implements ServiceInterface
 {
-
+    /**
+     * @return string
+     */
     public function getName()
     {
         return 'facebook';
     }
 
+    /**
+     * @param string $url
+     * @return \GuzzleHttp\Message\Request
+     */
     public function getRequest($url)
     {
-        $accessToken = $this->getAccesToken();
+        $accessToken = $this->getAccessToken();
         if (null !== $accessToken) {
             $query = 'https://graph.facebook.com/v2.2/?id=' . $url . '&' . $accessToken;
         } else {
@@ -21,7 +32,11 @@ class Facebook extends Request implements ServiceInterface
         return $this->createRequest($query);
     }
 
-    public function extractCount($data)
+    /**
+     * @param array $data
+     * @return int
+     */
+    public function extractCount(array $data)
     {
         if (isset($data['data']) && isset($data['data'][0]) && isset($data['data'][0]['total_count'])) {
             return $data['data'][0]['total_count'];
@@ -30,10 +45,13 @@ class Facebook extends Request implements ServiceInterface
             return $data['share']['share_count'];
         }
 
-        return null;
+        return 0;
     }
 
-    protected function getAccesToken()
+    /**
+     * @return \GuzzleHttp\Stream\StreamInterface|null
+     */
+    protected function getAccessToken()
     {
         if (isset($this->config['app_id']) && isset($this->config['secret'])) {
             try {

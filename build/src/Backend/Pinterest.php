@@ -6,14 +6,26 @@ use GuzzleHttp\Event\CompleteEvent;
 use GuzzleHttp\Stream\Stream;
 use GuzzleHttp\Message\Response;
 
+/**
+ * Class Pinterest
+ *
+ * @package Heise\Shariff\Backend
+ */
 class Pinterest extends Request implements ServiceInterface
 {
 
+    /**
+     * @return string
+     */
     public function getName()
     {
         return 'pinterest';
     }
 
+    /**
+     * @param string $url
+     * @return \GuzzleHttp\Message\Request|\GuzzleHttp\Message\RequestInterface
+     */
     public function getRequest($url)
     {
         $url = 'http://api.pinterest.com/v1/urls/count.json?callback=x&url='.urlencode($url);
@@ -26,7 +38,11 @@ class Pinterest extends Request implements ServiceInterface
         return $request;
     }
 
-    public function extractCount($data)
+    /**
+     * @param array $data
+     * @return int
+     */
+    public function extractCount(array $data)
     {
         return $data['count'];
     }
