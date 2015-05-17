@@ -37,8 +37,9 @@ This zip file contains a configuration file `shariff.json`. The following config
 
 | Key         | Type | Description |
 |-------------|------|-------------|
-| `cache`    | `object`  | File cache settings described below |
-| `domain`   | `string` | Domain for which share counts may be requested |
+| `cacheClass` | `string` | *Optional* Cache class name. Has to implement `Heise\Shariff\CacheInterface`. Defaults to internal Zend Cache. |
+| `cache` | `object`  | File cache settings, which are passed on to the Cache class. See description below. |
+| `domain` | `string` | Domain for which share counts may be requested |
 | `services` | `array` | List of services to be enabled. See [Supported services](#supported-services). |
 
 ##### Cache settings:
@@ -51,6 +52,8 @@ By default Shariff uses the Filesystem cache. By specifying a different adapter 
 | `cacheDir` | `string` | Directory used for the cache. Default: system temp directory |
 | `adapter` | `string` | Name of cache adapter (e.g. Apc, Memcache, etc.) |
 | `adapterOptions` | `object` | Options for the cache adapter |
+
+*These option apply for the default Cache class (`ZendCache`) only. If you implement custom caching, you can specify your own options.*
 
 ##### Client options
 
