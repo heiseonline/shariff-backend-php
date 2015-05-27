@@ -4,7 +4,7 @@ namespace Heise\Shariff\Backend;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\Pool;
-use Zend\Cache\Storage\StorageInterface;
+use Heise\Shariff\CacheInterface;
 
 /**
  * Class BackendManager
@@ -16,7 +16,7 @@ class BackendManager
     /** @var string */
     protected $baseCacheKey;
 
-    /** @var StorageInterface */
+    /** @var CacheInterface */
     protected $cache;
 
     /** @var Client */
@@ -29,13 +29,13 @@ class BackendManager
     protected $services;
 
     /**
-     * @param $baseCacheKey
-     * @param $cache
-     * @param $client
-     * @param $domain
-     * @param $services
+     * @param string $baseCacheKey
+     * @param CacheInterface $cache
+     * @param Client $client
+     * @param string $domain
+     * @param ServiceInterface[] $services
      */
-    public function __construct($baseCacheKey, $cache, $client, $domain, $services)
+    public function __construct($baseCacheKey, CacheInterface $cache, Client $client, $domain, array $services)
     {
         $this->baseCacheKey = $baseCacheKey;
         $this->cache = $cache;
