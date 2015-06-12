@@ -44,6 +44,7 @@ class StreamHandler
         $this->lastHeaders = null;
         $parts = explode(' ', array_shift($hdrs), 3);
         $response = [
+            'version'        => substr($parts[0], 5),
             'status'         => $parts[1],
             'reason'         => isset($parts[2]) ? $parts[2] : null,
             'headers'        => Core::headersFromLines($hdrs),
@@ -284,13 +285,14 @@ class StreamHandler
             }
         } elseif ($value === false) {
             $options['ssl']['verify_peer'] = false;
+            $options['ssl']['allow_self_signed'] = true;
             return;
         } else {
             throw new RingException('Invalid verify request option');
         }
 
         $options['ssl']['verify_peer'] = true;
-        $options['ssl']['allow_self_signed'] = true;
+        $options['ssl']['allow_self_signed'] = false;
     }
 
     private function add_cert(array $request, &$options, $value, &$params)

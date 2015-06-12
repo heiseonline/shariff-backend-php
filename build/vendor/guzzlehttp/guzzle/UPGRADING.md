@@ -6,7 +6,7 @@ Guzzle Upgrade Guide
 
 ## Rewritten Adapter Layer
 
-Guzzle now uses `RingPHP <http://ringphp.readthedocs.org/en/latest/>`_ to send
+Guzzle now uses [RingPHP](http://ringphp.readthedocs.org/en/latest) to send
 HTTP requests. The `adapter` option in a `GuzzleHttp\Client` constructor
 is still supported, but it has now been renamed to `handler`. Instead of
 passing a `GuzzleHttp\Adapter\AdapterInterface`, you must now pass a PHP
@@ -14,7 +14,7 @@ passing a `GuzzleHttp\Adapter\AdapterInterface`, you must now pass a PHP
 
 ## Removed Fluent Interfaces
 
-`Fluent interfaces were removed <http://ocramius.github.io/blog/fluent-interfaces-are-evil/>`_
+[Fluent interfaces were removed](http://ocramius.github.io/blog/fluent-interfaces-are-evil)
 from the following classes:
 
 - `GuzzleHttp\Collection`
@@ -35,7 +35,7 @@ functions can be used as replacements.
   deprecated in favor of using `GuzzleHttp\Pool::batch()`.
 
 The "procedural" global client has been removed with no replacement (e.g.,
-`GuzzleHttp\get()`, `GuzzleHttp\post()`, etc.). Use a `GuzzleHttl\Client`
+`GuzzleHttp\get()`, `GuzzleHttp\post()`, etc.). Use a `GuzzleHttp\Client`
 object as a replacement.
 
 ## `throwImmediately` has been removed
