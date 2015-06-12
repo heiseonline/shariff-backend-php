@@ -80,6 +80,7 @@ class CurlFactory
             $startLine = explode(' ', array_shift($headers), 3);
             $headerList = Core::headersFromLines($headers);
             $response['headers'] = $headerList;
+            $response['version'] = isset($startLine[0]) ? substr($startLine[0], 5) : null;
             $response['status'] = isset($startLine[1]) ? (int) $startLine[1] : null;
             $response['reason'] = isset($startLine[2]) ? $startLine[2] : null;
             $response['body'] = $body;
@@ -180,7 +181,13 @@ class CurlFactory
         ];
 
         if (isset($request['version'])) {
-            $options[CURLOPT_HTTP_VERSION] = $request['version'] == 1.1 ? CURL_HTTP_VERSION_1_1 : CURL_HTTP_VERSION_1_0;
+            if ($request['version'] == 2.0) {
+                $options[CURLOPT_HTTP_VERSION] = CURL_HTTP_VERSION_2_0;
+            } else if ($request['version'] == 1.1) {
+                $options[CURLOPT_HTTP_VERSION] = CURL_HTTP_VERSION_1_1;
+            } else {
+                $options[CURLOPT_HTTP_VERSION] = CURL_HTTP_VERSION_1_0;
+            }
         }
 
         if (defined('CURLOPT_PROTOCOLS')) {
@@ -388,6 +395,13 @@ class CurlFactory
             case 'save_to':
 
                 if (is_string($value)) {
+                    if (!is_dir(dirname($value))) {
+                        throw new \RuntimeException(sprintf(
+                            'Directory %s does not exist for save_to value of %s',
+                            dirname($value),
+                            $value
+                        ));
+                    }
                     $value = new LazyOpenStream($value, 'w+');
                 }
 
