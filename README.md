@@ -101,11 +101,11 @@ If you need more control, you can invoke Shariff in your own PHP code. The follo
 use Heise\Shariff\Backend;
 
 $options = [
-	"domain"   => 'www.heise.de',
+	"domain"   => "www.heise.de",
 	"cache"    => ["ttl" => 1],
 	"services" => ["Facebook", "GooglePlus", "Twitter", "LinkedIn", "Reddit", "StumbleUpon", "Flattr", "Pinterest"]
-]
-$shariff = Backend->new($options);
-$counts = $backend->get("http://www.heise.de/");
+];
+$shariff = new Backend($options);
+$counts = $shariff->get("http://www.heise.de/");
 echo $counts["facebook"];
 ```
