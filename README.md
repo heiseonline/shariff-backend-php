@@ -57,7 +57,7 @@ By default Shariff uses the Filesystem cache. By specifying a different adapter 
 
 ##### Client options
 
-The backend uses [Guzzle](http://docs.guzzlephp.org/en/latest/) as HTTP client. Guzzle has many options that you can set, e.g. timeout and connect_timeout. See http://docs.guzzlephp.org/en/latest/clients.html#request-options for a detailed list.
+The backend uses [Guzzle](http://docs.guzzlephp.org/en/latest/) as HTTP client. Guzzle has many options that you can set, e.g. timeout and connect_timeout. See http://docs.guzzlephp.org/en/latest/request-options.html for a detailed list.
 In order to set those options pass them in the json with the key "client".
 
 | Key         | Type | Description |
