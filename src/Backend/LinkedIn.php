@@ -34,6 +34,6 @@ class LinkedIn extends Request implements ServiceInterface
      */
     public function extractCount(array $data)
     {
-        return $data['count'];
+        return (isset($data['count'])) ? $data['count'] : 0;
     }
 }
