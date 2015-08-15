@@ -48,6 +48,9 @@ class GooglePlus extends Request implements ServiceInterface
      */
     public function extractCount(array $data)
     {
-        return $data['result']['metadata']['globalCounts']['count'];
+        if (!empty($data['result']['metadata']['globalCounts']['count'])) {
+            return $data['result']['metadata']['globalCounts']['count'];
+        }
+        return 0;
     }
 }

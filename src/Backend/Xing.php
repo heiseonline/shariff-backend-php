@@ -40,6 +40,6 @@ class Xing extends Request implements ServiceInterface
      */
     public function extractCount(array $data)
     {
-        return $data['share_counter'];
+        return isset($data['share_counter']) ? $data['share_counter'] : 0;
     }
 }

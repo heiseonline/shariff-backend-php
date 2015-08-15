@@ -34,6 +34,6 @@ class AddThis extends Request implements ServiceInterface
      */
     public function extractCount(array $data)
     {
-        return $data['shares'];
+        return isset($data['shares']) ? $data['shares'] : 0;
     }
 }
