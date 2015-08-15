@@ -34,8 +34,11 @@ class Reddit extends Request implements ServiceInterface
     public function extractCount(array $data)
     {
         $count = 0;
-        foreach ($data['data']['children'] as $child) {
-            $count += $child['data']['score'];
+        if (isset($data['data']) && isset($data['data']['children']) && isset($data['data']['score']))
+        {
+            foreach ($data['data']['children'] as $child) {
+                $count += $child['data']['score'];
+            }
         }
         return $count;
     }
