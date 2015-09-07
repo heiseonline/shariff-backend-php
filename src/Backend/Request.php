@@ -34,7 +34,7 @@ abstract class Request
     protected function createRequest($url, $method = 'GET', $options = array())
     {
         // $defaults = array('future' => true, 'debug' => true);
-        $defaults = array('future' => true);
+        $defaults = array('future' => true, 'timeout' => 5.0);
 
         $req = $this->client->createRequest(
             $method,
