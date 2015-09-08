@@ -24,7 +24,7 @@
                 "dev-master": "2.0-dev"
             }
         },
-        "installation-source": "source",
+        "installation-source": "dist",
         "autoload": {
             "psr-4": {
                 "React\\Promise\\": "src/"
@@ -269,29 +269,34 @@
         ]
     },
     {
-        "name": "zendframework/zend-eventmanager",
+        "name": "zendframework/zend-servicemanager",
         "version": "2.5.1",
         "version_normalized": "2.5.1.0",
         "source": {
             "type": "git",
-            "url": "https://github.com/zendframework/zend-eventmanager.git",
-            "reference": "d94a16039144936f107f906896349900fd634443"
+            "url": "https://github.com/zendframework/zend-servicemanager.git",
+            "reference": "3b22c403e351d92526c642cba0bd810bc22e1c56"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/zendframework/zend-eventmanager/zipball/d94a16039144936f107f906896349900fd634443",
-            "reference": "d94a16039144936f107f906896349900fd634443",
+            "url": "https://api.github.com/repos/zendframework/zend-servicemanager/zipball/3b22c403e351d92526c642cba0bd810bc22e1c56",
+            "reference": "3b22c403e351d92526c642cba0bd810bc22e1c56",
             "shasum": ""
         },
         "require": {
-            "php": ">=5.3.23",
-            "zendframework/zend-stdlib": "~2.5"
+            "php": ">=5.3.23"
         },
         "require-dev": {
             "fabpot/php-cs-fixer": "1.7.*",
-            "phpunit/phpunit": "~4.0"
+            "phpunit/phpunit": "~4.0",
+            "zendframework/zend-di": "~2.5",
+            "zendframework/zend-mvc": "~2.5"
         },
-        "time": "2015-06-03 15:32:01",
+        "suggest": {
+            "ocramius/proxy-manager": "ProxyManager 0.5.* to handle lazy initialization of services",
+            "zendframework/zend-di": "Zend\\Di component"
+        },
+        "time": "2015-06-03 15:32:02",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -302,16 +307,16 @@
         "installation-source": "dist",
         "autoload": {
             "psr-4": {
-                "Zend\\EventManager\\": "src/"
+                "Zend\\ServiceManager\\": "src/"
             }
         },
         "notification-url": "https://packagist.org/downloads/",
         "license": [
             "BSD-3-Clause"
         ],
-        "homepage": "https://github.com/zendframework/zend-eventmanager",
+        "homepage": "https://github.com/zendframework/zend-servicemanager",
         "keywords": [
-            "eventmanager",
+            "servicemanager",
             "zf2"
         ]
     },
@@ -480,34 +485,29 @@
         ]
     },
     {
-        "name": "zendframework/zend-servicemanager",
+        "name": "zendframework/zend-eventmanager",
         "version": "2.5.1",
         "version_normalized": "2.5.1.0",
         "source": {
             "type": "git",
-            "url": "https://github.com/zendframework/zend-servicemanager.git",
-            "reference": "3b22c403e351d92526c642cba0bd810bc22e1c56"
+            "url": "https://github.com/zendframework/zend-eventmanager.git",
+            "reference": "d94a16039144936f107f906896349900fd634443"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/zendframework/zend-servicemanager/zipball/3b22c403e351d92526c642cba0bd810bc22e1c56",
-            "reference": "3b22c403e351d92526c642cba0bd810bc22e1c56",
+            "url": "https://api.github.com/repos/zendframework/zend-eventmanager/zipball/d94a16039144936f107f906896349900fd634443",
+            "reference": "d94a16039144936f107f906896349900fd634443",
             "shasum": ""
         },
         "require": {
-            "php": ">=5.3.23"
+            "php": ">=5.3.23",
+            "zendframework/zend-stdlib": "~2.5"
         },
         "require-dev": {
             "fabpot/php-cs-fixer": "1.7.*",
-            "phpunit/phpunit": "~4.0",
-            "zendframework/zend-di": "~2.5",
-            "zendframework/zend-mvc": "~2.5"
+            "phpunit/phpunit": "~4.0"
         },
-        "suggest": {
-            "ocramius/proxy-manager": "ProxyManager 0.5.* to handle lazy initialization of services",
-            "zendframework/zend-di": "Zend\\Di component"
-        },
-        "time": "2015-06-03 15:32:02",
+        "time": "2015-06-03 15:32:01",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -518,16 +518,16 @@
         "installation-source": "dist",
         "autoload": {
             "psr-4": {
-                "Zend\\ServiceManager\\": "src/"
+                "Zend\\EventManager\\": "src/"
             }
         },
         "notification-url": "https://packagist.org/downloads/",
         "license": [
             "BSD-3-Clause"
         ],
-        "homepage": "https://github.com/zendframework/zend-servicemanager",
+        "homepage": "https://github.com/zendframework/zend-eventmanager",
         "keywords": [
-            "servicemanager",
+            "eventmanager",
             "zf2"
         ]
     },
