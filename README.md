@@ -11,6 +11,7 @@ This document describes the PHP backend. The following backends are also availab
 
 Supported services
 ------------------
+- AddThis
 - Facebook
 - Flattr
 - GooglePlus
@@ -108,7 +109,8 @@ To use the graph api id method to fetch the share count you need to set up an ap
 		"StumbleUpon",
 		"Flattr",
 		"Pinterest",
-		"Xing"
+		"Xing",
+		"AddThis"
 	],
 	"Facebook": {
 		"app_id": "1234567890",
@@ -124,7 +126,7 @@ Testing your installation
 If the backend runs under `http://example.com/my-shariff-backend/`, calling the URL `http://example.com/my-shariff-backend/?url=http%3A%2F%2Fwww.example.com` should return a JSON structure with numbers in it, e.g.:
 
 ```json
-{"facebook":1452,"twitter":404,"googleplus":23,"linkedin":118,"reddit":7,"stumbleupon":4325,"flattr":0,"pinterest":3}
+{"facebook":1452,"twitter":404,"googleplus":23,"linkedin":118,"reddit":7,"stumbleupon":4325,"flattr":0,"pinterest":3,"addthis":33}
 ```
 
 
@@ -139,7 +141,7 @@ use Heise\Shariff\Backend;
 $options = [
 	"domain"   => "www.heise.de",
 	"cache"    => ["ttl" => 1],
-	"services" => ["Facebook", "GooglePlus", "Twitter", "LinkedIn", "Reddit", "StumbleUpon", "Flattr", "Pinterest"]
+	"services" => ["Facebook", "GooglePlus", "Twitter", "LinkedIn", "Reddit", "StumbleUpon", "Flattr", "Pinterest", "AddThis"]
 ];
 $shariff = new Backend($options);
 $counts = $shariff->get("http://www.heise.de/");
