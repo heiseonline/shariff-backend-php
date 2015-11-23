@@ -19,7 +19,6 @@ Supported services
 - Pinterest
 - Reddit
 - StumbleUpon
-- Twitter
 - Xing
 
 Requirements
@@ -102,7 +101,6 @@ To use the graph api id method to fetch the share count you need to set up an ap
 	"domain": "www.example.com",
 	"services": [
 		"GooglePlus",
-		"Twitter",
 		"Facebook",
 		"LinkedIn",
 		"Reddit",
@@ -126,7 +124,7 @@ Testing your installation
 If the backend runs under `http://example.com/my-shariff-backend/`, calling the URL `http://example.com/my-shariff-backend/?url=http%3A%2F%2Fwww.example.com` should return a JSON structure with numbers in it, e.g.:
 
 ```json
-{"facebook":1452,"twitter":404,"googleplus":23,"linkedin":118,"reddit":7,"stumbleupon":4325,"flattr":0,"pinterest":3,"addthis":33}
+{"facebook":1452,"googleplus":23,"linkedin":118,"reddit":7,"stumbleupon":4325,"flattr":0,"pinterest":3,"addthis":33}
 ```
 
 
@@ -141,7 +139,7 @@ use Heise\Shariff\Backend;
 $options = [
 	"domain"   => "www.heise.de",
 	"cache"    => ["ttl" => 1],
-	"services" => ["Facebook", "GooglePlus", "Twitter", "LinkedIn", "Reddit", "StumbleUpon", "Flattr", "Pinterest", "AddThis"]
+	"services" => ["Facebook", "GooglePlus", "LinkedIn", "Reddit", "StumbleUpon", "Flattr", "Pinterest", "AddThis"]
 ];
 $shariff = new Backend($options);
 $counts = $shariff->get("http://www.heise.de/");

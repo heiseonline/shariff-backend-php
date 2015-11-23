@@ -7,13 +7,12 @@ class ShariffTest extends \PHPUnit_Framework_TestCase
 {
     protected $services = array(
         "Facebook",
-        "Flattr",
+        //"Flattr",
         "GooglePlus",
         "LinkedIn",
         "Pinterest",
         "Reddit",
         "StumbleUpon",
-        "Twitter",
         "Xing"
     );
 
@@ -31,9 +30,9 @@ class ShariffTest extends \PHPUnit_Framework_TestCase
         $this->assertInternalType('int', $counts['facebook']);
         $this->assertGreaterThanOrEqual(0, $counts['facebook']);
 
-        $this->assertArrayHasKey('flattr', $counts);
-        $this->assertInternalType('int', $counts['flattr']);
-        $this->assertGreaterThanOrEqual(0, $counts['flattr']);
+        //$this->assertArrayHasKey('flattr', $counts);
+        //$this->assertInternalType('int', $counts['flattr']);
+        //$this->assertGreaterThanOrEqual(0, $counts['flattr']);
 
         $this->assertArrayHasKey('googleplus', $counts);
         $this->assertInternalType('int', $counts['googleplus']);
@@ -54,10 +53,6 @@ class ShariffTest extends \PHPUnit_Framework_TestCase
         $this->assertArrayHasKey('stumbleupon', $counts);
         $this->assertInternalType('int', $counts['stumbleupon']);
         $this->assertGreaterThanOrEqual(0, $counts['stumbleupon']);
-
-        $this->assertArrayHasKey('twitter', $counts);
-        $this->assertInternalType('int', $counts['twitter']);
-        $this->assertGreaterThanOrEqual(0, $counts['twitter']);
 
         // It seems Xing is blocking Travis from time to time - maybe caused by DOS protection
         if (!getenv("TRAVIS")) {

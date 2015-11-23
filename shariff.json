@@ -5,7 +5,6 @@
 	"domain": "www.heise.de",
 	"services": [
 		"GooglePlus",
-		"Twitter",
 		"Facebook",
 		"LinkedIn",
 		"Reddit",
