@@ -25,6 +25,9 @@
         "zendframework/zend-config": "*",
         "zendframework/zend-json": "*"
     },
+    "config": {
+        "optimize-autoloader": true
+    },
     "autoload": {
         "psr-4": { "Heise\\Shariff\\": "src" }
     }
