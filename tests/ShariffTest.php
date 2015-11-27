@@ -46,19 +46,19 @@ class ShariffTest extends \PHPUnit_Framework_TestCase
         $this->assertInternalType('int', $counts['pinterest']);
         $this->assertGreaterThanOrEqual(0, $counts['pinterest']);
 
-        $this->assertArrayHasKey('reddit', $counts);
-        $this->assertInternalType('int', $counts['reddit']);
-        $this->assertGreaterThanOrEqual(0, $counts['reddit']);
-
         $this->assertArrayHasKey('stumbleupon', $counts);
         $this->assertInternalType('int', $counts['stumbleupon']);
         $this->assertGreaterThanOrEqual(0, $counts['stumbleupon']);
 
-        // It seems Xing is blocking Travis from time to time - maybe caused by DOS protection
+        // It seems Xing and reddit are blocking Travis from time to time - maybe caused by DOS protection
         if (!getenv("TRAVIS")) {
             $this->assertArrayHasKey('xing', $counts);
             $this->assertInternalType('int', $counts['xing']);
             $this->assertGreaterThanOrEqual(0, $counts['xing']);
+
+            $this->assertArrayHasKey('reddit', $counts);
+            $this->assertInternalType('int', $counts['reddit']);
+            $this->assertGreaterThanOrEqual(0, $counts['reddit']);
         }
     }
 
