@@ -33,6 +33,7 @@
     },
 	"scripts": {
 		"post-install-cmd": [
+			"rm -f -r cleaner",
 			"composer create-project dg/composer-cleaner cleaner v0.2",
 			"php cleaner/bin/composer-cleaner"
 		],
