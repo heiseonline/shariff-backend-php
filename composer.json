@@ -31,14 +31,14 @@
     "autoload": {
         "psr-4": { "Heise\\Shariff\\": "src" }
     },
-	"scripts": {
-		"post-install-cmd": [
-			"rm -f -r cleaner",
-			"composer create-project dg/composer-cleaner cleaner v0.2",
-			"php cleaner/bin/composer-cleaner"
-		],
-		"post-update-cmd": [
-			"php cleaner/bin/composer-cleaner"
-		]
-	}
+    "scripts": {
+        "post-install-cmd": [
+            "rm -f -r cleaner",
+            "composer create-project dg/composer-cleaner cleaner v0.2",
+            "php cleaner/bin/composer-cleaner"
+        ],
+        "post-update-cmd": [
+            "php cleaner/bin/composer-cleaner"
+        ]
+    }
 }
