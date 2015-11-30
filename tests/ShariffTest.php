@@ -3,8 +3,14 @@ namespace Heise\Tests\Shariff;
 
 use Heise\Shariff\Backend;
 
+/**
+ * Class ShariffTest
+ */
 class ShariffTest extends \PHPUnit_Framework_TestCase
 {
+    /***
+     * @var string[]
+     */
     protected $services = array(
         "Facebook",
         "Flattr",
@@ -82,7 +88,7 @@ class ShariffTest extends \PHPUnit_Framework_TestCase
         }
 
         $this->setExpectedException('Zend\Cache\Exception\ExtensionNotLoadedException');
-        $shariff = new Backend(array(
+        new Backend(array(
             "domain"   => 'www.heise.de',
             "cache"    => array("adapter" => "Apc", "ttl" => 0),
             "services" => $this->services
@@ -102,7 +108,7 @@ class ShariffTest extends \PHPUnit_Framework_TestCase
             ),
             "services" => $this->services
         ));
-        $counts = $shariff->get('http://www.heise.de');
+        $shariff->get('http://www.heise.de');
         $this->fail('10 bytes should not be enough for the cache');
     }
 
