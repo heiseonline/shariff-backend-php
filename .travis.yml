@@ -16,3 +16,22 @@ before_script:
 script:
  - bash -c 'if [ "$TRAVIS_PHP_VERSION" != "hhvm" ]; then phpcs --standard=PSR2 src/ tests/; fi;'
  - vendor/bin/phpunit --coverage-text
+
+addons:
+ apt:
+  packages:
+   - p7zip-full
+
+before_deploy:
+ - bash build.sh
+
+deploy:
+  provider: releases
+  api_key:
+    secure: jbEPfD2xopoDQBGTJsrGvwhvb5MZislQowvHtsJ7f+B9seS9FGVc8Yq2kcqGX+8I8DyI5RCu3UlorGVnOQrxT9yxHVEK8PGjqOSCgRZw8p3jZmoNzrN7Qi+5YjCXxrAEKbT0nFYvis1DJqbuLOOU9+DBP6JWKmYvrtCjNSIxRIY=
+  file: shariff-backend-php.zip
+  skip_cleanup: true
+  on:
+    repo: heiseonline/shariff-backend-php
+    tags: true
+    php: 5.4
