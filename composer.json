@@ -33,12 +33,10 @@
     },
     "scripts": {
         "post-install-cmd": [
-            "rm -f -r cleaner",
-            "composer create-project dg/composer-cleaner cleaner v0.2",
-            "php cleaner/bin/composer-cleaner"
+            "[ -d \"cleaner\" ] && php cleaner/bin/composer-cleaner || composer create-project dg/composer-cleaner cleaner v0.2 && php cleaner/bin/composer-cleaner"
         ],
         "post-update-cmd": [
-            "php cleaner/bin/composer-cleaner"
+            "[ -d \"cleaner\" ] && php cleaner/bin/composer-cleaner || composer create-project dg/composer-cleaner cleaner v0.2 && php cleaner/bin/composer-cleaner"
         ]
     }
 }
