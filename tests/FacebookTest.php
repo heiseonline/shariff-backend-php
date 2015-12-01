@@ -3,13 +3,16 @@
 namespace Heise\Tests\Shariff;
 
 use GuzzleHttp\Message\Request;
-use GuzzleHttp\Message\Response;
 use Heise\Shariff\Backend\Facebook;
 
+/**
+ * Class FacebookTest
+ */
 class FacebookTest extends \PHPUnit_Framework_TestCase
 {
     public function testConfig()
     {
+        /** @var \GuzzleHttp\Client|\PHPUnit_Framework_MockObject_MockObject $client */
         $client = $this->getMockBuilder('GuzzleHttp\Client')
           ->disableOriginalConstructor()
           ->getMock();
@@ -48,11 +51,12 @@ class FacebookTest extends \PHPUnit_Framework_TestCase
 
     public function testUsesGraphApi()
     {
-        $client = $this->getMockBuilder('GuzzleHttp\Client')
+        /** @var \GuzzleHttp\Client|\PHPUnit_Framework_MockObject_MockObject $client */
+        $client = $this->getMockBuilder('GuzzleHttp\\Client')
           ->disableOriginalConstructor()
           ->getMock();
 
-        $response = $this->getMockBuilder('GuzzleHttp\Message\ResponseInterface')
+        $response = $this->getMockBuilder('GuzzleHttp\\Message\\ResponseInterface')
           ->getMock();
 
         $response
@@ -79,6 +83,12 @@ class FacebookTest extends \PHPUnit_Framework_TestCase
         );
     }
 
+    /**
+     * @param $method
+     * @param $url
+     * @param $options
+     * @return Request
+     */
     public function createRequest($method, $url, $options)
     {
         return new Request($method, $url, $options);

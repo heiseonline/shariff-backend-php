@@ -4,13 +4,18 @@ namespace Heise\Tests\Shariff;
 
 use GuzzleHttp\Client;
 use Heise\Shariff\Backend\ServiceFactory;
+use Heise\Shariff\Backend\ServiceInterface;
 
+/**
+ * Class ServiceFactoryTest
+ */
 class ServiceFactoryTest extends \PHPUnit_Framework_TestCase
 {
 
     public function testSetConfig()
     {
-        $mockService = $this->getMockBuilder('Heise\Shariff\Backend\ServiceInterface')
+        /** @var ServiceInterface|\PHPUnit_Framework_MockObject_MockObject $mockService */
+        $mockService = $this->getMockBuilder('Heise\\Shariff\\Backend\\ServiceInterface')
             ->getMock();
 
         $mockService->expects($this->once())
@@ -30,6 +35,7 @@ class ServiceFactoryTest extends \PHPUnit_Framework_TestCase
 
     public function testConfigNotSet()
     {
+        /** @var ServiceInterface|\PHPUnit_Framework_MockObject_MockObject $mockService */
         $mockService = $this->getMockBuilder('Heise\Shariff\Backend\ServiceInterface')
           ->getMock();
 
