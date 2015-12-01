@@ -10,9 +10,9 @@ php:
 
 before_script:
  - composer self-update
- - composer install --prefer-source --no-interaction --dev
+ - composer install --prefer-dist --no-interaction
  - bash -c 'if [ "$TRAVIS_PHP_VERSION" != "hhvm" ]; then pear install PHP_CodeSniffer; phpenv rehash; fi;'
 
 script:
  - bash -c 'if [ "$TRAVIS_PHP_VERSION" != "hhvm" ]; then phpcs --standard=PSR2 src/ tests/; fi;'
- - phpunit --coverage-text
+ - vendor/bin/phpunit --coverage-text
