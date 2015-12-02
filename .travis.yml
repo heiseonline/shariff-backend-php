@@ -25,12 +25,15 @@ addons:
 before_deploy:
  - bash build.sh
  - 7z a -tzip shariff-backend-php.zip ./build/*
+ - 7z a -ttar -so shariff-backend-php.tar ./build/* | 7z a -si shariff-backend-php.tar.gz
 
 deploy:
   provider: releases
   api_key:
     secure: jbEPfD2xopoDQBGTJsrGvwhvb5MZislQowvHtsJ7f+B9seS9FGVc8Yq2kcqGX+8I8DyI5RCu3UlorGVnOQrxT9yxHVEK8PGjqOSCgRZw8p3jZmoNzrN7Qi+5YjCXxrAEKbT0nFYvis1DJqbuLOOU9+DBP6JWKmYvrtCjNSIxRIY=
-  file: shariff-backend-php.zip
+  file:
+   - shariff-backend-php.zip
+   - shariff-backend-php.tar.gz
   skip_cleanup: true
   on:
     repo: heiseonline/shariff-backend-php
