@@ -24,6 +24,7 @@ addons:
 
 before_deploy:
  - bash build.sh
+ - 7z a -tzip shariff-backend-php.zip ./build/*
 
 deploy:
   provider: releases
