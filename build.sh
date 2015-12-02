@@ -2,7 +2,7 @@
 
 mkdir -p build
 rm -fr build/*
-composer install --no-dev
+composer install --prefer-dist --no-dev
 cp index.php build
 cp shariff.json build
 cp -a vendor build
