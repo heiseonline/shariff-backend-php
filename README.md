@@ -31,7 +31,7 @@ To run Shariff PHP Backend on your server you need:
 Installing the Shariff backend on you own server
 ------------------------------------------------
 
-To run Shariff under a certain URL, unzip the [release](https://github.com/heiseonline/shariff-backend-php/releases) zip file and put contents of `build/` into a directory under the document root of your web server.
+To run Shariff under a certain URL, unzip the [release](https://github.com/heiseonline/shariff-backend-php/releases) zip file into a directory under the document root of your web server.
 
 This zip file contains a configuration file `shariff.json`. The following configuration options are available:
 
