@@ -1,5 +1,10 @@
 # Changelog
 
+## 3.0.1 2015-12-03
+
+* Updated installation instructions.
+* Optimized build process.
+
 ## 3.0.0 2015-12-02
 
 * Removed build artifacts from repository.
