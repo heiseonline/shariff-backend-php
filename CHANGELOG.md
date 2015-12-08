@@ -2,6 +2,7 @@
 
 ## 4.0.0 TBD
 
+* Cleaned up dependencies. (core23)
 * Dropped support for PHP 5.4. (core23)
 
 ## 3.0.1 2015-12-03
