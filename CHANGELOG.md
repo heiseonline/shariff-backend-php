@@ -1,5 +1,9 @@
 # Changelog
 
+## 4.0.0 TBD
+
+* Dropped support for PHP 5.4. (core23)
+
 ## 3.0.1 2015-12-03
 
 * Updated installation instructions.

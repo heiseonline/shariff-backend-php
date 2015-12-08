@@ -26,7 +26,7 @@ Requirements
 
 To run Shariff PHP Backend on your server you need:
 
-* PHP 5.4 or greater
+* PHP 5.5 or greater
 
 Installing the Shariff backend on you own server
 ------------------------------------------------
