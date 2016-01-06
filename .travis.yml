@@ -38,4 +38,4 @@ deploy:
   on:
     repo: heiseonline/shariff-backend-php
     tags: true
-    php: 5.4
+    php: 5.5
