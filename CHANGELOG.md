@@ -1,6 +1,6 @@
 # Changelog
 
-## 4.0.0 TBD
+## 4.0.0 2016-01-07
 
 * Cleaned up dependencies. (core23)
 * Dropped support for PHP 5.4. (core23)
