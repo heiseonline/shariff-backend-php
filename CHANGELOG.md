@@ -1,5 +1,9 @@
 # Changelog
 
+## 4.0.1 2016-01-11
+
+* Re-added necessary dependencies.
+
 ## 4.0.0 2016-01-07
 
 * Cleaned up dependencies. (core23)
