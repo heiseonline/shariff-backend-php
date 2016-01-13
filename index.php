@@ -19,7 +19,7 @@ class Application
         $reader = new Json();
 
         $shariff = new Backend($reader->fromFile('shariff.json'));
-        echo json_encode($shariff->get($_GET["url"]));
+        echo json_encode($shariff->get(urlencode($_GET["url"])));
     }
 }
 

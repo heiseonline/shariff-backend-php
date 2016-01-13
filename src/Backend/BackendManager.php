@@ -69,7 +69,7 @@ class BackendManager
         // Aenderungen an der Konfiguration invalidieren den Cache
         $cache_key = md5($url.$this->baseCacheKey);
 
-        if (!filter_var($url, FILTER_VALIDATE_URL)) {
+        if (!filter_var(urldecode($url), FILTER_VALIDATE_URL)) {
             return null;
         }
 
@@ -77,7 +77,7 @@ class BackendManager
             return json_decode($this->cache->getItem($cache_key), true);
         }
 
-        if (!$this->isValidDomain($url)) {
+        if (!$this->isValidDomain(urldecode($url))) {
             return null;
         }
 
