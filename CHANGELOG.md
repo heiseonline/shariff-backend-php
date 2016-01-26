@@ -1,5 +1,10 @@
 # Changelog
 
+## 4.0.2 2016-01-27
+
+* Fixed array keys not being checked for existence. (liayn, wmtech-1)
+* Fixed encoding of urls passed to Facebook. (liayn, hokascha)
+
 ## 4.0.1 2016-01-11
 
 * Re-added necessary dependencies.
