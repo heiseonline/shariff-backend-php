@@ -67,11 +67,7 @@ class ZendCache implements CacheInterface
     }
 
     /**
-     * Set cache entry
-     *
-     * @param string $key
-     * @param string $content
-     * @return void
+     * {@inheritdoc}
      */
     public function setItem($key, $content)
     {
@@ -79,10 +75,7 @@ class ZendCache implements CacheInterface
     }
 
     /**
-     * Get cache entry
-     *
-     * @param string $key
-     * @return string
+     * {@inheritdoc}
      */
     public function getItem($key)
     {
@@ -90,10 +83,7 @@ class ZendCache implements CacheInterface
     }
 
     /**
-     * Check if cache entry exists
-     *
-     * @param string $key
-     * @return bool
+     * {@inheritdoc}
      */
     public function hasItem($key)
     {

@@ -2,7 +2,7 @@
 
 namespace Heise\Tests\Shariff;
 
-use GuzzleHttp\Client;
+use GuzzleHttp\ClientInterface;
 use Heise\Shariff\Backend\ServiceFactory;
 use Heise\Shariff\Backend\ServiceInterface;
 
@@ -23,7 +23,10 @@ class ServiceFactoryTest extends \PHPUnit_Framework_TestCase
             ->with(array('foo' => 'bar'))
         ;
 
-        $serviceFactory = new ServiceFactory(new Client());
+        /** @var ClientInterface|\PHPUnit_Framework_MockObject_MockObject $mockClient */
+        $mockClient = $this->getMock('GuzzleHttp\\Client');
+
+        $serviceFactory = new ServiceFactory($mockClient);
         $serviceFactory->registerService('MockService', $mockService);
 
         $services = $serviceFactory->getServicesByName(
@@ -43,7 +46,10 @@ class ServiceFactoryTest extends \PHPUnit_Framework_TestCase
           ->method('setConfig')
         ;
 
-        $serviceFactory = new ServiceFactory(new Client());
+        /** @var ClientInterface|\PHPUnit_Framework_MockObject_MockObject $mockClient */
+        $mockClient = $this->getMock('GuzzleHttp\\Client');
+
+        $serviceFactory = new ServiceFactory($mockClient);
         $serviceFactory->registerService('MockService', $mockService);
 
         $services = $serviceFactory->getServicesByName(

@@ -2,7 +2,7 @@
 
 namespace Heise\Shariff\Backend;
 
-use GuzzleHttp\Client;
+use GuzzleHttp\ClientInterface;
 
 /**
  * Class ServiceFactory
@@ -11,16 +11,16 @@ use GuzzleHttp\Client;
  */
 class ServiceFactory
 {
-    /** @var Client */
+    /** @var ClientInterface */
     protected $client;
 
     /** @var ServiceInterface[] */
     protected $serviceMap = array();
 
     /**
-     * @param Client $client
+     * @param ClientInterface $client
      */
-    public function __construct(Client $client)
+    public function __construct(ClientInterface $client)
     {
         $this->client = $client;
     }

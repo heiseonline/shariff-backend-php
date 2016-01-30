@@ -2,7 +2,8 @@
 
 namespace Heise\Shariff\Backend;
 
-use GuzzleHttp\Client;
+use GuzzleHttp\ClientInterface;
+use Psr\Http\Message\RequestInterface;
 
 /**
  * Class Request
@@ -11,16 +12,16 @@ use GuzzleHttp\Client;
  */
 abstract class Request
 {
-    /** @var Client */
+    /** @var ClientInterface */
     protected $client;
 
     /** @var array */
     protected $config;
 
     /**
-     * @param Client $client
+     * @param ClientInterface $client
      */
-    public function __construct(Client $client)
+    public function __construct(ClientInterface $client)
     {
         $this->client = $client;
     }
@@ -29,20 +30,22 @@ abstract class Request
      * @param string $url
      * @param string $method
      * @param array $options
-     * @return \GuzzleHttp\Message\Request
+     * @return RequestInterface
      */
     protected function createRequest($url, $method = 'GET', $options = array())
     {
         // $defaults = array('future' => true, 'debug' => true);
         $defaults = array('future' => true, 'timeout' => 5.0);
 
-        $req = $this->client->createRequest(
-            $method,
-            $url,
-            array_merge($defaults, $options)
-        );
+        return new \GuzzleHttp\Psr7\Request($method, $url, array_merge($defaults, $options));
+    }
 
-        return $req;
+    /**
+     * {@inheritdoc}
+     */
+    public function filterResponse($content)
+    {
+        return $content;
     }
 
     /**
