@@ -3,13 +3,10 @@
 namespace Heise\Shariff\Backend;
 
 /**
- * Class Reddit
- *
- * @package Heise\Shariff\Backend
+ * Class Reddit.
  */
 class Reddit extends Request implements ServiceInterface
 {
-
     /**
      * @return string
      */
@@ -20,6 +17,7 @@ class Reddit extends Request implements ServiceInterface
 
     /**
      * @param string $url
+     *
      * @return \GuzzleHttp\Message\Request|\GuzzleHttp\Message\RequestInterface
      */
     public function getRequest($url)
@@ -29,6 +27,7 @@ class Reddit extends Request implements ServiceInterface
 
     /**
      * @param array $data
+     *
      * @return int
      */
     public function extractCount(array $data)
@@ -41,6 +40,7 @@ class Reddit extends Request implements ServiceInterface
                 }
             }
         }
+
         return $count;
     }
 }

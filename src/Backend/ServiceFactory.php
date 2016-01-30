@@ -5,9 +5,7 @@ namespace Heise\Shariff\Backend;
 use GuzzleHttp\Client;
 
 /**
- * Class ServiceFactory
- *
- * @package Heise\Shariff\Backend
+ * Class ServiceFactory.
  */
 class ServiceFactory
 {
@@ -15,7 +13,7 @@ class ServiceFactory
     protected $client;
 
     /** @var ServiceInterface[] */
-    protected $serviceMap = array();
+    protected $serviceMap = [];
 
     /**
      * @param Client $client
@@ -26,7 +24,7 @@ class ServiceFactory
     }
 
     /**
-     * @param string $name
+     * @param string           $name
      * @param ServiceInterface $service
      */
     public function registerService($name, ServiceInterface $service)
@@ -37,20 +35,23 @@ class ServiceFactory
     /**
      * @param array $serviceNames
      * @param array $config
+     *
      * @return array
      */
     public function getServicesByName(array $serviceNames, array $config)
     {
-        $services = array();
+        $services = [];
         foreach ($serviceNames as $serviceName) {
             $services[] = $this->createService($serviceName, $config);
         }
+
         return $services;
     }
 
     /**
      * @param string $serviceName
-     * @param array $config
+     * @param array  $config
+     *
      * @return ServiceInterface
      */
     protected function createService($serviceName, array $config)
@@ -58,7 +59,7 @@ class ServiceFactory
         if (isset($this->serviceMap[$serviceName])) {
             $service = $this->serviceMap[$serviceName];
         } else {
-            $serviceClass = 'Heise\\Shariff\\Backend\\' . $serviceName;
+            $serviceClass = 'Heise\\Shariff\\Backend\\'.$serviceName;
             $service = new $serviceClass($this->client);
         }
 
