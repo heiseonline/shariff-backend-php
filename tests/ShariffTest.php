@@ -2,6 +2,8 @@
 namespace Heise\Tests\Shariff;
 
 use Heise\Shariff\Backend;
+use Zend\Cache\Exception\ExtensionNotLoadedException;
+use Zend\Cache\Exception\OutOfSpaceException;
 
 /**
  * Class ShariffTest
@@ -87,7 +89,7 @@ class ShariffTest extends \PHPUnit_Framework_TestCase
             $this->markTestSkipped('APC seems to work for hhvm');
         }
 
-        $this->setExpectedException('Zend\Cache\Exception\ExtensionNotLoadedException');
+        $this->setExpectedException(ExtensionNotLoadedException::class);
         new Backend(array(
             "domain"   => 'www.heise.de',
             "cache"    => array("adapter" => "Apc", "ttl" => 0),
@@ -98,7 +100,7 @@ class ShariffTest extends \PHPUnit_Framework_TestCase
 
     public function testCacheOptions()
     {
-        $this->setExpectedException('Zend\Cache\Exception\OutOfSpaceException');
+        $this->setExpectedException(OutOfSpaceException::class);
         $shariff = new Backend(array(
             "domain"   => 'www.heise.de',
             "cache"    => array(

@@ -28,6 +28,8 @@ To run Shariff PHP Backend on your server you need:
 
 * PHP 5.5 or greater
 
+(HHVM is not supported currently)
+
 Installing the Shariff backend on you own server
 ------------------------------------------------
 

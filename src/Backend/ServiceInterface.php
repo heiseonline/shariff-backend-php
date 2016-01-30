@@ -2,6 +2,8 @@
 
 namespace Heise\Shariff\Backend;
 
+use Psr\Http\Message\RequestInterface;
+
 /**
  * Interface ServiceInterface.
  */
@@ -10,7 +12,7 @@ interface ServiceInterface
     /**
      * @param string $url
      *
-     * @return \GuzzleHttp\Message\Request
+     * @return RequestInterface
      */
     public function getRequest($url);
 
@@ -25,6 +27,13 @@ interface ServiceInterface
      * @return string
      */
     public function getName();
+
+    /**
+     * @param string $content
+     *
+     * @return string
+     */
+    public function filterResponse($content);
 
     /**
      * @param array $config
