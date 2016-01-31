@@ -1,6 +1,6 @@
 # Changelog
 
-## 4.1.0 TBD
+## 4.1.0 2016-02-01
 
 * Cleaned up PHPDoc comments. (core23)
 * Improved exception handling of Facebook backend. (core23)
