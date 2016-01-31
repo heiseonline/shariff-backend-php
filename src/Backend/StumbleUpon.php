@@ -8,7 +8,7 @@ namespace Heise\Shariff\Backend;
 class StumbleUpon extends Request implements ServiceInterface
 {
     /**
-     * @return string
+     * {@inheritdoc}
      */
     public function getName()
     {
@@ -16,9 +16,7 @@ class StumbleUpon extends Request implements ServiceInterface
     }
 
     /**
-     * @param string $url
-     *
-     * @return \GuzzleHttp\Message\Request|\GuzzleHttp\Message\RequestInterface
+     * {@inheritdoc}
      */
     public function getRequest($url)
     {
@@ -26,9 +24,7 @@ class StumbleUpon extends Request implements ServiceInterface
     }
 
     /**
-     * @param array $data
-     *
-     * @return int
+     * {@inheritdoc}
      */
     public function extractCount(array $data)
     {

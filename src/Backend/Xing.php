@@ -10,7 +10,7 @@ use GuzzleHttp\Post\PostBodyInterface;
 class Xing extends Request implements ServiceInterface
 {
     /**
-     * @return string
+     * {@inheritdoc}
      */
     public function getName()
     {
@@ -18,9 +18,7 @@ class Xing extends Request implements ServiceInterface
     }
 
     /**
-     * @param string $url
-     *
-     * @return \GuzzleHttp\Message\Request
+     * {@inheritdoc}
      */
     public function getRequest($url)
     {
@@ -34,9 +32,7 @@ class Xing extends Request implements ServiceInterface
     }
 
     /**
-     * @param array $data
-     *
-     * @return int
+     * {@inheritdoc}
      */
     public function extractCount(array $data)
     {

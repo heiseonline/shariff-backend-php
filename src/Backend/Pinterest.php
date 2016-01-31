@@ -12,7 +12,7 @@ use GuzzleHttp\Stream\Stream;
 class Pinterest extends Request implements ServiceInterface
 {
     /**
-     * @return string
+     * {@inheritdoc}
      */
     public function getName()
     {
@@ -20,9 +20,7 @@ class Pinterest extends Request implements ServiceInterface
     }
 
     /**
-     * @param string $url
-     *
-     * @return \GuzzleHttp\Message\Request|\GuzzleHttp\Message\RequestInterface
+     * {@inheritdoc}
      */
     public function getRequest($url)
     {
@@ -38,9 +36,7 @@ class Pinterest extends Request implements ServiceInterface
     }
 
     /**
-     * @param array $data
-     *
-     * @return int
+     * {@inheritdoc}
      */
     public function extractCount(array $data)
     {
