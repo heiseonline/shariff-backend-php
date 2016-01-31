@@ -1,5 +1,9 @@
 # Changelog
 
+## 4.1.0 TBD
+
+* Added PHP-CS-Fixer to standardise code format. (core23)
+
 ## 4.0.2 2016-01-27
 
 * Fixed array keys not being checked for existence. (liayn, wmtech-1)
