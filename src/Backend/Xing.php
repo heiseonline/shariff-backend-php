@@ -5,13 +5,10 @@ namespace Heise\Shariff\Backend;
 use GuzzleHttp\Post\PostBodyInterface;
 
 /**
- * Class Xing
- *
- * @package Heise\Shariff\Backend
+ * Class Xing.
  */
 class Xing extends Request implements ServiceInterface
 {
-
     /**
      * @return string
      */
@@ -22,6 +19,7 @@ class Xing extends Request implements ServiceInterface
 
     /**
      * @param string $url
+     *
      * @return \GuzzleHttp\Message\Request
      */
     public function getRequest($url)
@@ -31,11 +29,13 @@ class Xing extends Request implements ServiceInterface
         if ($stream instanceof PostBodyInterface) {
             $stream->setField('url', $url);
         }
+
         return $request;
     }
 
     /**
      * @param array $data
+     *
      * @return int
      */
     public function extractCount(array $data)

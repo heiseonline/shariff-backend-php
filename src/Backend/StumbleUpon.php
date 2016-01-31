@@ -3,9 +3,7 @@
 namespace Heise\Shariff\Backend;
 
 /**
- * Class StumbleUpon
- *
- * @package Heise\Shariff\Backend
+ * Class StumbleUpon.
  */
 class StumbleUpon extends Request implements ServiceInterface
 {
@@ -19,6 +17,7 @@ class StumbleUpon extends Request implements ServiceInterface
 
     /**
      * @param string $url
+     *
      * @return \GuzzleHttp\Message\Request|\GuzzleHttp\Message\RequestInterface
      */
     public function getRequest($url)
@@ -28,10 +27,11 @@ class StumbleUpon extends Request implements ServiceInterface
 
     /**
      * @param array $data
+     *
      * @return int
      */
     public function extractCount(array $data)
     {
-        return (isset($data['result']['views'])) ? $data['result']['views']+0 : 0;
+        return (isset($data['result']['views'])) ? $data['result']['views'] + 0 : 0;
     }
 }

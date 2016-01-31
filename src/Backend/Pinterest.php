@@ -3,17 +3,14 @@
 namespace Heise\Shariff\Backend;
 
 use GuzzleHttp\Event\CompleteEvent;
-use GuzzleHttp\Stream\Stream;
 use GuzzleHttp\Message\Response;
+use GuzzleHttp\Stream\Stream;
 
 /**
- * Class Pinterest
- *
- * @package Heise\Shariff\Backend
+ * Class Pinterest.
  */
 class Pinterest extends Request implements ServiceInterface
 {
-
     /**
      * @return string
      */
@@ -24,6 +21,7 @@ class Pinterest extends Request implements ServiceInterface
 
     /**
      * @param string $url
+     *
      * @return \GuzzleHttp\Message\Request|\GuzzleHttp\Message\RequestInterface
      */
     public function getRequest($url)
@@ -33,13 +31,15 @@ class Pinterest extends Request implements ServiceInterface
         $request->getEmitter()->on('complete', function (CompleteEvent $e) {
             // Stripping the 'callback function' from the response
             $body = $e->getResponse()->getBody()->getContents();
-            $e->intercept(new Response(200, array(), (Stream::factory(mb_substr($body, 2, mb_strlen($body) - 3)))));
+            $e->intercept(new Response(200, [], (Stream::factory(mb_substr($body, 2, mb_strlen($body) - 3)))));
         });
+
         return $request;
     }
 
     /**
      * @param array $data
+     *
      * @return int
      */
     public function extractCount(array $data)

@@ -7,9 +7,7 @@ use GuzzleHttp\Pool;
 use Heise\Shariff\CacheInterface;
 
 /**
- * Class BackendManager
- *
- * @package Heise\Shariff\Backend
+ * Class BackendManager.
  */
 class BackendManager
 {
@@ -29,10 +27,10 @@ class BackendManager
     protected $services;
 
     /**
-     * @param string $baseCacheKey
-     * @param CacheInterface $cache
-     * @param Client $client
-     * @param string $domain
+     * @param string             $baseCacheKey
+     * @param CacheInterface     $cache
+     * @param Client             $client
+     * @param string             $domain
      * @param ServiceInterface[] $services
      */
     public function __construct($baseCacheKey, CacheInterface $cache, Client $client, $domain, array $services)
@@ -46,21 +44,24 @@ class BackendManager
 
     /**
      * @param string $url
+     *
      * @return bool
      */
     private function isValidDomain($url)
     {
         if ($this->domain) {
             $parsed = parse_url($url);
-            if ($parsed["host"] != $this->domain) {
+            if ($parsed['host'] != $this->domain) {
                 return false;
             }
         }
+
         return true;
     }
 
     /**
      * @param string $url
+     *
      * @return array|mixed|null
      */
     public function get($url)
@@ -70,7 +71,7 @@ class BackendManager
         $cache_key = md5($url.$this->baseCacheKey);
 
         if (!filter_var($url, FILTER_VALIDATE_URL)) {
-            return null;
+            return;
         }
 
         if ($this->cache->hasItem($cache_key)) {
@@ -78,12 +79,12 @@ class BackendManager
         }
 
         if (!$this->isValidDomain($url)) {
-            return null;
+            return;
         }
 
         $requests = array_map(
             function ($service) use ($url) {
-                /** @var ServiceInterface $service */
+                /* @var ServiceInterface $service */
                 return $service->getRequest($url);
             },
             $this->services
@@ -91,17 +92,17 @@ class BackendManager
 
         $results = Pool::batch($this->client, $requests);
 
-        $counts = array();
+        $counts = [];
         $i = 0;
         foreach ($this->services as $service) {
-            if (method_exists($results[$i], "json")) {
+            if (method_exists($results[$i], 'json')) {
                 try {
-                    $counts[ $service->getName() ] = (int)$service->extractCount($results[$i]->json());
+                    $counts[ $service->getName() ] = (int) $service->extractCount($results[$i]->json());
                 } catch (\Exception $e) {
                     // Skip service if broken
                 }
             }
-            $i++;
+            ++$i;
         }
 
         $this->cache->setItem($cache_key, json_encode($counts));

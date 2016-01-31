@@ -7,9 +7,7 @@ use Heise\Shariff\Backend\BackendManager;
 use Heise\Shariff\Backend\ServiceFactory;
 
 /**
- * Class Backend
- *
- * @package Heise\Shariff
+ * Class Backend.
  */
 class Backend
 {
@@ -48,6 +46,7 @@ class Backend
 
     /**
      * @param string $url
+     *
      * @return array
      */
     public function get($url)
