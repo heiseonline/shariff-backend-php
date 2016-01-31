@@ -3,6 +3,7 @@
 ## 4.1.0 TBD
 
 * Cleaned up PHPDoc comments. (core23)
+* Improved exception handling of Facebook backend. (core23)
 * Added logger. (core23)
 * Added PHP-CS-Fixer to standardise code format. (core23)
 
