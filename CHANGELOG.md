@@ -2,6 +2,7 @@
 
 ## 4.1.0 TBD
 
+* Cleaned up PHPDoc comments. (core23)
 * Added PHP-CS-Fixer to standardise code format. (core23)
 
 ## 4.0.2 2016-01-27
