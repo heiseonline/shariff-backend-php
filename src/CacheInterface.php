@@ -16,7 +16,6 @@ interface CacheInterface
      *
      * @param string $key
      * @param string $content
-     * @return void
      */
     public function setItem($key, $content);
 

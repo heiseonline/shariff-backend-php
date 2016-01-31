@@ -28,7 +28,6 @@ interface ServiceInterface
 
     /**
      * @param array $config
-     * @return void
      */
     public function setConfig(array $config);
 }

@@ -10,7 +10,7 @@ namespace Heise\Shariff\Backend;
 class Facebook extends Request implements ServiceInterface
 {
     /**
-     * @return string
+     * {@inheritdoc}
      */
     public function getName()
     {
@@ -18,8 +18,7 @@ class Facebook extends Request implements ServiceInterface
     }
 
     /**
-     * @param string $url
-     * @return \GuzzleHttp\Message\Request
+     * {@inheritdoc}
      */
     public function getRequest($url)
     {
@@ -34,8 +33,7 @@ class Facebook extends Request implements ServiceInterface
     }
 
     /**
-     * @param array $data
-     * @return int
+     * {@inheritdoc}
      */
     public function extractCount(array $data)
     {
