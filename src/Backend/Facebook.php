@@ -2,6 +2,8 @@
 
 namespace Heise\Shariff\Backend;
 
+use Psr\Http\Message\StreamInterface;
+
 /**
  * Class Facebook
  *
@@ -10,7 +12,7 @@ namespace Heise\Shariff\Backend;
 class Facebook extends Request implements ServiceInterface
 {
     /**
-     * @return string
+     * {@inheritdoc}
      */
     public function getName()
     {
@@ -18,8 +20,7 @@ class Facebook extends Request implements ServiceInterface
     }
 
     /**
-     * @param string $url
-     * @return \GuzzleHttp\Message\Request
+     * {@inheritdoc}
      */
     public function getRequest($url)
     {
@@ -34,8 +35,7 @@ class Facebook extends Request implements ServiceInterface
     }
 
     /**
-     * @param array $data
-     * @return int
+     * {@inheritdoc}
      */
     public function extractCount(array $data)
     {
@@ -50,7 +50,7 @@ class Facebook extends Request implements ServiceInterface
     }
 
     /**
-     * @return \GuzzleHttp\Stream\StreamInterface|null
+     * @return StreamInterface
      */
     protected function getAccessToken()
     {
@@ -58,8 +58,8 @@ class Facebook extends Request implements ServiceInterface
             try {
                 $url = 'https://graph.facebook.com/oauth/access_token?client_id=' . urlencode($this->config['app_id'])
                        . '&client_secret=' . urlencode($this->config['secret']) . '&grant_type=client_credentials';
-                $request = $this->client->createRequest('GET', $url);
-                return $this->client->send($request)->getBody(true);
+                $response = $this->client->request('GET', $url);
+                return $response->getBody();
             } catch (\Exception $e) {
             }
         }

@@ -2,9 +2,10 @@
 
 namespace Heise\Shariff\Backend;
 
-use GuzzleHttp\Client;
+use GuzzleHttp\ClientInterface;
 use GuzzleHttp\Pool;
 use Heise\Shariff\CacheInterface;
+use Psr\Http\Message\ResponseInterface;
 
 /**
  * Class BackendManager
@@ -19,7 +20,7 @@ class BackendManager
     /** @var CacheInterface */
     protected $cache;
 
-    /** @var Client */
+    /** @var ClientInterface */
     protected $client;
 
     /** @var string */
@@ -31,11 +32,11 @@ class BackendManager
     /**
      * @param string $baseCacheKey
      * @param CacheInterface $cache
-     * @param Client $client
+     * @param ClientInterface $client
      * @param string $domain
      * @param ServiceInterface[] $services
      */
-    public function __construct($baseCacheKey, CacheInterface $cache, Client $client, $domain, array $services)
+    public function __construct($baseCacheKey, CacheInterface $cache, ClientInterface $client, $domain, array $services)
     {
         $this->baseCacheKey = $baseCacheKey;
         $this->cache = $cache;
@@ -89,17 +90,17 @@ class BackendManager
             $this->services
         );
 
+        /** @var ResponseInterface[] $results */
         $results = Pool::batch($this->client, $requests);
 
         $counts = array();
         $i = 0;
         foreach ($this->services as $service) {
-            if (method_exists($results[$i], "json")) {
-                try {
-                    $counts[ $service->getName() ] = (int)$service->extractCount($results[$i]->json());
-                } catch (\Exception $e) {
-                    // Skip service if broken
-                }
+            try {
+                $content = $service->filterResponse($results[$i]->getBody()->getContents());
+                $counts[$service->getName()] = (int) $service->extractCount(json_decode($content, true));
+            } catch (\Exception $e) {
+                // Skip service if broken
             }
             $i++;
         }

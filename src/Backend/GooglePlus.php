@@ -2,6 +2,8 @@
 
 namespace Heise\Shariff\Backend;
 
+use GuzzleHttp\Psr7;
+
 /**
  * Class GooglePlus
  *
@@ -11,7 +13,7 @@ class GooglePlus extends Request implements ServiceInterface
 {
 
     /**
-     * @return string
+     * {@inheritdoc}
      */
     public function getName()
     {
@@ -19,8 +21,7 @@ class GooglePlus extends Request implements ServiceInterface
     }
 
     /**
-     * @param string $url
-     * @return \GuzzleHttp\Message\Request|\GuzzleHttp\Message\RequestInterface
+     * {@inheritdoc}
      */
     public function getRequest($url)
     {
@@ -39,12 +40,13 @@ class GooglePlus extends Request implements ServiceInterface
             'key'        => 'p',
             'apiVersion' => 'v1'
         );
-        return $this->createRequest($gPlusUrl, 'POST', array('json' => $json));
+
+        $body = Psr7\stream_for(json_encode($json));
+        return $this->createRequest($gPlusUrl, 'POST', array('body' => $body));
     }
 
     /**
-     * @param array $data
-     * @return int
+     * {@inheritdoc}
      */
     public function extractCount(array $data)
     {

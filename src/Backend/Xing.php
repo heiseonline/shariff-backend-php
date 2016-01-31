@@ -2,8 +2,6 @@
 
 namespace Heise\Shariff\Backend;
 
-use GuzzleHttp\Post\PostBodyInterface;
-
 /**
  * Class Xing
  *
@@ -13,7 +11,7 @@ class Xing extends Request implements ServiceInterface
 {
 
     /**
-     * @return string
+     * {@inheritdoc}
      */
     public function getName()
     {
@@ -21,22 +19,16 @@ class Xing extends Request implements ServiceInterface
     }
 
     /**
-     * @param string $url
-     * @return \GuzzleHttp\Message\Request
+     * {@inheritdoc}
      */
     public function getRequest($url)
     {
-        $request = $this->createRequest('https://www.xing-share.com/spi/shares/statistics', 'POST');
-        $stream = $request->getBody();
-        if ($stream instanceof PostBodyInterface) {
-            $stream->setField('url', $url);
-        }
-        return $request;
+        $query = 'https://www.xing-share.com/spi/shares/statistics?url=' . urlencode($url);
+        return $this->createRequest($query, 'POST');
     }
 
     /**
-     * @param array $data
-     * @return int
+     * {@inheritdoc}
      */
     public function extractCount(array $data)
     {
