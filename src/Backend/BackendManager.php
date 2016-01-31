@@ -5,6 +5,7 @@ namespace Heise\Shariff\Backend;
 use GuzzleHttp\Client;
 use GuzzleHttp\Pool;
 use Heise\Shariff\CacheInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Class BackendManager
@@ -27,6 +28,9 @@ class BackendManager
 
     /** @var ServiceInterface[] */
     protected $services;
+
+    /** @var LoggerInterface */
+    protected $logger;
 
     /**
      * @param string $baseCacheKey
@@ -57,6 +61,14 @@ class BackendManager
             }
         }
         return true;
+    }
+
+    /**
+     * @param LoggerInterface $logger
+     */
+    public function setLogger(LoggerInterface $logger = null)
+    {
+        $this->logger = $logger;
     }
 
     /**
@@ -98,7 +110,9 @@ class BackendManager
                 try {
                     $counts[ $service->getName() ] = (int)$service->extractCount($results[$i]->json());
                 } catch (\Exception $e) {
-                    // Skip service if broken
+                    if ($this->logger !== null) {
+                        $this->logger->warning($e->getMessage());
+                    }
                 }
             }
             $i++;
