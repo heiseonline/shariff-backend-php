@@ -1,5 +1,10 @@
 # Changelog
 
+## 5.0.0 TBD
+
+* Added support for PHP 7. (core23, liayn)
+* Dropped support for HHVM. (core23, liayn)
+
 ## 4.1.0 2016-02-01
 
 * Cleaned up PHPDoc comments. (core23)

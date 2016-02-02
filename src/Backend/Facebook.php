@@ -2,6 +2,8 @@
 
 namespace Heise\Shariff\Backend;
 
+use Psr\Http\Message\StreamInterface;
+
 /**
  * Class Facebook.
  */
@@ -47,16 +49,16 @@ class Facebook extends Request implements ServiceInterface
     }
 
     /**
-     * @return \GuzzleHttp\Stream\StreamInterface|null
+     * @return StreamInterface|null
      */
     protected function getAccessToken()
     {
         if (isset($this->config['app_id']) && isset($this->config['secret'])) {
             $url = 'https://graph.facebook.com/oauth/access_token?client_id='.urlencode($this->config['app_id'])
                    .'&client_secret='.urlencode($this->config['secret']).'&grant_type=client_credentials';
-            $request = $this->client->createRequest('GET', $url);
+            $response = $this->client->request('GET', $url);
 
-            return $this->client->send($request)->getBody(true);
+            return $response->getBody();
         }
 
         return;

@@ -2,8 +2,6 @@
 
 namespace Heise\Shariff\Backend;
 
-use GuzzleHttp\Post\PostBodyInterface;
-
 /**
  * Class Xing.
  */
@@ -22,13 +20,9 @@ class Xing extends Request implements ServiceInterface
      */
     public function getRequest($url)
     {
-        $request = $this->createRequest('https://www.xing-share.com/spi/shares/statistics', 'POST');
-        $stream = $request->getBody();
-        if ($stream instanceof PostBodyInterface) {
-            $stream->setField('url', $url);
-        }
+        $query = 'https://www.xing-share.com/spi/shares/statistics?url='.urlencode($url);
 
-        return $request;
+        return $this->createRequest($query, 'POST');
     }
 
     /**

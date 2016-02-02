@@ -24,9 +24,13 @@ Supported services
 Requirements
 ------------
 
-To run Shariff PHP Backend on your server you need:
+To run Shariff PHP Backend on your server you need one of these PHP versions:
 
-* PHP 5.5 or greater
+* 5.5
+* 5.6
+* 7.0
+
+Older versions and HHVM are not supported.
 
 Installing the Shariff backend on you own server
 ------------------------------------------------
