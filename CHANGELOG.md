@@ -1,6 +1,6 @@
 # Changelog
 
-## 5.0.0 TBD
+## 5.0.0 2016-02-03
 
 * Added support for PHP 7. (core23, liayn)
 * Dropped support for HHVM. (core23, liayn)
