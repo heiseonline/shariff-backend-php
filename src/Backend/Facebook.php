@@ -53,7 +53,7 @@ class Facebook extends Request implements ServiceInterface
      */
     protected function getAccessToken()
     {
-        if (isset($this->config['app_id']) && isset($this->config['secret'])) {
+        if (!empty($this->config['app_id']) && !empty($this->config['secret'])) {
             $url = 'https://graph.facebook.com/oauth/access_token?client_id='.urlencode($this->config['app_id'])
                    .'&client_secret='.urlencode($this->config['secret']).'&grant_type=client_credentials';
             $response = $this->client->request('GET', $url);
