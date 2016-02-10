@@ -23,8 +23,8 @@ class BackendManager
     /** @var ClientInterface */
     protected $client;
 
-    /** @var string */
-    protected $domain;
+    /** @var array */
+    protected $domains;
 
     /** @var ServiceInterface[] */
     protected $services;
@@ -36,15 +36,20 @@ class BackendManager
      * @param string             $baseCacheKey
      * @param CacheInterface     $cache
      * @param ClientInterface    $client
-     * @param string             $domain
+     * @param array              $domains
      * @param ServiceInterface[] $services
      */
-    public function __construct($baseCacheKey, CacheInterface $cache, ClientInterface $client, $domain, array $services)
-    {
+    public function __construct(
+        $baseCacheKey,
+        CacheInterface $cache,
+        ClientInterface $client,
+        array $domains,
+        array $services
+    ) {
         $this->baseCacheKey = $baseCacheKey;
         $this->cache = $cache;
         $this->client = $client;
-        $this->domain = $domain;
+        $this->domains = $domains;
         $this->services = $services;
     }
 
@@ -55,14 +60,14 @@ class BackendManager
      */
     private function isValidDomain($url)
     {
-        if ($this->domain) {
+        if ($this->domains) {
             $parsed = parse_url($url);
-            if ($parsed['host'] != $this->domain) {
-                return false;
+            if (in_array($parsed['host'], $this->domains, true)) {
+                return true;
             }
         }
 
-        return true;
+        return false;
     }
 
     /**

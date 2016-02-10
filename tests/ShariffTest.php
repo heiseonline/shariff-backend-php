@@ -27,7 +27,7 @@ class ShariffTest extends \PHPUnit_Framework_TestCase
     public function testShariff()
     {
         $shariff = new Backend(array(
-            "domain"   => 'www.heise.de',
+            "domains"   => array('www.heise.de'),
             "cache"    => array("ttl" => 1),
             "services" => $this->services
         ));
@@ -73,7 +73,7 @@ class ShariffTest extends \PHPUnit_Framework_TestCase
     public function testInvalidDomain()
     {
         $shariff = new Backend(array(
-            "domain"   => 'www.heise.de',
+            "domains"   => array('www.heise.de'),
             "cache"    => array("ttl" => 0),
             "services" => $this->services
         ));
@@ -91,7 +91,7 @@ class ShariffTest extends \PHPUnit_Framework_TestCase
 
         $this->setExpectedException(ExtensionNotLoadedException::class);
         new Backend(array(
-            "domain"   => 'www.heise.de',
+            "domains"   => array('www.heise.de'),
             "cache"    => array("adapter" => "Apc", "ttl" => 0),
             "services" => $this->services
         ));
@@ -102,7 +102,7 @@ class ShariffTest extends \PHPUnit_Framework_TestCase
     {
         $this->setExpectedException(OutOfSpaceException::class);
         $shariff = new Backend(array(
-            "domain"   => 'www.heise.de',
+            "domains"   => array('www.heise.de'),
             "cache"    => array(
                 "adapter" => "Memory",
                 "adapterOptions" => array("memoryLimit" => 10),
@@ -121,7 +121,7 @@ class ShariffTest extends \PHPUnit_Framework_TestCase
         );
 
         $shariff = new Backend(array(
-            "domain"   => 'www.heise.de',
+            "domains"   => array('www.heise.de'),
             "cache"    => array("ttl" => 1),
             "services" => $this->services,
             "client" => array(

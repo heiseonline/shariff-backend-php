@@ -43,7 +43,7 @@ This zip file contains a configuration file `shariff.json`. The following config
 |-------------|------|-------------|
 | `cacheClass` | `string` | *Optional* Cache class name. Has to implement `Heise\Shariff\CacheInterface`. Defaults to internal Zend Cache. |
 | `cache` | `object`  | File cache settings, which are passed on to the Cache class. See description below. |
-| `domain` | `string` | Domain for which share counts may be requested |
+| `domains` | `array` | Domains for which share counts may be requested |
 | `services` | `array` | List of services to be enabled. See [Supported services](#supported-services). |
 
 ##### Cache settings:
@@ -102,7 +102,10 @@ To use the graph api id method to fetch the share count you need to set up an ap
 		"timeout": 4.2,
 		// ... (see "Client options")
 	},
-	"domain": "www.example.com",
+	"domains": [
+                "www.example.com",
+                "www.example.net"
+        ],
 	"services": [
 		"GooglePlus",
 		"Facebook",
@@ -141,7 +144,7 @@ If you need more control, you can invoke Shariff in your own PHP code. The follo
 use Heise\Shariff\Backend;
 
 $options = [
-	"domain"   => "www.heise.de",
+	"domains"  => ["www.heise.de", "www.ct.de"],
 	"cache"    => ["ttl" => 1],
 	"services" => ["Facebook", "GooglePlus", "LinkedIn", "Reddit", "StumbleUpon", "Flattr", "Pinterest", "AddThis"]
 ];
