@@ -1,6 +1,8 @@
 # Changelog
 
-* Added support for multiple domains.
+## 5.1.0 TBD
+
+* Added support for multiple domains. (liayn, core23, compeak)
 * Improved checking of Facebook configuration. (liayn)
 
 ## 5.0.0 2016-02-03
@@ -39,4 +41,4 @@
 * Removed build artifacts from repository.
 * Cleaned up testing. (liayn)
 * Fixed phpUnit dependencies. (liayn)
-* Introduced changelog. 
+* Introduced changelog.
