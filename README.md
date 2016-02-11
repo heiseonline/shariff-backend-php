@@ -103,9 +103,9 @@ To use the graph api id method to fetch the share count you need to set up an ap
 		// ... (see "Client options")
 	},
 	"domains": [
-                "www.example.com",
-                "www.example.net"
-        ],
+		"www.example.com",
+		"www.example.net"
+	],
 	"services": [
 		"GooglePlus",
 		"Facebook",
