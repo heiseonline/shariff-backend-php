@@ -20,7 +20,12 @@ class Backend
      */
     public function __construct($config)
     {
-        $domain = $config['domain'];
+        $domains = $config['domains'];
+        // stay compatible to old configs
+        if (isset($config['domain'])) {
+            array_push($domains, $config['domain']);
+        }
+
         $clientOptions = [];
         if (isset($config['client'])) {
             $clientOptions = $config['client'];
@@ -40,7 +45,7 @@ class Backend
             $baseCacheKey,
             $cache,
             $client,
-            $domain,
+            $domains,
             $serviceFactory->getServicesByName($config['services'], $config)
         );
     }
