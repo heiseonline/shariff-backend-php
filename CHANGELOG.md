@@ -1,7 +1,5 @@
 # Changelog
 
-## 5.1.0 2016-02-11
-
 * Added support for multiple domains.
 * Improved checking of Facebook configuration. (liayn)
 
