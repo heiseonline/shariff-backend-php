@@ -36,20 +36,25 @@ class BackendManager
      * @param string             $baseCacheKey
      * @param CacheInterface     $cache
      * @param ClientInterface    $client
-     * @param array              $domains
+     * @param array|string       $domains
      * @param ServiceInterface[] $services
      */
     public function __construct(
         $baseCacheKey,
         CacheInterface $cache,
         ClientInterface $client,
-        array $domains,
+        $domains,
         array $services
     ) {
         $this->baseCacheKey = $baseCacheKey;
         $this->cache = $cache;
         $this->client = $client;
-        $this->domains = $domains;
+        if (is_array($domains)) {
+            $this->domains = $domains;
+        } else {
+            trigger_error('Passing a domain string is deprecated since 5.1, please use an array instead.', E_DEPRECATED);
+            $this->domains = [$domains];
+        }
         $this->services = $services;
     }
 
