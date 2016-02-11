@@ -52,7 +52,10 @@ class BackendManager
         if (is_array($domains)) {
             $this->domains = $domains;
         } else {
-            trigger_error('Passing a domain string is deprecated since 5.1, please use an array instead.', E_DEPRECATED);
+            trigger_error(
+                'Passing a domain string is deprecated since 5.1, please use an array instead.',
+                E_DEPRECATED
+            );
             $this->domains = [$domains];
         }
         $this->services = $services;
