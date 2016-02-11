@@ -1,5 +1,10 @@
 # Changelog
 
+## 5.1.0 2016-02-11
+
+* Added support for multiple domains.
+* Improved checking of Facebook configuration. (liayn)
+
 ## 5.0.0 2016-02-03
 
 * Added support for PHP 7. (core23, liayn)
