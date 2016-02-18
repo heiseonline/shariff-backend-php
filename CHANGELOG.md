@@ -1,6 +1,6 @@
 # Changelog
 
-## 5.1.0 TBD
+## 5.1.0 2016-02-18 
 
 * Added support for multiple domains. (liayn, core23, compeak)
 * Improved checking of Facebook configuration. (liayn)
