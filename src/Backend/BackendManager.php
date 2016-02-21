@@ -24,7 +24,7 @@ class BackendManager
     protected $client;
 
     /** @var array */
-    protected $domains;
+    protected $domains = [];
 
     /** @var ServiceInterface[] */
     protected $services;
@@ -51,7 +51,7 @@ class BackendManager
         $this->client = $client;
         if (is_array($domains)) {
             $this->domains = $domains;
-        } else {
+        } elseif (is_string($domains)) {
             trigger_error(
                 'Passing a domain string is deprecated since 5.1, please use an array instead.',
                 E_DEPRECATED
@@ -68,14 +68,13 @@ class BackendManager
      */
     private function isValidDomain($url)
     {
-        if ($this->domains) {
+        if (!empty($this->domains)) {
             $parsed = parse_url($url);
-            if (in_array($parsed['host'], $this->domains, true)) {
-                return true;
-            }
+
+            return in_array($parsed['host'], $this->domains, true);
         }
 
-        return false;
+        return true;
     }
 
     /**
