@@ -54,7 +54,7 @@ class BackendManager
         } elseif (is_string($domains)) {
             trigger_error(
                 'Passing a domain string is deprecated since 5.1, please use an array instead.',
-                E_DEPRECATED
+                E_USER_DEPRECATED
             );
             $this->domains = [$domains];
         }
