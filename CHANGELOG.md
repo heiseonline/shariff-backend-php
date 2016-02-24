@@ -1,5 +1,10 @@
 # Changelog
 
+## 5.2.0 TBD
+
+* Added support for blank domains. (core23)
+* Fixed possible error caused by deprecation warning. (core23)
+
 ## 5.1.0 2016-02-18 
 
 * Added support for multiple domains. (liayn, core23, compeak)
