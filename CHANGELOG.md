@@ -1,6 +1,6 @@
 # Changelog
 
-## 5.2.0 TBD
+## 5.2.0 2016-02-24
 
 * Added support for blank domains. (core23)
 * Fixed possible error caused by deprecation warning. (core23)
