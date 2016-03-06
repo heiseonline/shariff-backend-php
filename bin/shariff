@@ -1,13 +1,14 @@
+#!/usr/bin/env php
 <?php
 
-require_once __DIR__.'/vendor/autoload.php';
+require_once __DIR__.'/../vendor/autoload.php';
 
 use Heise\Shariff\Backend;
 use Zend\Config\Reader\Json;
 
 class Application
 {
-    public static function run()
+    public function run()
     {
         header('Content-type: application/json');
 
@@ -23,4 +24,5 @@ class Application
     }
 }
 
-Application::run();
+$application = new Application();
+$application->run();
