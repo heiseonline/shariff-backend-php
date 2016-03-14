@@ -8,7 +8,6 @@
     ],
     "keywords": ["heise", "social buttons", "shariff"],
     "description": "PHP backend for Shariff. Shariff enables website users to share their favorite content without compromising their privacy.",
-    "bin": ["index.php"],
     "homepage": "https://github.com/heiseonline/shariff-backend-php",
     "license": "MIT",
     "authors": [
