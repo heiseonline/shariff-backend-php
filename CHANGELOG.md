@@ -1,5 +1,9 @@
 # Changelog
 
+## 5.2.1 TBD
+
+* Removed non CLI command from composer. (core23)
+
 ## 5.2.0 2016-02-24
 
 * Added support for blank domains. (core23)
