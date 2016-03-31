@@ -20,7 +20,10 @@ class StumbleUpon extends Request implements ServiceInterface
      */
     public function getRequest($url)
     {
-        return $this->createRequest('https://www.stumbleupon.com/services/1.01/badge.getinfo?url='.urlencode($url));
+        return new \GuzzleHttp\Psr7\Request(
+            'GET',
+            'https://www.stumbleupon.com/services/1.01/badge.getinfo?url='.urlencode($url)
+        );
     }
 
     /**

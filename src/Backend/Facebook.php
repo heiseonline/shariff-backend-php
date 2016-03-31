@@ -30,7 +30,7 @@ class Facebook extends Request implements ServiceInterface
                      .urlencode('SELECT total_count FROM link_stat WHERE url="'.$url.'"');
         }
 
-        return $this->createRequest($query);
+        return new \GuzzleHttp\Psr7\Request('GET', $query);
     }
 
     /**

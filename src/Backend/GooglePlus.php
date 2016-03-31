@@ -40,7 +40,7 @@ class GooglePlus extends Request implements ServiceInterface
 
         $body = Psr7\stream_for(json_encode($json));
 
-        return $this->createRequest($gPlusUrl, 'POST', ['body' => $body]);
+        return new \GuzzleHttp\Psr7\Request('POST', $gPlusUrl, [], $body);
     }
 
     /**
