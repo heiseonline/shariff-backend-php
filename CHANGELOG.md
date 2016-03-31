@@ -1,5 +1,9 @@
 # Changelog
 
+## 5.2.2 2016-03-31
+
+* Re-release of 5.2.1 because of wrong tag.
+
 ## 5.2.1 2016-03-31 
 
 * Fixed handling of Guzzle request options. (liayn)
