@@ -20,9 +20,10 @@ class Pinterest extends Request implements ServiceInterface
      */
     public function getRequest($url)
     {
-        $url = 'http://api.pinterest.com/v1/urls/count.json?callback=x&url='.urlencode($url);
-
-        return $this->createRequest($url);
+        return new \GuzzleHttp\Psr7\Request(
+            'GET',
+            'http://api.pinterest.com/v1/urls/count.json?callback=x&url='.urlencode($url)
+        );
     }
 
     /**
