@@ -1,7 +1,8 @@
 # Changelog
 
-## 5.2.1 TBD
+## 5.2.1 2016-03-31 
 
+* Fixed handling of Guzzle request options. (liayn)
 * Removed non CLI command from composer. (core23)
 
 ## 5.2.0 2016-02-24
