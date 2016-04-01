@@ -1,5 +1,9 @@
 # Changelog
 
+## 5.2.3 2016-04-01
+
+* Fixed backwards compatibility break. (liayn)
+
 ## 5.2.2 2016-03-31
 
 * Re-release of 5.2.1 because of wrong tag.
