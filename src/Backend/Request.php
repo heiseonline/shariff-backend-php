@@ -37,7 +37,7 @@ abstract class Request
     protected function createRequest($url, $method = 'GET', $options = [])
     {
         trigger_error('This method is not used anymore and will be removed with version 6.'
-                    . ' Use \GuzzleHttp\Psr7\Request directly instead.', E_USER_DEPRECATED);
+                    .' Use \GuzzleHttp\Psr7\Request directly instead.', E_USER_DEPRECATED);
 
         return new \GuzzleHttp\Psr7\Request($method, $url);
     }
