@@ -44,7 +44,7 @@ This zip file contains a configuration file `shariff.json`. The following config
 |-------------|------|-------------|
 | `cacheClass` | `string` | *Optional* Cache class name. Has to implement `Heise\Shariff\CacheInterface`. Defaults to internal Zend Cache. |
 | `cache` | `object`  | File cache settings, which are passed on to the Cache class. See description below. |
-| `domains` | `array` | Domains for which share counts may be requested |
+| `domains` | `array` | Domains for which share counts may be requested. If empty, all domains are allowed. |
 | `services` | `array` | List of services to be enabled. See [Supported services](#supported-services). |
 
 ##### Cache settings:
