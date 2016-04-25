@@ -1,5 +1,9 @@
 # Changelog
 
+## TBD
+
+* Clarified description of domains parameter. (cmb69)
+
 ## 5.2.3 2016-04-01
 
 * Fixed backwards compatibility break. (liayn)
@@ -8,7 +12,7 @@
 
 * Re-release of 5.2.1 because of wrong tag.
 
-## 5.2.1 2016-03-31 
+## 5.2.1 2016-03-31
 
 * Fixed handling of Guzzle request options. (liayn)
 * Removed non CLI command from composer. (core23)
@@ -18,7 +22,7 @@
 * Added support for blank domains. (core23)
 * Fixed possible error caused by deprecation warning. (core23)
 
-## 5.1.0 2016-02-18 
+## 5.1.0 2016-02-18
 
 * Added support for multiple domains. (liayn, core23, compeak)
 * Improved checking of Facebook configuration. (liayn)
