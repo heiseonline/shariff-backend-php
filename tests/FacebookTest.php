@@ -2,8 +2,10 @@
 
 namespace Heise\Tests\Shariff;
 
-use GuzzleHttp\ClientInterface;
 use Heise\Shariff\Backend\Facebook;
+use Http\Client\HttpClient;
+use Http\Message\MessageFactory;
+use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 
 /**
@@ -13,8 +15,11 @@ class FacebookTest extends \PHPUnit_Framework_TestCase
 {
     public function testConfig()
     {
-        /** @var ClientInterface|\PHPUnit_Framework_MockObject_MockObject $client */
-        $client = $this->getMockBuilder(ClientInterface::class)->getMock();
+        /** @var HttpClient|\PHPUnit_Framework_MockObject_MockObject $client */
+        $client = $this->getMock(HttpClient::class);
+
+        /** @var MessageFactory\\PHPUnit_Framework_MockObject_MockObject $messageFactory */
+        $messageFactory = $this->getMock(MessageFactory::class);
 
         $response = $this->getMockBuilder(ResponseInterface::class)->getMock();
 
@@ -23,25 +28,35 @@ class FacebookTest extends \PHPUnit_Framework_TestCase
           ->willReturn('access_token=tokem')
         ;
 
+        $request = $this->getMock(RequestInterface::class);
+
+        $messageFactory->expects($this->once())
+            ->method('createRequest')
+            ->with(
+                'GET',
+                'https://graph.facebook.com/oauth/access_token'
+                . '?client_id=foo&client_secret=bar&grant_type=client_credentials'
+            )
+            ->willReturn($request);
+
         $client->expects($this->at(0))
-          ->method('request')
-          ->with(
-              'GET',
-              'https://graph.facebook.com/oauth/access_token'
-              . '?client_id=foo&client_secret=bar&grant_type=client_credentials'
-          )
+          ->method('sendRequest')
+          ->with($request)
           ->willReturn($response)
         ;
 
-        $facebook = new Facebook($client);
+        $facebook = new Facebook($client, $messageFactory);
         $facebook->setConfig(array('app_id' => 'foo', 'secret' => 'bar'));
         $facebook->getRequest('http://www.heise.de');
     }
 
     public function testUsesGraphApi()
     {
-        /** @var \GuzzleHttp\Client|\PHPUnit_Framework_MockObject_MockObject $client */
-        $client = $this->getMockBuilder(ClientInterface::class)->getMock();
+        /** @var HttpClient|\PHPUnit_Framework_MockObject_MockObject $client */
+        $client = $this->getMock(HttpClient::class);
+
+        /** @var MessageFactory\\PHPUnit_Framework_MockObject_MockObject $messageFactory */
+        $messageFactory = $this->getMock(MessageFactory::class);
 
         $response = $this->getMockBuilder(ResponseInterface::class)->getMock();
 
@@ -50,12 +65,19 @@ class FacebookTest extends \PHPUnit_Framework_TestCase
           ->willReturn('access_token=token')
         ;
 
+        $request = $this->getMock(RequestInterface::class);
+
+        $messageFactory->expects($this->once())
+            ->method('createRequest')
+            ->willReturn($request);
+
         $client->expects($this->once())
-            ->method('request')
+            ->method('sendRequest')
+            ->with($request)
             ->willReturn($response)
         ;
 
-        $facebook = new Facebook($client);
+        $facebook = new Facebook($client, $messageFactory);
         $facebook->setConfig(array('app_id' => 'foo', 'secret' => 'bar'));
         $request = $facebook->getRequest('http://www.heise.de');
 

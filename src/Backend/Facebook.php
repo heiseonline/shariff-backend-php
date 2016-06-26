@@ -2,6 +2,7 @@
 
 namespace Heise\Shariff\Backend;
 
+use Http\Client\HttpClient;
 use Psr\Http\Message\StreamInterface;
 
 /**
@@ -30,7 +31,7 @@ class Facebook extends Request implements ServiceInterface
                      .urlencode('SELECT total_count FROM link_stat WHERE url="'.$url.'"');
         }
 
-        return new \GuzzleHttp\Psr7\Request('GET', $query);
+        return $this->createRequest($query);
     }
 
     /**
@@ -56,7 +57,15 @@ class Facebook extends Request implements ServiceInterface
         if (!empty($this->config['app_id']) && !empty($this->config['secret'])) {
             $url = 'https://graph.facebook.com/oauth/access_token?client_id='.urlencode($this->config['app_id'])
                    .'&client_secret='.urlencode($this->config['secret']).'&grant_type=client_credentials';
-            $response = $this->client->request('GET', $url);
+
+            // HTTPlug implementation
+            if ($this->client instanceof HttpClient) {
+                $request = $this->createRequest($url);
+
+                $response = $this->client->sendRequest($request);
+            } else {
+                $response = $this->client->request('GET', $url);
+            }
 
             return $response->getBody();
         }

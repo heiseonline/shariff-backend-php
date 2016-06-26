@@ -5,6 +5,10 @@ namespace Heise\Shariff;
 use GuzzleHttp\Client;
 use Heise\Shariff\Backend\BackendManager;
 use Heise\Shariff\Backend\ServiceFactory;
+use Http\Client\HttpClient;
+use Http\Discovery\HttpAsyncClientDiscovery;
+use Http\Discovery\MessageFactoryDiscovery;
+use Http\Message\MessageFactory;
 use Psr\Log\LoggerInterface;
 
 /**
@@ -16,9 +20,11 @@ class Backend
     protected $backendManager;
 
     /**
-     * @param array $config
+     * @param array          $config
+     * @param HttpClient     $client
+     * @param MessageFactory $messageFactory
      */
-    public function __construct($config)
+    public function __construct($config, HttpClient $client = null, MessageFactory $messageFactory = null)
     {
         $domains = $config['domains'];
         // stay compatible to old configs
@@ -26,11 +32,25 @@ class Backend
             array_push($domains, $config['domain']);
         }
 
-        $clientOptions = [];
-        if (isset($config['client'])) {
-            $clientOptions = $config['client'];
+        // HTTPlug implementation
+        if (class_exists('Http\Client\HttpClient')) {
+            if (null === $client) {
+                $client = HttpAsyncClientDiscovery::find();
+            }
+
+            if (null === $messageFactory) {
+                $messageFactory = MessageFactoryDiscovery::find();
+            }
+        } else {
+            $clientOptions = [];
+
+            if (isset($config['client'])) {
+                $clientOptions = $config['client'];
+            }
+
+            $client = new Client($clientOptions);
         }
-        $client = new Client($clientOptions);
+
         $baseCacheKey = md5(json_encode($config));
 
         if (isset($config['cacheClass'])) {
@@ -40,7 +60,7 @@ class Backend
         }
         $cache = new $cacheClass($config['cache']);
 
-        $serviceFactory = new ServiceFactory($client);
+        $serviceFactory = new ServiceFactory($client, $messageFactory);
         $this->backendManager = new BackendManager(
             $baseCacheKey,
             $cache,

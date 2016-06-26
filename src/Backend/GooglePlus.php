@@ -2,8 +2,6 @@
 
 namespace Heise\Shariff\Backend;
 
-use GuzzleHttp\Psr7;
-
 /**
  * Class GooglePlus.
  */
@@ -38,9 +36,7 @@ class GooglePlus extends Request implements ServiceInterface
             'apiVersion' => 'v1',
         ];
 
-        $body = Psr7\stream_for(json_encode($json));
-
-        return new \GuzzleHttp\Psr7\Request('POST', $gPlusUrl, [], $body);
+        return $this->createRequest($gPlusUrl, 'POST', ['body' => json_encode($json)]);
     }
 
     /**

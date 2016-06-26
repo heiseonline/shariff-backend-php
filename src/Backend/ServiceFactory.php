@@ -3,24 +3,35 @@
 namespace Heise\Shariff\Backend;
 
 use GuzzleHttp\ClientInterface;
+use Http\Client\HttpClient;
+use Http\Message\MessageFactory;
 
 /**
  * Class ServiceFactory.
  */
 class ServiceFactory
 {
-    /** @var ClientInterface */
+    /**
+     * @var ClientInterface|HttpClient
+     */
     protected $client;
+
+    /**
+     * @var MessageFactory
+     */
+    protected $messageFactory;
 
     /** @var ServiceInterface[] */
     protected $serviceMap = [];
 
     /**
-     * @param ClientInterface $client
+     * @param ClientInterface|HttpClient $client
+     * @param MessageFactory             $messageFactory
      */
-    public function __construct(ClientInterface $client)
+    public function __construct($client, MessageFactory $messageFactory = null)
     {
-        $this->client = $client;
+        $this->client         = $client;
+        $this->messageFactory = $messageFactory;
     }
 
     /**
@@ -60,7 +71,7 @@ class ServiceFactory
             $service = $this->serviceMap[$serviceName];
         } else {
             $serviceClass = 'Heise\\Shariff\\Backend\\'.$serviceName;
-            $service = new $serviceClass($this->client);
+            $service = new $serviceClass($this->client, $this->messageFactory);
         }
 
         if (isset($config[$serviceName])) {
