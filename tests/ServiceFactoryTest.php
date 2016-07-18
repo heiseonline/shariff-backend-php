@@ -23,7 +23,7 @@ class ServiceFactoryTest extends \PHPUnit_Framework_TestCase
         ;
 
         /** @var ClientInterface|\PHPUnit_Framework_MockObject_MockObject $mockClient */
-        $mockClient = $this->getMock(ClientInterface::class);
+        $mockClient = $this->getMockBuilder(ClientInterface::class)->getMock();
 
         $serviceFactory = new ServiceFactory($mockClient);
         $serviceFactory->registerService('MockService', $mockService);
@@ -43,7 +43,7 @@ class ServiceFactoryTest extends \PHPUnit_Framework_TestCase
         $mockService->expects($this->never())->method('setConfig');
 
         /** @var ClientInterface|\PHPUnit_Framework_MockObject_MockObject $mockClient */
-        $mockClient = $this->getMock(ClientInterface::class);
+        $mockClient = $this->getMockBuilder(ClientInterface::class)->getMock();
 
         $serviceFactory = new ServiceFactory($mockClient);
         $serviceFactory->registerService('MockService', $mockService);

@@ -14,9 +14,9 @@ class FacebookTest extends \PHPUnit_Framework_TestCase
     public function testConfig()
     {
         /** @var ClientInterface|\PHPUnit_Framework_MockObject_MockObject $client */
-        $client = $this->getMock(ClientInterface::class);
+        $client = $this->getMockBuilder(ClientInterface::class)->getMock();
 
-        $response = $this->getMock(ResponseInterface::class);
+        $response = $this->getMockBuilder(ResponseInterface::class)->getMock();
 
         $response
           ->method('getBody')
@@ -41,9 +41,9 @@ class FacebookTest extends \PHPUnit_Framework_TestCase
     public function testUsesGraphApi()
     {
         /** @var \GuzzleHttp\Client|\PHPUnit_Framework_MockObject_MockObject $client */
-        $client = $this->getMock(ClientInterface::class);
+        $client = $this->getMockBuilder(ClientInterface::class)->getMock();
 
-        $response = $this->getMock(ResponseInterface::class);
+        $response = $this->getMockBuilder(ResponseInterface::class)->getMock();
 
         $response
           ->method('getBody')
