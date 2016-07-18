@@ -1,7 +1,7 @@
 # Changelog
 
 ## TBD
-
+* Removed unnecessary files from composer package. (core23)
 * Clarified description of domains parameter. (cmb69)
 
 ## 5.2.3 2016-04-01
