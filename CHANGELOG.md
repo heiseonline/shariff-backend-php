@@ -3,7 +3,7 @@
 ## 6.0.0 TBD
 
 * Dropped support for PHP 5.5.
-* Updated composer dependencies. (liayn)
+* Updated composer dependencies. (liayn, core23)
 * Removed unnecessary files from composer package. (core23)
 * Clarified description of domains parameter. (cmb69)
 
