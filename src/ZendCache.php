@@ -49,15 +49,7 @@ class ZendCache implements CacheInterface
         }
 
         if ($cache instanceof ClearExpiredInterface) {
-            if (function_exists('register_postsend_function')) {
-                // for hhvm installations: executing after response / session close
-                register_postsend_function(function () use ($cache) {
-                    $cache->clearExpired();
-                });
-            } else {
-                // default
-                $cache->clearExpired();
-            }
+            $cache->clearExpired();
         }
 
         $this->cache = $cache;
