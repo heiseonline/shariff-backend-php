@@ -4,6 +4,7 @@
 
 * Dropped support for PHP 5.5.
 * Updated composer dependencies. (liayn, core23)
+* Removed unused HHVM specific code. (liayn)
 * Removed unnecessary files from composer package. (core23)
 * Clarified description of domains parameter. (cmb69)
 
