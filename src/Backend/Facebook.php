@@ -61,6 +61,6 @@ class Facebook extends Request implements ServiceInterface
             return $response->getBody();
         }
 
-        return;
+        return null;
     }
 }

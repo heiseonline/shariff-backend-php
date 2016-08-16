@@ -93,19 +93,19 @@ class BackendManager
     public function get($url)
     {
 
-        // Aenderungen an der Konfiguration invalidieren den Cache
-        $cache_key = md5($url.$this->baseCacheKey);
+        // Changing configuration invalidates the cache
+        $cacheKey = md5($url.$this->baseCacheKey);
 
         if (!filter_var($url, FILTER_VALIDATE_URL)) {
-            return;
+            return null;
         }
 
-        if ($this->cache->hasItem($cache_key)) {
-            return json_decode($this->cache->getItem($cache_key), true);
+        if ($this->cache->hasItem($cacheKey)) {
+            return json_decode($this->cache->getItem($cacheKey), true);
         }
 
         if (!$this->isValidDomain($url)) {
-            return;
+            return null;
         }
 
         $requests = array_map(
@@ -116,7 +116,7 @@ class BackendManager
             $this->services
         );
 
-        /** @var ResponseInterface[] $results */
+        /** @var ResponseInterface[]|TransferException[] $results */
         $results = Pool::batch($this->client, $requests);
 
         $counts = [];
@@ -139,7 +139,7 @@ class BackendManager
             }
         }
 
-        $this->cache->setItem($cache_key, json_encode($counts));
+        $this->cache->setItem($cacheKey, json_encode($counts));
 
         return $counts;
     }

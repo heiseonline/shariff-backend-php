@@ -3,23 +3,49 @@
 require_once __DIR__.'/vendor/autoload.php';
 
 use Heise\Shariff\Backend;
-use Zend\Config\Reader\Json;
 
+/**
+ * Demo Application using Shariff Backend
+ */
 class Application
 {
+    /**
+     * Sample configuration
+     *
+     * @var array
+     */
+    private static $configuration = [
+        'cache' => [
+            'ttl' => 60
+        ],
+        'domains' => [
+            'www.heise.de',
+            'www.ct.de'
+        ],
+        'services' => [
+            'GooglePlus',
+            'Facebook',
+            'LinkedIn',
+            'Reddit',
+            'StumbleUpon',
+            'Flattr',
+            'Pinterest',
+            'Xing',
+            'AddThis'
+        ]
+    ];
+
     public static function run()
     {
         header('Content-type: application/json');
 
-        if (!isset($_GET["url"])) {
+        $url = isset($_GET['url']) ? $_GET['url'] : '';
+        if ($url) {
+            $shariff = new Backend(self::$configuration);
+            echo json_encode($shariff->get($url));
+        } else {
             echo json_encode(null);
-            return;
         }
-
-        $reader = new Json();
-
-        $shariff = new Backend($reader->fromFile('shariff.json'));
-        echo json_encode($shariff->get($_GET["url"]));
     }
 }
 
