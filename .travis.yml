@@ -13,7 +13,7 @@ before_script:
  - composer require "squizlabs/php_codesniffer=*"
 
 script:
- - bash -c 'vendor/bin/phpcs --standard=PSR2 --fixers=-empty_return,-unalign_double_arrow src/ tests/'
+ - bash -c 'vendor/bin/phpcs --standard=PSR2 src/ tests/'
  - vendor/bin/phpunit --coverage-text
  - make cs_dry_run
 
