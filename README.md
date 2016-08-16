@@ -97,7 +97,7 @@ To use the graph api id method to fetch the share count you need to set up an ap
  * @var array
  */
 private static $configuration = [
-		'cacheClass' => 'Heise\\Shariff\\ZendCache',
+    'cacheClass' => 'Heise\\Shariff\\ZendCache',
     'cache' => [
         'ttl' => 60,
 				'cacheDir' => '/tmp/shariff/cache',
