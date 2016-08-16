@@ -28,7 +28,8 @@ Requirements
 To run Shariff PHP Backend on your server you need one of these PHP versions:
 
 * 5.6
-* 7.0-7.1
+* 7.0
+* 7.1
 
 Older versions and HHVM are not supported.
 
@@ -37,7 +38,7 @@ Installing the Shariff backend on you own server
 
 To run Shariff under a certain URL, unzip the [release](https://github.com/heiseonline/shariff-backend-php/releases) zip file into a directory under the document root of your web server.
 
-Take a look into the demo application in the `index.php` file and adjust the configuration as necessary. 
+Take a look into the demo application in the `index.php` file and adjust the configuration as necessary.
 
 The following configuration options are available:
 
@@ -89,41 +90,46 @@ To use the graph api id method to fetch the share count you need to set up an ap
 
 ##### Full config example
 
-```js
-{
-	"cacheClass": "Heise\\Shariff\\ZendCache",
-	"cache": {
-		"ttl": 60,
-		"cacheDir": "/tmp/shariff/cache",
-		"adapter": "Filesystem",
-		"adapterOptions": {
-			// ...
-		}
-	},
-	"client": {
-		"timeout": 4.2,
-		// ... (see "Client options")
-	},
-	"domains": [
-		"www.example.com",
-		"www.example.net"
-	],
-	"services": [
-		"GooglePlus",
-		"Facebook",
-		"LinkedIn",
-		"Reddit",
-		"StumbleUpon",
-		"Flattr",
-		"Pinterest",
-		"Xing",
-		"AddThis"
-	],
-	"Facebook": {
-		"app_id": "1234567890",
-		"secret": "terces"
-	}
-}
+```php
+/**
+ * Sample configuration
+ *
+ * @var array
+ */
+private static $configuration = [
+		'cacheClass' => 'Heise\\Shariff\\ZendCache',
+    'cache' => [
+        'ttl' => 60,
+				'cacheDir' => '/tmp/shariff/cache',
+				'adapter' => 'Filesystem',
+				'adapterOptions' => [
+					// ...
+				]
+    ],
+		'client' => [
+			'timeout' => 4.2
+			// ... (see "Client options")
+		],
+    'domains' => [
+        'www.heise.de',
+        'www.ct.de'
+    ],
+    'services' => [
+        'GooglePlus',
+        'Facebook',
+        'LinkedIn',
+        'Reddit',
+        'StumbleUpon',
+        'Flattr',
+        'Pinterest',
+        'Xing',
+        'AddThis'
+    ],
+		'Facebook' => [
+			'app_id' => '1234567890',
+			'secret' => 'terces'
+		]
+];
 ```
 
 
