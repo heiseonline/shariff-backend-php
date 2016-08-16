@@ -1,11 +1,13 @@
 # Changelog
 
-## 6.0.0 TBD
+## 6.0.0 2016-08-16
 
 * Dropped support for PHP 5.5.
+* Dropped support for JSON configuration. (liayn)
 * Updated composer dependencies. (liayn, core23)
 * Removed unused HHVM specific code. (liayn)
 * Removed unnecessary files from composer package. (core23)
+* Removed unnecessary composer dependencies. (liayn)
 * Clarified description of domains parameter. (cmb69)
 
 ## 5.2.3 2016-04-01
