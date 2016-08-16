@@ -35,7 +35,7 @@ class ZendCache implements CacheInterface
 
         $cache = StorageFactory::factory([
             'adapter' => [
-                'name'    => $configuration['adapter'],
+                'name' => $configuration['adapter'],
                 'options' => $configuration['adapterOptions'],
             ],
         ]);

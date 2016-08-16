@@ -25,16 +25,16 @@ class GooglePlus extends Request implements ServiceInterface
         $gPlusUrl = 'https://clients6.google.com/rpc?key=AIzaSyCKSbrvQasunBoV16zDH9R33D88CeLr9gQ';
         $json = [
             'method' => 'pos.plusones.get',
-            'id'     => 'p',
+            'id' => 'p',
             'params' => [
-                'nolog'   => 'true',
-                'id'      => $url,
-                'source'  => 'widget',
-                'userId'  => '@viewer',
+                'nolog' => 'true',
+                'id' => $url,
+                'source' => 'widget',
+                'userId' => '@viewer',
                 'groupId' => '@self',
             ],
-            'jsonrpc'    => '2.0',
-            'key'        => 'p',
+            'jsonrpc' => '2.0',
+            'key' => 'p',
             'apiVersion' => 'v1',
         ];
 
