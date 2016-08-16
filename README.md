@@ -100,16 +100,16 @@ private static $configuration = [
     'cacheClass' => 'Heise\\Shariff\\ZendCache',
     'cache' => [
         'ttl' => 60,
-				'cacheDir' => '/tmp/shariff/cache',
-				'adapter' => 'Filesystem',
-				'adapterOptions' => [
-					// ...
-				]
+        'cacheDir' => '/tmp/shariff/cache',
+        'adapter' => 'Filesystem',
+        'adapterOptions' => [
+          // ...
+        ]
     ],
-		'client' => [
-			'timeout' => 4.2
-			// ... (see "Client options")
-		],
+    'client' => [
+      'timeout' => 4.2
+      // ... (see "Client options")
+    ],
     'domains' => [
         'www.heise.de',
         'www.ct.de'
@@ -125,10 +125,10 @@ private static $configuration = [
         'Xing',
         'AddThis'
     ],
-		'Facebook' => [
-			'app_id' => '1234567890',
-			'secret' => 'terces'
-		]
+    'Facebook' => [
+      'app_id' => '1234567890',
+      'secret' => 'terces'
+    ]
 ];
 ```
 
