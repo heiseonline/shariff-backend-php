@@ -27,12 +27,12 @@ abstract class Request
     /**
      * @param string $url
      * @param string $method
-     * @param array  $options This parameter is ignored and is only present for backwards compatibility reasons.
+     * @param array  $options This parameter is ignored and is only present for backwards compatibility reasons
      *
      * @return RequestInterface
      *
      * @deprecated This method is not used anymore and will be removed with version 6.
-     *             Use \GuzzleHttp\Psr7\Request directly instead.
+     *             Use \GuzzleHttp\Psr7\Request directly instead
      */
     protected function createRequest($url, $method = 'GET', $options = [])
     {
