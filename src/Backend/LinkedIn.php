@@ -20,8 +20,7 @@ class LinkedIn extends Request implements ServiceInterface
      */
     public function getRequest($url)
     {
-        return new \GuzzleHttp\Psr7\Request(
-            'GET',
+        return $this->createRequest(
             'https://www.linkedin.com/countserv/count/share?url='.urlencode($url).'&lang=de_DE&format=json'
         );
     }

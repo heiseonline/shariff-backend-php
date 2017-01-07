@@ -3,10 +3,10 @@
 namespace Heise\Shariff\Backend;
 
 use GuzzleHttp\ClientInterface;
-use GuzzleHttp\Exception\TransferException;
-use GuzzleHttp\Pool;
 use Heise\Shariff\CacheInterface;
-use Psr\Http\Message\ResponseInterface;
+use Http\Client\Common\BatchClient;
+use Http\Client\HttpClient;
+use Psr\Http\Message\RequestInterface;
 use Psr\Log\LoggerInterface;
 
 /**
@@ -20,7 +20,7 @@ class BackendManager
     /** @var CacheInterface */
     protected $cache;
 
-    /** @var ClientInterface */
+    /** @var ClientInterface|HttpClient */
     protected $client;
 
     /** @var array */
@@ -33,16 +33,16 @@ class BackendManager
     protected $logger;
 
     /**
-     * @param string             $baseCacheKey
-     * @param CacheInterface     $cache
-     * @param ClientInterface    $client
-     * @param array|string       $domains
-     * @param ServiceInterface[] $services
+     * @param string                     $baseCacheKey
+     * @param CacheInterface             $cache
+     * @param ClientInterface|HttpClient $client
+     * @param array|string               $domains
+     * @param ServiceInterface[]         $services
      */
     public function __construct(
         $baseCacheKey,
         CacheInterface $cache,
-        ClientInterface $client,
+        $client,
         $domains,
         array $services
     ) {
@@ -108,6 +108,7 @@ class BackendManager
             return null;
         }
 
+        /** @var RequestInterface[] $requests */
         $requests = array_map(
             function ($service) use ($url) {
                 /* @var ServiceInterface $service */
@@ -116,26 +117,38 @@ class BackendManager
             $this->services
         );
 
-        /** @var ResponseInterface[]|TransferException[] $results */
-        $results = Pool::batch($this->client, $requests);
+        $batchClient = new BatchClient($this->client);
+        $batchResult = $batchClient->sendRequests($requests);
+
+        if (null !== $this->logger && !$batchResult->hasResponses()) {
+            $this->logger->notice('The response list is empty.');
+        }
 
         $counts = [];
-        $i = 0;
-        foreach ($this->services as $service) {
-            if ($results[$i] instanceof TransferException) {
-                if ($this->logger !== null) {
-                    $this->logger->warning($results[$i]->getMessage(), ['exception' => $results[$i]]);
-                }
-            } else {
+
+        for ($i = 0;$i < count($this->services);++$i) {
+            $service = $this->services[$i];
+            $request = $requests[$i];
+
+            if ($batchResult->isSuccessful($request)) {
+                $response = $batchResult->getResponseFor($request);
+
                 try {
-                    $content = $service->filterResponse($results[$i]->getBody()->getContents());
+                    $content = $service->filterResponse($response->getBody()->getContents());
                     $counts[$service->getName()] = (int) $service->extractCount(json_decode($content, true));
                 } catch (\Exception $e) {
                     if ($this->logger !== null) {
                         $this->logger->warning($e->getMessage(), ['exception' => $e]);
                     }
                 }
-                ++$i;
+            }
+
+            if (null !== $this->logger && $batchResult->isFailed($request)) {
+                $exception = $batchResult->getExceptionFor($request);
+
+                if ($exception instanceof \Exception) {
+                    $this->logger->warning($exception->getMessage(), ['exception' => $exception]);
+                }
             }
         }
 

@@ -20,8 +20,7 @@ class AddThis extends Request implements ServiceInterface
      */
     public function getRequest($url)
     {
-        return new \GuzzleHttp\Psr7\Request(
-            'GET',
+        return $this->createRequest(
             'http://api-public.addthis.com/url/shares.json?url='.urlencode($url)
         );
     }
