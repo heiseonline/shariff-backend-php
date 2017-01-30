@@ -1,5 +1,5 @@
 cs:
-	vendor/bin/php-cs-fixer fix --verbose --fixers=-empty_return,-unalign_double_arrow
+	vendor/bin/php-cs-fixer fix --verbose
 
 cs_dry_run:
-	vendor/bin/php-cs-fixer fix --verbose --fixers=-empty_return,-unalign_double_arrow --dry-run
+	vendor/bin/php-cs-fixer fix --verbose --dry-run
