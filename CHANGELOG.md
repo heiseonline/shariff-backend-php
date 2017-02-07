@@ -1,5 +1,9 @@
 # Changelog
 
+## 6.0.1 2017-02-07
+
+* Updated composed dependencies. (liayn)
+
 ## 6.0.0 2016-08-16
 
 * Dropped support for PHP 5.5.
