@@ -26,8 +26,7 @@ class Facebook extends Request implements ServiceInterface
         if (null !== $accessToken) {
             $query = 'https://graph.facebook.com/v2.2/?id='.urlencode($url).'&'.$accessToken;
         } else {
-            $query = 'https://graph.facebook.com/fql?q='
-                     .urlencode('SELECT total_count FROM link_stat WHERE url="'.$url.'"');
+            $query = 'https://graph.facebook.com/?id='.urlencode($url);
         }
 
         return new \GuzzleHttp\Psr7\Request('GET', $query);
