@@ -16,23 +16,6 @@ class FacebookTest extends \PHPUnit_Framework_TestCase
         /** @var ClientInterface|\PHPUnit_Framework_MockObject_MockObject $client */
         $client = $this->getMockBuilder(ClientInterface::class)->getMock();
 
-        $response = $this->getMockBuilder(ResponseInterface::class)->getMock();
-
-        $response
-          ->method('getBody')
-          ->willReturn('access_token=tokem')
-        ;
-
-        $client->expects($this->at(0))
-          ->method('request')
-          ->with(
-              'GET',
-              'https://graph.facebook.com/oauth/access_token'
-              . '?client_id=foo&client_secret=bar&grant_type=client_credentials'
-          )
-          ->willReturn($response)
-        ;
-
         $facebook = new Facebook($client);
         $facebook->setConfig(array('app_id' => 'foo', 'secret' => 'bar'));
         $facebook->getRequest('http://www.heise.de');
@@ -43,26 +26,14 @@ class FacebookTest extends \PHPUnit_Framework_TestCase
         /** @var \GuzzleHttp\Client|\PHPUnit_Framework_MockObject_MockObject $client */
         $client = $this->getMockBuilder(ClientInterface::class)->getMock();
 
-        $response = $this->getMockBuilder(ResponseInterface::class)->getMock();
-
-        $response
-          ->method('getBody')
-          ->willReturn('access_token=token')
-        ;
-
-        $client->expects($this->once())
-            ->method('request')
-            ->willReturn($response)
-        ;
-
         $facebook = new Facebook($client);
         $facebook->setConfig(array('app_id' => 'foo', 'secret' => 'bar'));
         $request = $facebook->getRequest('http://www.heise.de');
 
         $this->assertEquals('graph.facebook.com', $request->getUri()->getHost());
-        $this->assertEquals('/v2.2/', $request->getUri()->getPath());
+        $this->assertEquals('/v2.8/', $request->getUri()->getPath());
         $this->assertEquals(
-            'id='.urlencode('http://www.heise.de').'&access_token=token',
+            'id='.urlencode('http://www.heise.de').'&access_token=foo%7Cbar',
             $request->getUri()->getQuery()
         );
     }
