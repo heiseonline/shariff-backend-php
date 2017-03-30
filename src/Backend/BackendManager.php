@@ -112,7 +112,8 @@ class BackendManager
             } else {
                 try {
                     $content = $service->filterResponse($results[$i]->getBody()->getContents());
-                    $counts[$service->getName()] = (int) $service->extractCount(json_decode($content, true));
+                    $json = json_decode($content, true);
+                    $counts[$service->getName()] = is_array($json) ? (int) $service->extractCount($json) : 0;
                 } catch (\Exception $e) {
                     if ($this->logger !== null) {
                         $this->logger->warning($e->getMessage(), ['exception' => $e]);
