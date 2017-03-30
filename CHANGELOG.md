@@ -1,8 +1,14 @@
 # Changelog
 
+## 7.0.0 2017-03-30
+
+* Updated Facebook Graph API to version 2.8. (liayn)
+* Removed Facebook FQL API. (liayn)
+* Fixed fatal error in case of unparseable service results. (NeoBlack)
+
 ## 6.0.1 2017-02-07
 
-* Updated composed dependencies. (liayn)
+* Updated composer dependencies. (liayn)
 
 ## 6.0.0 2016-08-16
 
