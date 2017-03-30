@@ -42,7 +42,12 @@ class ServiceFactory
     {
         $services = [];
         foreach ($serviceNames as $serviceName) {
-            $services[] = $this->createService($serviceName, $config);
+            try {
+                $service = $this->createService($serviceName, $config);
+            } catch (\InvalidArgumentException $e) {
+                continue;
+            }
+            $services[] = $service;
         }
 
         return $services;

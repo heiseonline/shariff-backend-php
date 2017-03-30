@@ -33,11 +33,6 @@ class ShariffTest extends \PHPUnit_Framework_TestCase
 
         $counts = $shariff->get('http://www.heise.de');
 
-        // This test uses FQL which has been disabled by Facebook
-        // $this->assertArrayHasKey('facebook', $counts);
-        // $this->assertInternalType('int', $counts['facebook']);
-        // $this->assertGreaterThanOrEqual(0, $counts['facebook']);
-
         // $this->assertArrayHasKey('flattr', $counts);
         if (array_key_exists('flattr', $counts)) {
             $this->assertInternalType('int', $counts['flattr']);
