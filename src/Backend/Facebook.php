@@ -43,9 +43,11 @@ class Facebook extends Request implements ServiceInterface
      */
     public function extractCount(array $data)
     {
-        if (isset($data['engagement']) && isset($data['engagement']['reaction_count'])
-            && isset($data['engagement']['comment_count']) && isset($data['engagement']['share_count'])) {
-            return $data['engagement']['reaction_count'] + $data['engagement']['comment_count']
+        if (isset($data['engagement']['reaction_count'])
+            && isset($data['engagement']['comment_count'])
+            && isset($data['engagement']['share_count'])) {
+            return $data['engagement']['reaction_count']
+                + $data['engagement']['comment_count']
                 + $data['engagement']['share_count'];
         }
 
