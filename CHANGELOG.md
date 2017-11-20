@@ -1,5 +1,9 @@
 # Changelog
 
+## 7.0.1 2017-11-20
+
+* Updated Facebook Graph API to version 2.10. (richard67)
+
 ## 7.0.0 2017-03-30
 
 * Updated Facebook Graph API to version 2.8. (liayn)
