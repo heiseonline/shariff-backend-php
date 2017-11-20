@@ -47,7 +47,7 @@ class Facebook extends Request implements ServiceInterface
             $data['engagement']['reaction_count'],
             $data['engagement']['comment_count'],
             $data['engagement']['share_count']
-            )) {
+        )) {
             return $data['engagement']['reaction_count']
                 + $data['engagement']['comment_count']
                 + $data['engagement']['share_count'];
