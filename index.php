@@ -31,7 +31,8 @@ class Application
             'Flattr',
             'Pinterest',
             'Xing',
-            'AddThis'
+            'AddThis',
+            'Vk'
         ]
     ];
 

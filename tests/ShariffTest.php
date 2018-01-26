@@ -20,7 +20,8 @@ class ShariffTest extends \PHPUnit_Framework_TestCase
         "Pinterest",
         "Reddit",
         // "StumbleUpon",
-        "Xing"
+        "Xing",
+        "Vk"
     );
 
     public function testShariff()
@@ -73,6 +74,12 @@ class ShariffTest extends \PHPUnit_Framework_TestCase
         if (array_key_exists('reddit', $counts)) {
             $this->assertInternalType('int', $counts['reddit']);
             $this->assertGreaterThanOrEqual(0, $counts['reddit']);
+        }
+
+        // $this->assertArrayHasKey('vk', $counts);
+        if (array_key_exists('vk', $counts)) {
+            $this->assertInternalType('int', $counts['vk']);
+            $this->assertGreaterThanOrEqual(0, $counts['vk']);
         }
     }
 
