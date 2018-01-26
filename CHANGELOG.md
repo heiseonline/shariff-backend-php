@@ -1,5 +1,9 @@
 # Changelog
 
+## 7.1.0 2018-01-26
+
+* Added support for Vk. (richard67)
+
 ## 7.0.2 2017-12-04
 
 * Updated Facebook Graph API to version 2.11. (richard67)
