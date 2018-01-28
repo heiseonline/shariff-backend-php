@@ -23,7 +23,6 @@ class Application
             'www.ct.de'
         ],
         'services' => [
-            'GooglePlus',
             'Facebook',
             'LinkedIn',
             'Reddit',

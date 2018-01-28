@@ -15,7 +15,6 @@ class ShariffTest extends \PHPUnit_Framework_TestCase
     protected $services = array(
         "Facebook",
         // "Flattr",
-        "GooglePlus",
         "LinkedIn",
         "Pinterest",
         "Reddit",
@@ -38,12 +37,6 @@ class ShariffTest extends \PHPUnit_Framework_TestCase
         if (array_key_exists('flattr', $counts)) {
             $this->assertInternalType('int', $counts['flattr']);
             $this->assertGreaterThanOrEqual(0, $counts['flattr']);
-        }
-
-        // $this->assertArrayHasKey('googleplus', $counts);
-        if (array_key_exists('googleplus', $counts)) {
-            $this->assertInternalType('int', $counts['googleplus']);
-            $this->assertGreaterThanOrEqual(0, $counts['googleplus']);
         }
 
         // $this->assertArrayHasKey('linkedin', $counts);
