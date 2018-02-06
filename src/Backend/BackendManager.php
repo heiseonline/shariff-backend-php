@@ -119,8 +119,8 @@ class BackendManager
                         $this->logger->warning($e->getMessage(), ['exception' => $e]);
                     }
                 }
-                ++$i;
             }
+            ++$i;
         }
 
         $this->cache->setItem($cacheKey, json_encode($counts));
