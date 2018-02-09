@@ -45,7 +45,7 @@ class ServiceFactory
     {
         $services = [];
         foreach ($serviceNames as $serviceName) {
-            if (in_array($serviceName, $deletedServices)) {
+            if (in_array($serviceName, $this->deletedServices)) {
                 continue;
             }
             if (!file_exists(__DIR__ . '/' . $serviceName . '.php')) {
