@@ -48,6 +48,9 @@ class ServiceFactory
             if (in_array($serviceName, $deletedServices)) {
                 continue;
             }
+            if (!file_exists(__DIR__ . '/' . $serviceName . '.php')) {
+                continue;
+            }
             try {
                 $service = $this->createService($serviceName, $config);
             } catch (\InvalidArgumentException $e) {
