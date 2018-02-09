@@ -15,6 +15,9 @@ class ServiceFactory
     /** @var ServiceInterface[] */
     protected $serviceMap = [];
 
+    /** @var DeletedServices[] */
+    protected $deletedServices = ['GooglePlus', 'Twitter'];
+
     /**
      * @param ClientInterface $client
      */
@@ -42,6 +45,9 @@ class ServiceFactory
     {
         $services = [];
         foreach ($serviceNames as $serviceName) {
+            if (in_array($serviceName, $deletedServices)) {
+                continue;
+            }
             try {
                 $service = $this->createService($serviceName, $config);
             } catch (\InvalidArgumentException $e) {
