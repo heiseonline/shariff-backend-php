@@ -45,14 +45,13 @@ class ServiceFactory
     {
         $services = [];
         foreach ($serviceNames as $serviceName) {
-            if (in_array($serviceName, $this->deletedServices)
-                || !file_exists(__DIR__ . '/' . $serviceName . '.php')) {
-                continue;
-            }
-            try {
-                $service = $this->createService($serviceName, $config);
-            } catch (\InvalidArgumentException $e) {
-                continue;
+            if (!in_array($serviceName, $this->deletedServices)
+                && file_exists(__DIR__ . '/' . $serviceName . '.php')) {
+                try {
+                    $service = $this->createService($serviceName, $config);
+                } catch (\InvalidArgumentException $e) {
+                    continue;
+                }
             }
             $services[] = $service;
         }
