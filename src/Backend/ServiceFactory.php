@@ -15,6 +15,9 @@ class ServiceFactory
     /** @var ServiceInterface[] */
     protected $serviceMap = [];
 
+    /** @var DeletedServices[] */
+    protected $deletedServices = ['GooglePlus', 'Twitter'];
+
     /**
      * @param ClientInterface $client
      */
@@ -63,6 +66,11 @@ class ServiceFactory
     {
         if (isset($this->serviceMap[$serviceName])) {
             $service = $this->serviceMap[$serviceName];
+        } elseif (
+            in_array($serviceName, $this->deletedServices)
+            || !file_exists(__DIR__ . '/' . $serviceName . '.php')
+        ) {
+            throw new \InvalidArgumentException('Invalid service name "' . $serviceName . '".');
         } else {
             $serviceClass = 'Heise\\Shariff\\Backend\\'.$serviceName;
             $service = new $serviceClass($this->client);
