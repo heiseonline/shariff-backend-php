@@ -5,10 +5,7 @@ Shariff is used to determine how often a page is shared in social media, but wit
 
 ![Shariff Logo © 2014 Heise Zeitschriften Verlag](http://www.heise.de/icons/ho/shariff-logo.png)
 
-This document describes the PHP backend. The following backends are also available:
-
-* [shariff-backend-node](https://github.com/heiseonline/shariff-backend-node)
-* [shariff-backend-perl](https://github.com/heiseonline/shariff-backend-perl)
+This document describes the PHP backend of Shariff.
 
 Supported services
 ------------------
