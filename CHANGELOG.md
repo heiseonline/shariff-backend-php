@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+* Fixed handling of removed services. (liayn, richard67)
+
 ## 7.1.0 2018-01-26
 
 * Added support for Vk. (richard67)
