@@ -1,8 +1,12 @@
 # Changelog
 
-## Unreleased
+## 7.1.1 2018-02-23
 
 * Fixed handling of removed services. (liayn, richard67)
+* Fixed crashes caused by failures of single services.
+* Updated Facebook Graph API to version 2.12. (richard67)
+* Removed Google+ service. (richard67)
+* Removed deprecated Node.js and Perl backends from documentation. (richard67)
 
 ## 7.1.0 2018-01-26
 
