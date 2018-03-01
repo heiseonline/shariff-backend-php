@@ -1,4 +1,4 @@
-FROM php:7.2-fpm-alpine3.7 
+FROM php:7.1-fpm-alpine
 
 ADD https://getcomposer.org/composer.phar /usr/bin/composer
 RUN chmod +x /usr/bin/composer
@@ -11,6 +11,7 @@ RUN cd /var/www/shariff \
 ADD . /var/www/shariff
 
 RUN cd /var/www/shariff \
+    && composer dump-autoload \
     && ./build.sh \
     && cp -r build/. /var/www/html/ \
     && rm -r /var/www/shariff
