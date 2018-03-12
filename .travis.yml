@@ -9,20 +9,20 @@ php:
  - 7.2
 
 env:
-  - RUN_LINT=1
-  - RUN_TEST=1
+  - SHARIFF_RUN_LINT=1
+  - SHARIFF_RUN_TEST=1
 
 before_script:
  - bash -c 'if [ -n "$GH_TOKEN" ]; then composer config github-oauth.github.com ${GH_TOKEN}; fi;'
  - composer self-update
- - bash -c 'if [ -n "$RUN_TEST" ]; then composer install --prefer-dist --no-interaction; fi;'
- - bash -c 'if [ -n "$RUN_LINT" ]; then composer require "squizlabs/php_codesniffer=*"; fi;'
- - bash -c 'if [ -n "$RUN_LINT" ]; then composer require friendsofphp/php-cs-fixer --dev; fi;'
+ - bash -c 'if [ -n "$SHARIFF_RUN_TEST" ]; then composer install --prefer-dist --no-interaction; fi;'
+ - bash -c 'if [ -n "$SHARIFF_RUN_LINT" ]; then composer require "squizlabs/php_codesniffer=*"; fi;'
+ - bash -c 'if [ -n "$SHARIFF_RUN_LINT" ]; then composer require friendsofphp/php-cs-fixer --dev; fi;'
 
 script:
- - bash -c 'if [ -n "$RUN_LINT" ]; then vendor/bin/phpcs --standard=PSR2 src/ tests/; fi;'
- - bash -c 'if [ -n "$RUN_LINT" ]; then make cs_dry_run; fi;'
- - bash -c 'if [ -n "$RUN_TEST" ]; then vendor/bin/phpunit --coverage-text; fi;'
+ - bash -c 'if [ -n "$SHARIFF_RUN_LINT" ]; then vendor/bin/phpcs --standard=PSR2 src/ tests/; fi;'
+ - bash -c 'if [ -n "$SHARIFF_RUN_LINT" ]; then make cs_dry_run; fi;'
+ - bash -c 'if [ -n "$SHARIFF_RUN_TEST" ]; then vendor/bin/phpunit --coverage-text; fi;'
 
 addons:
  apt:
@@ -46,4 +46,4 @@ deploy:
     repo: heiseonline/shariff-backend-php
     tags: true
     php: 5.6
-    condition: $RUN_TEST = 1
+    condition: $SHARIFF_RUN_TEST = 1
