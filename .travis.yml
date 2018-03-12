@@ -8,16 +8,21 @@ php:
  - 7.1
  - 7.2
 
+env:
+  - RUN_LINT=1
+  - RUN_TEST=1
+
 before_script:
  - bash -c 'if [ -n "$GH_TOKEN" ]; then composer config github-oauth.github.com ${GH_TOKEN}; fi;'
  - composer self-update
- - composer install --prefer-dist --no-interaction
- - composer require "squizlabs/php_codesniffer=*"
+ - bash -c 'if [ -n "$RUN_TEST" ]; then composer install --prefer-dist --no-interaction; fi;'
+ - bash -c 'if [ -n "$RUN_LINT" ]; then composer require "squizlabs/php_codesniffer=*"; fi;'
+ - bash -c 'if [ -n "$RUN_LINT" ]; then composer require friendsofphp/php-cs-fixer --dev; fi;'
 
 script:
- - bash -c 'vendor/bin/phpcs --standard=PSR2 src/ tests/'
- - vendor/bin/phpunit --coverage-text
- - make cs_dry_run
+ - bash -c 'if [ -n "$RUN_LINT" ]; then vendor/bin/phpcs --standard=PSR2 src/ tests/; fi;'
+ - bash -c 'if [ -n "$RUN_LINT" ]; then make cs_dry_run; fi;'
+ - bash -c 'if [ -n "$RUN_TEST" ]; then vendor/bin/phpunit --coverage-text; fi;'
 
 addons:
  apt:
@@ -41,3 +46,4 @@ deploy:
     repo: heiseonline/shariff-backend-php
     tags: true
     php: 5.6
+    condition: $RUN_TEST = 1
