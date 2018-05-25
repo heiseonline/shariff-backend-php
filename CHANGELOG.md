@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 7.1.2 2018-05-25
 
 * Updated `guzzle` and `phpunit` dependencies. (liayn)
 
