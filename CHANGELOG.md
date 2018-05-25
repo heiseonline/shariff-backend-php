@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+* Updated `guzzle` and `phpunit` dependencies. (liayn)
+
 ## 7.1.1 2018-02-23
 
 * Fixed handling of removed services. (liayn, richard67)
