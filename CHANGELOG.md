@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 7.1.3 2018-05-30
 
 * Updated Facebook Graph API to version 3. (richard67)
 
