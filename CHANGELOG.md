@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+* Updated Facebook Graph API to version 3. (richard67)
+
 ## 7.1.2 2018-05-25
 
 * Updated `guzzle` and `phpunit` dependencies. (liayn)
