@@ -1,5 +1,12 @@
 # Changelog
 
+## Unreleased
+
+This release contains breaking changes:
+
+* Dropped support for PHP 5.6.
+* Dropped support for PHP 7.0.
+
 ## 7.1.4 2018-08-30
 
 * Updated Facebook Graph API to version 3.1. (richard67)
