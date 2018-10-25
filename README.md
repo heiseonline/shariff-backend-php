@@ -29,7 +29,7 @@ To run Shariff PHP Backend on your server you need one of these PHP versions:
 
 Older versions and HHVM are not supported.
 
-Installing the Shariff backend on you own server
+Installing the Shariff backend on your own server
 ------------------------------------------------
 
 To run Shariff under a certain URL, unzip the [release](https://github.com/heiseonline/shariff-backend-php/releases) zip file into a directory under the document root of your web server.
