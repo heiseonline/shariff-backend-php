@@ -20,8 +20,7 @@ class Vk extends Request implements ServiceInterface
      */
     public function getRequest($url)
     {
-        return new \GuzzleHttp\Psr7\Request(
-            'GET',
+        return $this->createRequest(
             'https://vk.com/share.php?act=count&index=1&url='.urlencode($url)
         );
     }

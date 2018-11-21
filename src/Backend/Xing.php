@@ -20,9 +20,9 @@ class Xing extends Request implements ServiceInterface
      */
     public function getRequest($url)
     {
-        return new \GuzzleHttp\Psr7\Request(
-            'POST',
-            'https://www.xing-share.com/spi/shares/statistics?url='.urlencode($url)
+        return $this->createRequest(
+            'https://www.xing-share.com/spi/shares/statistics?url='.urlencode($url),
+            'POST'
         );
     }
 

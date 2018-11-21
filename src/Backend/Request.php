@@ -2,7 +2,8 @@
 
 namespace Heise\Shariff\Backend;
 
-use GuzzleHttp\ClientInterface;
+use Psr\Http\Client\ClientInterface;
+use Psr\Http\Message\RequestFactoryInterface;
 use Psr\Http\Message\RequestInterface;
 
 /**
@@ -17,11 +18,18 @@ abstract class Request
     protected $config;
 
     /**
-     * @param ClientInterface $client
+     * @var RequestFactoryInterface
      */
-    public function __construct(ClientInterface $client)
+    private $requestFactory;
+
+    /**
+     * @param ClientInterface         $client
+     * @param RequestFactoryInterface $requestFactory
+     */
+    public function __construct(ClientInterface $client, RequestFactoryInterface $requestFactory)
     {
         $this->client = $client;
+        $this->requestFactory = $requestFactory;
     }
 
     /**
@@ -45,15 +53,9 @@ abstract class Request
      * @param string $method
      *
      * @return RequestInterface
-     *
-     * @deprecated This method is not used anymore and will be removed with version 6.
-     *             Use \GuzzleHttp\Psr7\Request directly instead
      */
-    protected function createRequest($url, $method = 'GET')
+    final protected function createRequest(string $url, string $method = 'GET'): RequestInterface
     {
-        trigger_error('This method is not used anymore and will be removed with version 6.'
-                    .' Use \GuzzleHttp\Psr7\Request directly instead.', E_USER_DEPRECATED);
-
-        return new \GuzzleHttp\Psr7\Request($method, $url);
+        return $this->requestFactory->createRequest($method, $url);
     }
 }

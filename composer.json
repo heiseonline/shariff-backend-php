@@ -16,6 +16,7 @@
     ],
     "require": {
         "php": "^7.0",
+        "php-http/guzzle6-adapter": "^2.0",
         "psr/log": "^1.0",
         "psr/http-client": "^1.0",
         "psr/http-factory": "^1.0",
@@ -23,7 +24,6 @@
         "zendframework/zend-cache": "^2.7"
     },
     "require-dev": {
-        "guzzlehttp/guzzle": "^6.1",
         "phpunit/phpunit": "^5.3"
     },
     "config": {

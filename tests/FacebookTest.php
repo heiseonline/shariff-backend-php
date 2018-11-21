@@ -2,9 +2,9 @@
 
 namespace Heise\Tests\Shariff;
 
-use GuzzleHttp\ClientInterface;
 use Heise\Shariff\Backend\Facebook;
-use Psr\Http\Message\ResponseInterface;
+use Psr\Http\Client\ClientInterface;
+use Psr\Http\Message\RequestFactoryInterface;
 
 /**
  * Class FacebookTest
@@ -15,8 +15,10 @@ class FacebookTest extends \PHPUnit_Framework_TestCase
     {
         /** @var ClientInterface|\PHPUnit_Framework_MockObject_MockObject $client */
         $client = $this->getMockBuilder(ClientInterface::class)->getMock();
+        /** @var RequestFactoryInterface|\PHPUnit_Framework_MockObject_MockObject  $requestFactory */
+        $requestFactory = $this->getMockBuilder(RequestFactoryInterface::class)->getMock();
 
-        $facebook = new Facebook($client);
+        $facebook = new Facebook($client, $requestFactory);
         $facebook->setConfig(array('app_id' => 'foo', 'secret' => 'bar'));
         $facebook->getRequest('http://www.heise.de');
     }
@@ -25,8 +27,10 @@ class FacebookTest extends \PHPUnit_Framework_TestCase
     {
         /** @var \GuzzleHttp\Client|\PHPUnit_Framework_MockObject_MockObject $client */
         $client = $this->getMockBuilder(ClientInterface::class)->getMock();
+        /** @var RequestFactoryInterface|\PHPUnit_Framework_MockObject_MockObject  $requestFactory */
+        $requestFactory = $this->getMockBuilder(RequestFactoryInterface::class)->getMock();
 
-        $facebook = new Facebook($client);
+        $facebook = new Facebook($client, $requestFactory);
         $facebook->setConfig(array('app_id' => 'foo', 'secret' => 'bar'));
         $request = $facebook->getRequest('http://www.heise.de');
 

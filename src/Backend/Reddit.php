@@ -20,7 +20,7 @@ class Reddit extends Request implements ServiceInterface
      */
     public function getRequest($url)
     {
-        return new \GuzzleHttp\Psr7\Request('GET', 'https://www.reddit.com/api/info.json?url='.urlencode($url));
+        return $this->createRequest('GET', 'https://www.reddit.com/api/info.json?url='.urlencode($url));
     }
 
     /**

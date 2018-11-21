@@ -2,7 +2,7 @@
 
 namespace Heise\Shariff\Backend;
 
-use GuzzleHttp\ClientInterface;
+use Psr\Http\Client\ClientInterface;
 
 /**
  * Class ServiceFactory.

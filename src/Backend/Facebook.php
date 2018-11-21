@@ -35,7 +35,7 @@ class Facebook extends Request implements ServiceInterface
         $query = 'https://graph.facebook.com/v3.1/?id='.urlencode($url) . '&fields=engagement&access_token='
             . $accessToken;
 
-        return new \GuzzleHttp\Psr7\Request('GET', $query);
+        return $this->createRequest($query);
     }
 
     /**

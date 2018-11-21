@@ -2,10 +2,10 @@
 
 namespace Heise\Shariff\Backend;
 
-use GuzzleHttp\ClientInterface;
-use GuzzleHttp\Exception\TransferException;
-use GuzzleHttp\Pool;
 use Heise\Shariff\CacheInterface;
+use Psr\Http\Client\ClientExceptionInterface;
+use Psr\Http\Client\ClientInterface;
+use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Log\LoggerInterface;
 
@@ -99,13 +99,13 @@ class BackendManager
             $this->services
         );
 
-        /** @var ResponseInterface[]|TransferException[] $results */
-        $results = Pool::batch($this->client, $requests);
+        /** @var ResponseInterface[]|ClientExceptionInterface[] $results */
+        $results = $this->batchExecute($requests);
 
         $counts = [];
         $i = 0;
         foreach ($this->services as $service) {
-            if ($results[$i] instanceof TransferException) {
+            if ($results[$i] instanceof ClientExceptionInterface) {
                 if ($this->logger !== null) {
                     $this->logger->warning($results[$i]->getMessage(), ['exception' => $results[$i]]);
                 }
@@ -126,6 +126,30 @@ class BackendManager
         $this->cache->setItem($cacheKey, json_encode($counts));
 
         return $counts;
+    }
+
+    /**
+     * Send requests in batch.
+     *
+     * @param RequestInterface[] $requests
+     *
+     * @return ResponseInterface[]|ClientExceptionInterface[]
+     */
+    private function batchExecute(array $requests) {
+        $responses = [];
+
+        $i = 0;
+        foreach ($requests as $request) {
+            try {
+                $responses[$i] = $this->client->sendRequest($request);
+            } catch (ClientExceptionInterface $e) {
+                $responses[$i] = $e;
+            }
+
+            ++$i;
+        }
+
+        return $responses;
     }
 
     /**

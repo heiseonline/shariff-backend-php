@@ -2,9 +2,9 @@
 
 namespace Heise\Tests\Shariff;
 
-use GuzzleHttp\ClientInterface;
 use Heise\Shariff\Backend\ServiceFactory;
 use Heise\Shariff\Backend\ServiceInterface;
+use Psr\Http\Client\ClientInterface;
 
 /**
  * Class ServiceFactoryTest
