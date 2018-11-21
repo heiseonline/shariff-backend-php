@@ -1,17 +1,11 @@
 {
     "name": "heise/shariff",
-    "repositories": [
-        {
-            "type": "vcs",
-            "url": "https://github.com/heiseonline/shariff-backend-php.git"
-        }
-    ],
+    "description": "PHP backend for Shariff. Shariff enables website users to share their favorite content without compromising their privacy.",
     "keywords": [
         "heise",
         "social buttons",
         "shariff"
     ],
-    "description": "PHP backend for Shariff. Shariff enables website users to share their favorite content without compromising their privacy.",
     "homepage": "https://github.com/heiseonline/shariff-backend-php",
     "license": "MIT",
     "authors": [
@@ -31,10 +25,10 @@
     },
     "config": {
         "optimize-autoloader": true,
-        "sort-packages": true,
         "platform": {
             "php": "5.6.0"
-        }
+        },
+        "sort-packages": true
     },
     "autoload": {
         "psr-4": {
@@ -45,5 +39,11 @@
         "psr-4": {
             "Heise\\Tests\\Shariff\\": "tests"
         }
-    }
+    },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/heiseonline/shariff-backend-php.git"
+        }
+    ]
 }
