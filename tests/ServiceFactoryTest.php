@@ -4,12 +4,13 @@ namespace Heise\Tests\Shariff;
 
 use Heise\Shariff\Backend\ServiceFactory;
 use Heise\Shariff\Backend\ServiceInterface;
+use PHPUnit\Framework\TestCase;
 use Psr\Http\Client\ClientInterface;
 
 /**
  * Class ServiceFactoryTest
  */
-class ServiceFactoryTest extends \PHPUnit_Framework_TestCase
+class ServiceFactoryTest extends TestCase
 {
 
     public function testSetConfig()

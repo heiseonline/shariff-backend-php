@@ -3,13 +3,14 @@
 namespace Heise\Tests\Shariff;
 
 use Heise\Shariff\Backend\Facebook;
+use PHPUnit\Framework\TestCase;
 use Psr\Http\Client\ClientInterface;
 use Psr\Http\Message\RequestFactoryInterface;
 
 /**
  * Class FacebookTest
  */
-class FacebookTest extends \PHPUnit_Framework_TestCase
+class FacebookTest extends TestCase
 {
     public function testConfig()
     {

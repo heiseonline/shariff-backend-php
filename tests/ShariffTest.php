@@ -2,12 +2,13 @@
 namespace Heise\Tests\Shariff;
 
 use Heise\Shariff\Backend;
+use PHPUnit\Framework\TestCase;
 use Zend\Cache\Exception\OutOfSpaceException;
 
 /**
  * Class ShariffTest
  */
-class ShariffTest extends \PHPUnit_Framework_TestCase
+class ShariffTest extends TestCase
 {
     /***
      * @var string[]
