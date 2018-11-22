@@ -6,6 +6,7 @@ use Heise\Shariff\Backend\ServiceFactory;
 use Heise\Shariff\Backend\ServiceInterface;
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Client\ClientInterface;
+use Psr\Http\Message\RequestFactoryInterface;
 
 /**
  * Class ServiceFactoryTest
@@ -16,7 +17,7 @@ class ServiceFactoryTest extends TestCase
     public function testSetConfig()
     {
         /** @var ServiceInterface|\PHPUnit_Framework_MockObject_MockObject $mockService */
-        $mockService = $this->getMockBuilder(ServiceInterface::class)->getMock();
+        $mockService = $this->createMock(ServiceInterface::class);
 
         $mockService->expects($this->once())
             ->method('setConfig')
@@ -24,9 +25,10 @@ class ServiceFactoryTest extends TestCase
         ;
 
         /** @var ClientInterface|\PHPUnit_Framework_MockObject_MockObject $mockClient */
-        $mockClient = $this->getMockBuilder(ClientInterface::class)->getMock();
+        $mockClient = $this->createMock(ClientInterface::class);
+        $mockFactory = $this->createMock(RequestFactoryInterface::class);
 
-        $serviceFactory = new ServiceFactory($mockClient);
+        $serviceFactory = new ServiceFactory($mockClient, $mockFactory);
         $serviceFactory->registerService('MockService', $mockService);
 
         $services = $serviceFactory->getServicesByName(
@@ -39,14 +41,15 @@ class ServiceFactoryTest extends TestCase
     public function testConfigNotSet()
     {
         /** @var ServiceInterface|\PHPUnit_Framework_MockObject_MockObject $mockService */
-        $mockService = $this->getMockBuilder(ServiceInterface::class)->getMock();
+        $mockService = $this->createMock(ServiceInterface::class);
+        $mockFactory = $this->createMock(RequestFactoryInterface::class);
 
         $mockService->expects($this->never())->method('setConfig');
 
         /** @var ClientInterface|\PHPUnit_Framework_MockObject_MockObject $mockClient */
-        $mockClient = $this->getMockBuilder(ClientInterface::class)->getMock();
+        $mockClient = $this->createMock(ClientInterface::class);
 
-        $serviceFactory = new ServiceFactory($mockClient);
+        $serviceFactory = new ServiceFactory($mockClient, $mockFactory);
         $serviceFactory->registerService('MockService', $mockService);
 
         $services = $serviceFactory->getServicesByName(

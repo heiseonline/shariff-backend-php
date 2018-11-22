@@ -3,6 +3,7 @@
 namespace Heise\Shariff\Backend;
 
 use Psr\Http\Client\ClientInterface;
+use Psr\Http\Message\RequestFactoryInterface;
 
 /**
  * Class ServiceFactory.
@@ -16,11 +17,18 @@ class ServiceFactory
     protected $serviceMap = [];
 
     /**
-     * @param ClientInterface $client
+     * @var RequestFactoryInterface
      */
-    public function __construct(ClientInterface $client)
+    private $requestFactory;
+
+    /**
+     * @param ClientInterface         $client
+     * @param RequestFactoryInterface $requestFactory
+     */
+    public function __construct(ClientInterface $client, RequestFactoryInterface $requestFactory)
     {
         $this->client = $client;
+        $this->requestFactory = $requestFactory;
     }
 
     /**
@@ -68,7 +76,7 @@ class ServiceFactory
             if (!class_exists($serviceClass)) {
                 throw new \InvalidArgumentException('Invalid service name "' . $serviceName . '".');
             }
-            $service = new $serviceClass($this->client);
+            $service = new $serviceClass($this->client, $this->requestFactory);
         }
 
         if (isset($config[$serviceName])) {

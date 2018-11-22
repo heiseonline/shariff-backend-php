@@ -90,9 +90,11 @@ class ShariffTest extends TestCase
         $this->assertNull($counts);
     }
 
+    /**
+     * @expectedException \Zend\Cache\Exception\OutOfSpaceException
+     */
     public function testCacheOptions()
     {
-        $this->setExpectedException(OutOfSpaceException::class);
         $shariff = new Backend(array(
             "domains"   => array('www.heise.de'),
             "cache"    => array(

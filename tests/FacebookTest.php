@@ -15,9 +15,9 @@ class FacebookTest extends TestCase
     public function testConfig()
     {
         /** @var ClientInterface|\PHPUnit_Framework_MockObject_MockObject $client */
-        $client = $this->getMockBuilder(ClientInterface::class)->getMock();
-        /** @var RequestFactoryInterface|\PHPUnit_Framework_MockObject_MockObject  $requestFactory */
-        $requestFactory = $this->getMockBuilder(RequestFactoryInterface::class)->getMock();
+        $client = $this->createMock(ClientInterface::class);
+        /** @var RequestFactoryInterface|\PHPUnit_Framework_MockObject_MockObject $requestFactory */
+        $requestFactory = $this->createMock(RequestFactoryInterface::class);
 
         $facebook = new Facebook($client, $requestFactory);
         $facebook->setConfig(array('app_id' => 'foo', 'secret' => 'bar'));
@@ -26,20 +26,18 @@ class FacebookTest extends TestCase
 
     public function testUsesGraphApi()
     {
-        /** @var \GuzzleHttp\Client|\PHPUnit_Framework_MockObject_MockObject $client */
-        $client = $this->getMockBuilder(ClientInterface::class)->getMock();
-        /** @var RequestFactoryInterface|\PHPUnit_Framework_MockObject_MockObject  $requestFactory */
-        $requestFactory = $this->getMockBuilder(RequestFactoryInterface::class)->getMock();
+        /** @var ClientInterface|\PHPUnit_Framework_MockObject_MockObject $client */
+        $client = $this->createMock(ClientInterface::class);
+        /** @var RequestFactoryInterface|\PHPUnit_Framework_MockObject_MockObject $requestFactory */
+        $requestFactory = $this->createMock(RequestFactoryInterface::class);
+
+        $requestFactory->expects($this->once())->method('createRequest')
+            ->with('GET', 'https://graph.facebook.com/v3.1/?id='.
+                urlencode('http://www.heise.de') .
+                '&fields=engagement&access_token=foo|bar');
 
         $facebook = new Facebook($client, $requestFactory);
         $facebook->setConfig(array('app_id' => 'foo', 'secret' => 'bar'));
-        $request = $facebook->getRequest('http://www.heise.de');
-
-        $this->assertEquals('graph.facebook.com', $request->getUri()->getHost());
-        $this->assertEquals('/v3.1/', $request->getUri()->getPath());
-        $this->assertEquals(
-            'id='.urlencode('http://www.heise.de').'&fields=engagement&access_token=foo%7Cbar',
-            $request->getUri()->getQuery()
-        );
+        $facebook->getRequest('http://www.heise.de');
     }
 }

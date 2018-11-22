@@ -5,7 +5,9 @@ namespace Heise\Shariff;
 use Heise\Shariff\Backend\BackendManager;
 use Heise\Shariff\Backend\ServiceFactory;
 use Http\Adapter\Guzzle6\Client;
+use Nyholm\Psr7\Factory\Psr17Factory;
 use Psr\Http\Client\ClientInterface;
+use Psr\Http\Message\RequestFactoryInterface;
 use Psr\Log\LoggerInterface;
 
 /**
@@ -17,10 +19,11 @@ class Backend
     protected $backendManager;
 
     /**
-     * @param array           $config
-     * @param ClientInterface $client
+     * @param array                        $config
+     * @param ClientInterface              $client
+     * @param RequestFactoryInterface|null $requestFactory
      */
-    public function __construct($config, ClientInterface $client = null)
+    public function __construct($config, ClientInterface $client = null, RequestFactoryInterface $requestFactory = null)
     {
         $domains = $config['domains'];
         // stay compatible to old configs
@@ -28,8 +31,12 @@ class Backend
             array_push($domains, $config['domain']);
         }
 
-        if (null === $client) {
+        if ($client === null) {
             $client =  $this->createClientFromConfig($config);
+        }
+
+        if ($requestFactory === null) {
+            $requestFactory = new Psr17Factory();
         }
 
         $baseCacheKey = md5(json_encode($config));
@@ -41,7 +48,7 @@ class Backend
         }
         $cache = new $cacheClass($config['cache']);
 
-        $serviceFactory = new ServiceFactory($client);
+        $serviceFactory = new ServiceFactory($client, $requestFactory);
         $this->backendManager = new BackendManager(
             $baseCacheKey,
             $cache,

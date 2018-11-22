@@ -135,7 +135,8 @@ class BackendManager
      *
      * @return ResponseInterface[]|ClientExceptionInterface[]
      */
-    private function batchExecute(array $requests) {
+    private function batchExecute(array $requests)
+    {
         $responses = [];
 
         $i = 0;
