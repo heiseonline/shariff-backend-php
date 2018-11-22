@@ -39,11 +39,5 @@
         "psr-4": {
             "Heise\\Tests\\Shariff\\": "tests"
         }
-    },
-    "repositories": [
-        {
-            "type": "vcs",
-            "url": "https://github.com/heiseonline/shariff-backend-php.git"
-        }
-    ]
+    }
 }
