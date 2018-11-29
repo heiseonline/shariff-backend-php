@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+* Updated Facebook Graph API to version 3.2. (richard67)
+* Improved Pinterest service to send requests using HTTPS. (vkhramtsov)
+* Improved readme. (Art4)
+
 This release contains breaking changes:
 
 * Dropped support for PHP 5.6.
