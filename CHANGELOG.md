@@ -3,6 +3,7 @@
 ## Unreleased
 
 * Updated Facebook Graph API to version 3.2. (richard67)
+* Updated composer dependencies.
 * Improved Pinterest service to send requests using HTTPS. (vkhramtsov)
 * Improved readme. (Art4)
 
