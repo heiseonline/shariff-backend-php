@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 8.0.0, 2018-11-29
 
 * Updated Facebook Graph API to version 3.2. (richard67)
 * Updated composer dependencies.
