@@ -22,7 +22,7 @@ class Pinterest extends Request implements ServiceInterface
     {
         return new \GuzzleHttp\Psr7\Request(
             'GET',
-            'http://api.pinterest.com/v1/urls/count.json?callback=x&url='.urlencode($url)
+            'https://api.pinterest.com/v1/urls/count.json?callback=x&url='.urlencode($url)
         );
     }
 
