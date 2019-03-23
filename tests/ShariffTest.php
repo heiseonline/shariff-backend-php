@@ -20,7 +20,7 @@ class ShariffTest extends \PHPUnit_Framework_TestCase
         "Reddit",
         // "StumbleUpon",
         "Xing",
-        "Buffer"
+        "Buffer",
         "Vk"
     );
 
