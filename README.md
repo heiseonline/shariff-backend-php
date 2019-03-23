@@ -10,6 +10,7 @@ This document describes the PHP backend of Shariff.
 Supported services
 ------------------
 - AddThis
+- Buffer
 - Facebook
 - Flattr
 - LinkedIn
@@ -119,6 +120,7 @@ private static $configuration = [
         'Pinterest',
         'Xing',
         'AddThis',
+        'Buffer',
         'Vk'
     ],
     'Facebook' => [
@@ -135,7 +137,7 @@ Testing your installation
 If the backend runs under `http://example.com/my-shariff-backend/`, calling the URL `http://example.com/my-shariff-backend/?url=http%3A%2F%2Fwww.example.com` should return a JSON structure with numbers in it, e.g.:
 
 ```json
-{"facebook":1452,"linkedin":118,"reddit":7,"stumbleupon":4325,"flattr":0,"pinterest":3,"addthis":33,"vk":326}
+{"facebook":1452,"linkedin":118,"reddit":7,"stumbleupon":4325,"flattr":0,"pinterest":3,"addthis":33,"buffer":29,"vk":326}
 ```
 
 
@@ -150,7 +152,7 @@ use Heise\Shariff\Backend;
 $options = [
 	"domains"  => ["www.heise.de", "www.ct.de"],
 	"cache"    => ["ttl" => 1],
-	"services" => ["Facebook", "LinkedIn", "Reddit", "StumbleUpon", "Flattr", "Pinterest", "AddThis", "Vk"]
+	"services" => ["Facebook", "LinkedIn", "Reddit", "StumbleUpon", "Flattr", "Pinterest", "AddThis", "Buffer", "Vk"]
 ];
 $shariff = new Backend($options);
 $counts = $shariff->get("http://www.heise.de/");
