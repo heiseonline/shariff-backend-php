@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 8.1.0, 2019-04-01
 
 * Updated dependencies.
 * Added buffer service. (richard67)
