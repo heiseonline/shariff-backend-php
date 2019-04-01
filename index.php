@@ -31,6 +31,7 @@ class Application
             'Pinterest',
             'Xing',
             'AddThis',
+            'Buffer',
             'Vk'
         ]
     ];
