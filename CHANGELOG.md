@@ -1,5 +1,9 @@
 # Changelog
 
+## 8.1.1, 2019-05-27
+
+* Updated Facebook Graph API to version 3.3. (richard67)
+
 ## 8.1.0, 2019-04-01
 
 * Updated dependencies.
