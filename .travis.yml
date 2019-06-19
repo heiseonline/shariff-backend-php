@@ -35,7 +35,7 @@ before_deploy:
 deploy:
   provider: releases
   api_key:
-    secure: jbEPfD2xopoDQBGTJsrGvwhvb5MZislQowvHtsJ7f+B9seS9FGVc8Yq2kcqGX+8I8DyI5RCu3UlorGVnOQrxT9yxHVEK8PGjqOSCgRZw8p3jZmoNzrN7Qi+5YjCXxrAEKbT0nFYvis1DJqbuLOOU9+DBP6JWKmYvrtCjNSIxRIY=
+    secure: "hWhqbxUyf/x1ou1b/Lj4SFRDH43rRQb4iC2kDwv4/LylibW+k3FIRjH68no7DGEaZML1J7wnKmOVj/AKR+HfPaerqad7aG43ft7IfRGmmB/+syWUo1HM7LzkpaQpN+cV9awuUdIUOSnOMq5Jm3Dx1AHDMJuNsJVUAt9m53h/p/M="
   file:
    - shariff-backend-php.zip
    - shariff-backend-php.tar.gz
