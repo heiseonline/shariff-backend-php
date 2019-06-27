@@ -1,5 +1,9 @@
 # Changelog
 
+## 8.2.0, 2019-06-27
+
+* Removed LinkedIn service. (richard67)
+
 ## 8.1.2, 2019-06-12
 
 * Updated dependencies. (liayn)
