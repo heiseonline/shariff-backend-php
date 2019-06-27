@@ -24,7 +24,6 @@ class Application
         ],
         'services' => [
             'Facebook',
-            'LinkedIn',
             'Reddit',
             'StumbleUpon',
             'Flattr',
