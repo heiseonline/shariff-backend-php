@@ -1,5 +1,9 @@
 # Changelog
 
+## 8.2.1, 2019-08-20
+
+* Updated Facebook Graph API to version 4.0. (richard67)
+
 ## 8.2.0, 2019-06-27
 
 * Removed LinkedIn service. (richard67)
