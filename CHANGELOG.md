@@ -1,5 +1,13 @@
 # Changelog
 
+## 9.0.0, TBD
+
+* Updated dependencies.
+
+This release contains breaking changes:
+
+* Dropped support for PHP 7.1.
+
 ## 8.2.2, 2020-01-09
 
 * Updated Facebook Graph API to version 5.0. (richard67)
