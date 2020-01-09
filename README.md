@@ -24,7 +24,6 @@ Requirements
 
 To run Shariff PHP Backend on your server you need one of these PHP versions:
 
-* 7.1
 * 7.2
 * 7.3
 
