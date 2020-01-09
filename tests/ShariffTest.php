@@ -13,7 +13,7 @@ class ShariffTest extends \PHPUnit\Framework\TestCase
      * @var string[]
      */
     protected $services = array(
-        "Facebook",
+        // "Facebook",
         // "Flattr",
         "Pinterest",
         "Reddit",
