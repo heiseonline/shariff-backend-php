@@ -35,43 +35,43 @@ class ShariffTest extends \PHPUnit\Framework\TestCase
 
         // $this->assertArrayHasKey('flattr', $counts);
         if (array_key_exists('flattr', $counts)) {
-            $this->assertInternalType('int', $counts['flattr']);
+            $this->assertIsInt($counts['flattr']);
             $this->assertGreaterThanOrEqual(0, $counts['flattr']);
         }
 
         // $this->assertArrayHasKey('pinterest', $counts);
         if (array_key_exists('pinterest', $counts)) {
-            $this->assertInternalType('int', $counts['pinterest']);
+            $this->assertIsInt($counts['pinterest']);
             $this->assertGreaterThanOrEqual(0, $counts['pinterest']);
         }
 
         // $this->assertArrayHasKey('stumbleupon', $counts);
         if (array_key_exists('stumbleupon', $counts)) {
-            $this->assertInternalType('int', $counts['stumbleupon']);
+            $this->assertIsInt($counts['stumbleupon']);
             $this->assertGreaterThanOrEqual(0, $counts['stumbleupon']);
         }
 
         // $this->assertArrayHasKey('xing', $counts);
         if (array_key_exists('xing', $counts)) {
-            $this->assertInternalType('int', $counts['xing']);
+            $this->assertIsInt($counts['xing']);
             $this->assertGreaterThanOrEqual(0, $counts['xing']);
         }
 
         // $this->assertArrayHasKey('reddit', $counts);
         if (array_key_exists('reddit', $counts)) {
-            $this->assertInternalType('int', $counts['reddit']);
+            $this->assertIsInt($counts['reddit']);
             $this->assertGreaterThanOrEqual(0, $counts['reddit']);
         }
 
         // $this->assertArrayHasKey('buffer', $counts);
         if (array_key_exists('buffer', $counts)) {
-            $this->assertInternalType('int', $counts['buffer']);
+            $this->assertIsInt($counts['buffer']);
             $this->assertGreaterThanOrEqual(0, $counts['buffer']);
         }
 
         // $this->assertArrayHasKey('vk', $counts);
         if (array_key_exists('vk', $counts)) {
-            $this->assertInternalType('int', $counts['vk']);
+            $this->assertIsInt($counts['vk']);
             $this->assertGreaterThanOrEqual(0, $counts['vk']);
         }
     }
