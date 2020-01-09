@@ -31,7 +31,7 @@ class FacebookTest extends \PHPUnit_Framework_TestCase
         $request = $facebook->getRequest('http://www.heise.de');
 
         $this->assertEquals('graph.facebook.com', $request->getUri()->getHost());
-        $this->assertEquals('/v4.0/', $request->getUri()->getPath());
+        $this->assertEquals('/v5.0/', $request->getUri()->getPath());
         $this->assertEquals(
             'id='.urlencode('http://www.heise.de').'&fields=engagement&access_token=foo%7Cbar',
             $request->getUri()->getQuery()
