@@ -9,7 +9,7 @@ use Psr\Http\Message\ResponseInterface;
 /**
  * Class FacebookTest
  */
-class FacebookTest extends \PHPUnit_Framework_TestCase
+class FacebookTest extends \PHPUnit\Framework\TestCase
 {
     public function testConfig()
     {

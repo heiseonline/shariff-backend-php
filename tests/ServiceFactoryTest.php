@@ -9,7 +9,7 @@ use Heise\Shariff\Backend\ServiceInterface;
 /**
  * Class ServiceFactoryTest
  */
-class ServiceFactoryTest extends \PHPUnit_Framework_TestCase
+class ServiceFactoryTest extends \PHPUnit\Framework\TestCase
 {
 
     public function testSetConfig()
