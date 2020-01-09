@@ -1,5 +1,9 @@
 # Changelog
 
+## 8.2.2, 2020-01-09
+
+* Updated Facebook Graph API to version 5.0. (richard67)
+
 ## 8.2.1, 2019-08-20
 
 * Updated Facebook Graph API to version 4.0. (richard67)
