@@ -41,14 +41,14 @@ The following configuration options are available:
 
 | Key         | Type | Description |
 |-------------|------|-------------|
-| `cacheClass` | `string` | *Optional* Cache class name. Has to implement `Heise\Shariff\CacheInterface`. Defaults to internal Zend Cache. |
+| `cacheClass` | `string` | *Optional* Cache class name. Has to implement `Heise\Shariff\CacheInterface`. Defaults to internal Laminas Cache. |
 | `cache` | `object`  | File cache settings, which are passed on to the Cache class. See description below. |
 | `domains` | `array` | Domains for which share counts may be requested. If empty, all domains are allowed. |
 | `services` | `array` | List of services to be enabled. See [Supported services](#supported-services). |
 
 ##### Cache settings:
 
-By default Shariff uses the Filesystem cache. By specifying a different adapter from Zend\Cache\Storage\Adapter you can tell Shariff to use another cache. Also you can specify options for that cache adapter
+By default Shariff uses the Filesystem cache. By specifying a different adapter from Laminas\Cache\Storage\Adapter you can tell Shariff to use another cache. Also you can specify options for that cache adapter
 
 | Key         | Type | Description |
 |-------------|------|-------------|
@@ -57,7 +57,7 @@ By default Shariff uses the Filesystem cache. By specifying a different adapter 
 | `adapter` | `string` | Name of cache adapter (e.g. Apc, Memcache, etc.) |
 | `adapterOptions` | `object` | Options for the cache adapter |
 
-*These option apply for the default Cache class (`ZendCache`) only. If you implement custom caching, you can specify your own options.*
+*These option apply for the default Cache class (`LaminasCache`) only. If you implement custom caching, you can specify your own options.*
 
 ##### Client options
 
@@ -94,7 +94,7 @@ To use the graph api id method to fetch the share count you need to set up an ap
  * @var array
  */
 private static $configuration = [
-    'cacheClass' => 'Heise\\Shariff\\ZendCache',
+    'cacheClass' => 'Heise\Shariff\LaminasCache',
     'cache' => [
         'ttl' => 60,
         'cacheDir' => '/tmp/shariff/cache',

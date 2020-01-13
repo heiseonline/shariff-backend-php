@@ -2,15 +2,15 @@
 
 namespace Heise\Shariff;
 
-use Zend\Cache\Storage\Adapter\FilesystemOptions;
-use Zend\Cache\Storage\ClearExpiredInterface;
-use Zend\Cache\Storage\StorageInterface;
-use Zend\Cache\StorageFactory;
+use Laminas\Cache\Storage\Adapter\FilesystemOptions;
+use Laminas\Cache\Storage\ClearExpiredInterface;
+use Laminas\Cache\Storage\StorageInterface;
+use Laminas\Cache\StorageFactory;
 
 /**
- * Implement ZendCache.
+ * Implement LaminasCache.
  */
-class ZendCache implements CacheInterface
+class LaminasCache implements CacheInterface
 {
     /**
      * @var StorageInterface
@@ -20,8 +20,8 @@ class ZendCache implements CacheInterface
     /**
      * @param array $configuration
      *
-     * @throws \Zend\Cache\Exception\InvalidArgumentException
-     * @throws \Zend\Cache\Exception\RuntimeException
+     * @throws \Laminas\Cache\Exception\InvalidArgumentException
+     * @throws \Laminas\Cache\Exception\RuntimeException
      */
     public function __construct(array $configuration)
     {
