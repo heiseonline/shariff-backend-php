@@ -36,7 +36,7 @@ class Backend
         if (isset($config['cacheClass'])) {
             $cacheClass = $config['cacheClass'];
         } else {
-            $cacheClass = 'Heise\\Shariff\\ZendCache';
+            $cacheClass = LaminasCache::class;
         }
         $cache = new $cacheClass($config['cache']);
 

@@ -5,16 +5,17 @@ namespace Heise\Tests\Shariff;
 use GuzzleHttp\ClientInterface;
 use Heise\Shariff\Backend\ServiceFactory;
 use Heise\Shariff\Backend\ServiceInterface;
+use PHPUnit\Framework as PHPUnit;
 
 /**
  * Class ServiceFactoryTest
  */
-class ServiceFactoryTest extends \PHPUnit\Framework\TestCase
+class ServiceFactoryTest extends PHPUnit\TestCase
 {
 
     public function testSetConfig()
     {
-        /** @var ServiceInterface|\PHPUnit_Framework_MockObject_MockObject $mockService */
+        /** @var ServiceInterface|PHPUnit\MockObject\MockObject $mockService */
         $mockService = $this->getMockBuilder(ServiceInterface::class)->getMock();
 
         $mockService->expects($this->once())
@@ -22,7 +23,7 @@ class ServiceFactoryTest extends \PHPUnit\Framework\TestCase
             ->with(array('foo' => 'bar'))
         ;
 
-        /** @var ClientInterface|\PHPUnit_Framework_MockObject_MockObject $mockClient */
+        /** @var ClientInterface|PHPUnit\MockObject\MockObject $mockClient */
         $mockClient = $this->getMockBuilder(ClientInterface::class)->getMock();
 
         $serviceFactory = new ServiceFactory($mockClient);
@@ -37,12 +38,12 @@ class ServiceFactoryTest extends \PHPUnit\Framework\TestCase
 
     public function testConfigNotSet()
     {
-        /** @var ServiceInterface|\PHPUnit_Framework_MockObject_MockObject $mockService */
+        /** @var ServiceInterface|PHPUnit\MockObject\MockObject $mockService */
         $mockService = $this->getMockBuilder(ServiceInterface::class)->getMock();
 
         $mockService->expects($this->never())->method('setConfig');
 
-        /** @var ClientInterface|\PHPUnit_Framework_MockObject_MockObject $mockClient */
+        /** @var ClientInterface|PHPUnit\MockObject\MockObject $mockClient */
         $mockClient = $this->getMockBuilder(ClientInterface::class)->getMock();
 
         $serviceFactory = new ServiceFactory($mockClient);
