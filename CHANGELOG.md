@@ -1,8 +1,9 @@
 # Changelog
 
-## 9.0.0, TBD
+## 9.0.0, 2020-02-24
 
 * Updated dependencies.
+* Replaced Zend dependencies with Laminas. (vkhramtsov)
 
 This release contains breaking changes:
 
