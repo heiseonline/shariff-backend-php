@@ -1,5 +1,9 @@
 # Changelog
 
+## 9.0.1, 2020-02-24
+
+* Fix release process.
+
 ## 9.0.0, 2020-02-24
 
 * Updated dependencies.

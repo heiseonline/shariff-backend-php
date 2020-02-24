@@ -43,5 +43,5 @@ deploy:
   on:
     repo: heiseonline/shariff-backend-php
     tags: true
-    php: 7.1
+    php: 7.2
     condition: $SHARIFF_RUN_TEST = 1
