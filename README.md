@@ -95,7 +95,7 @@ use Heise\Shariff\LaminasCache;
  * @var array
  */
 private static $configuration = [
-    'cacheClass' => LaminasCache::class,
+    'cacheClass' => 'Heise\\Shariff\\LaminasCache',
     'cache' => [
         'ttl' => 60,
         'cacheDir' => '/tmp/shariff/cache',
