@@ -1,8 +1,13 @@
 # Changelog
 
+## 9.0.2, 2020-02-28
+
+* Updated Facebook Graph API to version 6.0. (richard67)
+* Fixed readme. (richard67)
+
 ## 9.0.1, 2020-02-24
 
-* Fix release process.
+* Fixed release process.
 
 ## 9.0.0, 2020-02-24
 
