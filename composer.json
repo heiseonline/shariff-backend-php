@@ -22,6 +22,8 @@
     ],
     "require": {
         "php": "^7.2",
+        "ext-mbstring": "*",
+        "ext-json": "*",
         "guzzlehttp/guzzle": "^6.1",
         "psr/log": "^1.0",
         "laminas/laminas-cache": "^2.7"

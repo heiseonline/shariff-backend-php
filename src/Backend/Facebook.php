@@ -2,6 +2,8 @@
 
 namespace Heise\Shariff\Backend;
 
+use Psr\Http\Message\RequestInterface;
+
 /**
  * Class Facebook.
  */
@@ -10,7 +12,7 @@ class Facebook extends Request implements ServiceInterface
     /**
      * {@inheritdoc}
      */
-    public function getName()
+    public function getName(): string
     {
         return 'facebook';
     }
@@ -29,7 +31,7 @@ class Facebook extends Request implements ServiceInterface
     /**
      * {@inheritdoc}
      */
-    public function getRequest($url)
+    public function getRequest($url): RequestInterface
     {
         $accessToken = urlencode($this->config['app_id']) .'|'.urlencode($this->config['secret']);
         $query = 'https://graph.facebook.com/v7.0/?id='.urlencode($url) . '&fields=engagement&access_token='

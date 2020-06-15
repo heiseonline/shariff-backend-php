@@ -2,6 +2,7 @@
 
 namespace Heise\Shariff;
 
+use Laminas\Cache\Exception as LaminasException;
 use Laminas\Cache\Storage\Adapter\FilesystemOptions;
 use Laminas\Cache\Storage\ClearExpiredInterface;
 use Laminas\Cache\Storage\StorageInterface;
@@ -20,8 +21,8 @@ class LaminasCache implements CacheInterface
     /**
      * @param array $configuration
      *
-     * @throws \Laminas\Cache\Exception\InvalidArgumentException
-     * @throws \Laminas\Cache\Exception\RuntimeException
+     * @throws LaminasException\InvalidArgumentException
+     * @throws LaminasException\RuntimeException
      */
     public function __construct(array $configuration)
     {
@@ -45,7 +46,7 @@ class LaminasCache implements CacheInterface
         $options->setTtl($configuration['ttl']);
 
         if ($options instanceof FilesystemOptions) {
-            $options->setCacheDir(isset($configuration['cacheDir']) ? $configuration['cacheDir'] : sys_get_temp_dir());
+            $options->setCacheDir($configuration['cacheDir'] ?? sys_get_temp_dir());
         }
 
         if ($cache instanceof ClearExpiredInterface) {
@@ -66,7 +67,7 @@ class LaminasCache implements CacheInterface
     /**
      * {@inheritdoc}
      */
-    public function getItem($key)
+    public function getItem($key): string
     {
         return $this->cache->getItem($key);
     }
@@ -74,7 +75,7 @@ class LaminasCache implements CacheInterface
     /**
      * {@inheritdoc}
      */
-    public function hasItem($key)
+    public function hasItem($key): bool
     {
         return $this->cache->hasItem($key);
     }

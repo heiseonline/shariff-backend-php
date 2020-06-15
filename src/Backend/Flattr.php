@@ -2,6 +2,8 @@
 
 namespace Heise\Shariff\Backend;
 
+use Psr\Http\Message\RequestInterface;
+
 /**
  * Class Flattr.
  */
@@ -10,7 +12,7 @@ class Flattr extends Request implements ServiceInterface
     /**
      * {@inheritdoc}
      */
-    public function getName()
+    public function getName(): string
     {
         return 'flattr';
     }
@@ -18,7 +20,7 @@ class Flattr extends Request implements ServiceInterface
     /**
      * {@inheritdoc}
      */
-    public function getRequest($url)
+    public function getRequest($url): RequestInterface
     {
         return new \GuzzleHttp\Psr7\Request(
             'GET',
@@ -31,6 +33,6 @@ class Flattr extends Request implements ServiceInterface
      */
     public function extractCount(array $data)
     {
-        return (isset($data['flattrs'])) ? $data['flattrs'] : 0;
+        return $data['flattrs'] ?? 0;
     }
 }

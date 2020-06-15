@@ -38,7 +38,7 @@ class ServiceFactory
      *
      * @return array
      */
-    public function getServicesByName(array $serviceNames, array $config)
+    public function getServicesByName(array $serviceNames, array $config): array
     {
         $services = [];
         foreach ($serviceNames as $serviceName) {
@@ -59,7 +59,7 @@ class ServiceFactory
      *
      * @return ServiceInterface
      */
-    protected function createService($serviceName, array $config)
+    protected function createService($serviceName, array $config): ServiceInterface
     {
         if (isset($this->serviceMap[$serviceName])) {
             $service = $this->serviceMap[$serviceName];
