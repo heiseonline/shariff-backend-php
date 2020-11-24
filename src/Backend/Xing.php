@@ -2,6 +2,8 @@
 
 namespace Heise\Shariff\Backend;
 
+use Psr\Http\Message\RequestInterface;
+
 /**
  * Class Xing.
  */
@@ -10,7 +12,7 @@ class Xing extends Request implements ServiceInterface
     /**
      * {@inheritdoc}
      */
-    public function getName()
+    public function getName(): string
     {
         return 'xing';
     }
@@ -18,7 +20,7 @@ class Xing extends Request implements ServiceInterface
     /**
      * {@inheritdoc}
      */
-    public function getRequest($url)
+    public function getRequest($url): RequestInterface
     {
         return new \GuzzleHttp\Psr7\Request(
             'POST',
@@ -31,6 +33,6 @@ class Xing extends Request implements ServiceInterface
      */
     public function extractCount(array $data)
     {
-        return isset($data['share_counter']) ? $data['share_counter'] : 0;
+        return $data['share_counter'] ?? 0;
     }
 }

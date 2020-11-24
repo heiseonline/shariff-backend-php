@@ -2,6 +2,8 @@
 
 namespace Heise\Shariff\Backend;
 
+use Psr\Http\Message\RequestInterface;
+
 /**
  * Class Reddit.
  */
@@ -10,7 +12,7 @@ class Reddit extends Request implements ServiceInterface
     /**
      * {@inheritdoc}
      */
-    public function getName()
+    public function getName(): string
     {
         return 'reddit';
     }
@@ -18,7 +20,7 @@ class Reddit extends Request implements ServiceInterface
     /**
      * {@inheritdoc}
      */
-    public function getRequest($url)
+    public function getRequest($url): RequestInterface
     {
         return new \GuzzleHttp\Psr7\Request('GET', 'https://www.reddit.com/api/info.json?url='.urlencode($url));
     }

@@ -92,8 +92,7 @@ class BackendManager
         }
 
         $requests = array_map(
-            function ($service) use ($url) {
-                /* @var ServiceInterface $service */
+            static function (ServiceInterface $service) use ($url) {
                 return $service->getRequest($url);
             },
             $this->services
@@ -133,7 +132,7 @@ class BackendManager
      *
      * @return bool
      */
-    private function isValidDomain($url)
+    private function isValidDomain($url): bool
     {
         if (!empty($this->domains)) {
             $parsed = parse_url($url);

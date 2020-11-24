@@ -23,21 +23,14 @@ class Backend
         $domains = $config['domains'];
         // stay compatible to old configs
         if (isset($config['domain'])) {
-            array_push($domains, $config['domain']);
+            $domains[] = $config['domain'];
         }
 
-        $clientOptions = [];
-        if (isset($config['client'])) {
-            $clientOptions = $config['client'];
-        }
+        $clientOptions = $config['client'] ?? [];
         $client = new Client($clientOptions);
         $baseCacheKey = md5(json_encode($config));
 
-        if (isset($config['cacheClass'])) {
-            $cacheClass = $config['cacheClass'];
-        } else {
-            $cacheClass = LaminasCache::class;
-        }
+        $cacheClass = $config['cacheClass'] ?? LaminasCache::class;
         $cache = new $cacheClass($config['cache']);
 
         $serviceFactory = new ServiceFactory($client);
@@ -53,9 +46,9 @@ class Backend
     /**
      * @param string $url
      *
-     * @return array
+     * @return null|array
      */
-    public function get($url)
+    public function get($url): ?array
     {
         return $this->backendManager->get($url);
     }

@@ -2,6 +2,7 @@
 
 namespace Heise\Tests\Shariff;
 
+use GuzzleHttp\Client;
 use GuzzleHttp\ClientInterface;
 use Heise\Shariff\Backend\Facebook;
 use PHPUnit\Framework as PHPUnit;
@@ -27,7 +28,7 @@ class FacebookTest extends PHPUnit\TestCase
 
     public function testUsesGraphApi()
     {
-        /** @var \GuzzleHttp\Client|PHPUnit\MockObject\MockObject $client */
+        /** @var Client|PHPUnit\MockObject\MockObject $client */
         $client = $this->getMockBuilder(ClientInterface::class)->getMock();
 
         $facebook = new Facebook($client);
