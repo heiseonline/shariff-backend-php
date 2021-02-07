@@ -105,7 +105,10 @@ private static $configuration = [
         ]
     ],
     'client' => [
-      'timeout' => 4.2
+      'timeout' => 4.2,
+      'headers' => [
+        'User-Agent' => 'shariff/1.0',
+      ]
       // ... (see "Client options")
     ],
     'domains' => [
