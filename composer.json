@@ -22,7 +22,7 @@
     ],
     "require": {
         "php": "^7.2",
-        "guzzlehttp/guzzle": "^6.1",
+        "guzzlehttp/guzzle": "^7.0",
         "psr/log": "^1.0",
         "laminas/laminas-cache": "^2.7"
     },
