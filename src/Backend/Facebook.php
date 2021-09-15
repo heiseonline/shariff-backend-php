@@ -31,8 +31,8 @@ class Facebook extends Request implements ServiceInterface
      */
     public function getRequest($url)
     {
-        $accessToken = urlencode($this->config['app_id']) .'|'.urlencode($this->config['secret']);
-        $query = 'https://graph.facebook.com/v7.0/?id='.urlencode($url) . '&fields=engagement&access_token='
+        $accessToken = urlencode($this->config['app_id']) . '|' . urlencode($this->config['secret']);
+        $query = 'https://graph.facebook.com/v12.0/?id=' . urlencode($url) . '&fields=og_object%7Bengagement%7D&access_token='
             . $accessToken;
 
         return new \GuzzleHttp\Psr7\Request('GET', $query);
@@ -43,14 +43,8 @@ class Facebook extends Request implements ServiceInterface
      */
     public function extractCount(array $data)
     {
-        if (isset(
-            $data['engagement']['reaction_count'],
-            $data['engagement']['comment_count'],
-            $data['engagement']['share_count']
-        )) {
-            return $data['engagement']['reaction_count']
-                + $data['engagement']['comment_count']
-                + $data['engagement']['share_count'];
+        if (isset($data['og_object']['engagement']['count'])) {
+            return $data['og_object']['engagement']['count'];
         }
 
         return 0;
