@@ -20,7 +20,7 @@ class FacebookTest extends PHPUnit\TestCase
         $facebook->setConfig(array('app_id' => 'foo', 'secret' => 'bar'));
         $request = $facebook->getRequest('http://www.heise.de');
         $this->assertEquals(
-            'id='.urlencode('http://www.heise.de').'&fields=engagement&access_token=foo%7Cbar',
+            'id='.urlencode('http://www.heise.de').'&fields=og_object%7Bengagement%7D&access_token=foo%7Cbar',
             $request->getUri()->getQuery()
         );
     }
