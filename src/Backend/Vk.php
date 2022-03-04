@@ -2,6 +2,8 @@
 
 namespace Heise\Shariff\Backend;
 
+use Psr\Http\Message\RequestInterface;
+
 /**
  * Class Vk.
  */
@@ -10,7 +12,7 @@ class Vk extends Request implements ServiceInterface
     /**
      * {@inheritdoc}
      */
-    public function getName()
+    public function getName(): string
     {
         return 'vk';
     }
@@ -18,29 +20,30 @@ class Vk extends Request implements ServiceInterface
     /**
      * {@inheritdoc}
      */
-    public function getRequest($url)
+    public function getRequest(string $url): RequestInterface
     {
         return new \GuzzleHttp\Psr7\Request(
             'GET',
-            'https://vk.com/share.php?act=count&index=1&url='.urlencode($url)
+            'https://vk.com/share.php?act=count&index=1&url=' . urlencode($url)
         );
     }
 
     /**
      * {@inheritdoc}
      */
-    public function filterResponse($content)
+    public function filterResponse(string $content): string
     {
         // 'VK.Share.count(1, x);' with x being the count
         $strCount = mb_substr($content, 18, mb_strlen($content) - 20);
-        return ($strCount ? '{"count": ' . $strCount . '}': '');
+
+        return ($strCount ? '{"count": ' . $strCount . '}' : '');
     }
 
     /**
      * {@inheritdoc}
      */
-    public function extractCount(array $data)
+    public function extractCount(array $data): int
     {
-        return isset($data['count']) ? $data['count'] : 0;
+        return $data['count'] ?? 0;
     }
 }

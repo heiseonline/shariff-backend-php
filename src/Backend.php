@@ -12,18 +12,20 @@ use Psr\Log\LoggerInterface;
  */
 class Backend
 {
-    /** @var BackendManager */
+    /**
+     * @var BackendManager
+     */
     protected $backendManager;
 
     /**
      * @param array $config
      */
-    public function __construct($config)
+    public function __construct(array $config)
     {
         $domains = $config['domains'];
         // stay compatible to old configs
         if (isset($config['domain'])) {
-            array_push($domains, $config['domain']);
+            $domains[] = $config['domain'];
         }
 
         $clientOptions = [];
@@ -35,7 +37,8 @@ class Backend
 
         if (isset($config['cacheClass'])) {
             $cacheClass = $config['cacheClass'];
-        } else {
+        }
+        else {
             $cacheClass = LaminasCache::class;
         }
         $cache = new $cacheClass($config['cache']);
@@ -53,9 +56,9 @@ class Backend
     /**
      * @param string $url
      *
-     * @return array
+     * @return array|mixed|null
      */
-    public function get($url)
+    public function get(string $url)
     {
         return $this->backendManager->get($url);
     }
@@ -63,7 +66,7 @@ class Backend
     /**
      * @param LoggerInterface $logger
      */
-    public function setLogger(LoggerInterface $logger)
+    public function setLogger(LoggerInterface $logger): void
     {
         $this->backendManager->setLogger($logger);
     }

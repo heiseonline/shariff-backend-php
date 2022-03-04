@@ -45,7 +45,7 @@ class LaminasCache implements CacheInterface
         $options->setTtl($configuration['ttl']);
 
         if ($options instanceof FilesystemOptions) {
-            $options->setCacheDir(isset($configuration['cacheDir']) ? $configuration['cacheDir'] : sys_get_temp_dir());
+            $options->setCacheDir($configuration['cacheDir'] ?? sys_get_temp_dir());
         }
 
         if ($cache instanceof ClearExpiredInterface) {
@@ -58,7 +58,7 @@ class LaminasCache implements CacheInterface
     /**
      * {@inheritdoc}
      */
-    public function setItem($key, $content)
+    public function setItem(string $key, string $content): void
     {
         $this->cache->setItem($key, $content);
     }
@@ -66,7 +66,7 @@ class LaminasCache implements CacheInterface
     /**
      * {@inheritdoc}
      */
-    public function getItem($key)
+    public function getItem(string $key): string
     {
         return $this->cache->getItem($key);
     }
@@ -74,7 +74,7 @@ class LaminasCache implements CacheInterface
     /**
      * {@inheritdoc}
      */
-    public function hasItem($key)
+    public function hasItem(string $key): bool
     {
         return $this->cache->hasItem($key);
     }

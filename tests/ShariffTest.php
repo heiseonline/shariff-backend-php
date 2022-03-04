@@ -13,7 +13,7 @@ class ShariffTest extends PHPUnit\TestCase
     /***
      * @var string[]
      */
-    protected $services = array(
+    protected $services = [
         // "Facebook",
         // "Flattr",
         "Pinterest",
@@ -22,17 +22,17 @@ class ShariffTest extends PHPUnit\TestCase
         "Xing",
         "Buffer",
         "Vk"
-    );
+    ];
 
     public function testShariff()
     {
-        $shariff = new Backend(array(
-            "domains"   => array('www.heise.de'),
-            "cache"    => array("ttl" => 1),
+        $shariff = new Backend([
+            "domains" => ['www.heise.de'],
+            "cache" => ["ttl" => 1],
             "services" => $this->services
-        ));
+        ]);
 
-        $counts = $shariff->get('http://www.heise.de');
+        $counts = $shariff->get('https://www.heise.de');
 
         // $this->assertArrayHasKey('flattr', $counts);
         if (array_key_exists('flattr', $counts)) {
@@ -79,13 +79,13 @@ class ShariffTest extends PHPUnit\TestCase
 
     public function testInvalidDomain()
     {
-        $shariff = new Backend(array(
-            "domains"   => array('www.heise.de'),
-            "cache"    => array("ttl" => 0),
+        $shariff = new Backend([
+            "domains" => ['www.heise.de'],
+            "cache" => ["ttl" => 0],
             "services" => $this->services
-        ));
+        ]);
 
-        $counts = $shariff->get('http://example.com');
+        $counts = $shariff->get('https://example.com');
 
         $this->assertNull($counts);
     }
@@ -93,16 +93,17 @@ class ShariffTest extends PHPUnit\TestCase
     public function testCacheOptions()
     {
         $this->expectException(OutOfSpaceException::class);
-        $shariff = new Backend(array(
-            "domains"   => array('www.heise.de'),
-            "cache"    => array(
+
+        $shariff = new Backend([
+            "domains" => ['www.heise.de'],
+            "cache" => [
                 "adapter" => "Memory",
-                "adapterOptions" => array("memoryLimit" => 10),
-                "ttl" => 0
-            ),
+                "adapterOptions" => ["memoryLimit" => 10],
+                "ttl" => 1
+            ],
             "services" => $this->services
-        ));
-        $shariff->get('http://www.heise.de');
+        ]);
+        $shariff->get('https://www.heise.de');
         $this->fail('10 bytes should not be enough for the cache');
     }
 
@@ -112,17 +113,17 @@ class ShariffTest extends PHPUnit\TestCase
             "Some APIs are too fast for this. We need mock APIs."
         );
 
-        $shariff = new Backend(array(
-            "domains"   => array('www.heise.de'),
-            "cache"    => array("ttl" => 1),
+        $shariff = new Backend([
+            "domains" => ['www.heise.de'],
+            "cache" => ["ttl" => 1],
             "services" => $this->services,
-            "client" => array(
+            "client" => [
                 "timeout" => 0.005,
                 "connect_timeout" => 0.005
-            )
-        ));
+            ]
+        ]);
 
-        $counts = $shariff->get('http://www.heise.de');
+        $counts = $shariff->get('https://www.heise.de');
 
         // expect no response in 5 ms
         $this->assertCount(0, $counts);

@@ -1,6 +1,6 @@
 <?php
 
-require_once __DIR__.'/vendor/autoload.php';
+require_once __DIR__ . '/vendor/autoload.php';
 
 use Heise\Shariff\Backend;
 
@@ -42,7 +42,8 @@ class Application
         if ($url) {
             $shariff = new Backend(self::$configuration);
             echo json_encode($shariff->get($url));
-        } else {
+        }
+        else {
             echo json_encode(null);
         }
     }

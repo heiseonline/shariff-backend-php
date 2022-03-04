@@ -2,6 +2,8 @@
 
 namespace Heise\Shariff\Backend;
 
+use Psr\Http\Message\RequestInterface;
+
 /**
  * Class Pinterest.
  */
@@ -10,7 +12,7 @@ class Pinterest extends Request implements ServiceInterface
     /**
      * {@inheritdoc}
      */
-    public function getName()
+    public function getName(): string
     {
         return 'pinterest';
     }
@@ -18,18 +20,18 @@ class Pinterest extends Request implements ServiceInterface
     /**
      * {@inheritdoc}
      */
-    public function getRequest($url)
+    public function getRequest(string $url): RequestInterface
     {
         return new \GuzzleHttp\Psr7\Request(
             'GET',
-            'https://api.pinterest.com/v1/urls/count.json?callback=x&url='.urlencode($url)
+            'https://api.pinterest.com/v1/urls/count.json?callback=x&url=' . urlencode($url)
         );
     }
 
     /**
      * {@inheritdoc}
      */
-    public function filterResponse($content)
+    public function filterResponse(string $content): string
     {
         return mb_substr($content, 2, mb_strlen($content) - 3);
     }
@@ -37,8 +39,8 @@ class Pinterest extends Request implements ServiceInterface
     /**
      * {@inheritdoc}
      */
-    public function extractCount(array $data)
+    public function extractCount(array $data): int
     {
-        return isset($data['count']) ? $data['count'] : 0;
+        return $data['count'] ?? 0;
     }
 }
