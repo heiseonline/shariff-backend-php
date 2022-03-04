@@ -9,10 +9,14 @@ use GuzzleHttp\ClientInterface;
  */
 class ServiceFactory
 {
-    /** @var ClientInterface */
+    /**
+     * @var ClientInterface
+     */
     protected $client;
 
-    /** @var ServiceInterface[] */
+    /**
+     * @var ServiceInterface[]
+     */
     protected $serviceMap = [];
 
     /**
@@ -24,10 +28,10 @@ class ServiceFactory
     }
 
     /**
-     * @param string           $name
+     * @param string $name
      * @param ServiceInterface $service
      */
-    public function registerService($name, ServiceInterface $service)
+    public function registerService(string $name, ServiceInterface $service): void
     {
         $this->serviceMap[$name] = $service;
     }
@@ -38,7 +42,7 @@ class ServiceFactory
      *
      * @return array
      */
-    public function getServicesByName(array $serviceNames, array $config)
+    public function getServicesByName(array $serviceNames, array $config): array
     {
         $services = [];
         foreach ($serviceNames as $serviceName) {
@@ -55,16 +59,17 @@ class ServiceFactory
 
     /**
      * @param string $serviceName
-     * @param array  $config
+     * @param array $config
      *
      * @return ServiceInterface
      */
-    protected function createService($serviceName, array $config)
+    protected function createService(string $serviceName, array $config): ServiceInterface
     {
         if (isset($this->serviceMap[$serviceName])) {
             $service = $this->serviceMap[$serviceName];
-        } else {
-            $serviceClass = '\\Heise\\Shariff\\Backend\\'.$serviceName;
+        }
+        else {
+            $serviceClass = '\\Heise\\Shariff\\Backend\\' . $serviceName;
             if (!class_exists($serviceClass)) {
                 throw new \InvalidArgumentException('Invalid service name "' . $serviceName . '".');
             }
