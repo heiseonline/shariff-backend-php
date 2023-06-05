@@ -29,7 +29,6 @@ class Application
             'Flattr',
             'Pinterest',
             'Xing',
-            'AddThis',
             'Buffer',
             'Vk'
         ]
