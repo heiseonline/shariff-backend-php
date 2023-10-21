@@ -26,7 +26,6 @@ class Application
             'Facebook',
             'Reddit',
             'StumbleUpon',
-            'Flattr',
             'Pinterest',
             'Xing',
             'AddThis',
