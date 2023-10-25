@@ -28,7 +28,6 @@ class Application
             'StumbleUpon',
             'Pinterest',
             'Xing',
-            'AddThis',
             'Buffer',
             'Vk'
         ]
