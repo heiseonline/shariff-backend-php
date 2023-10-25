@@ -21,7 +21,7 @@ class FacebookTest extends PHPUnit\TestCase
         $facebook->setConfig(['app_id' => 'foo', 'secret' => 'bar']);
         $request = $facebook->getRequest('https://www.heise.de');
         $this->assertEquals(
-            'id=' . urlencode('https://www.heise.de') . '&fields=engagement&access_token=foo%7Cbar',
+            'id=' . urlencode('https://www.heise.de') . '&fields=og_object%7Bengagement%7D&access_token=foo%7Cbar',
             $request->getUri()->getQuery()
         );
     }
@@ -36,9 +36,9 @@ class FacebookTest extends PHPUnit\TestCase
         $request = $facebook->getRequest('https://www.heise.de');
 
         $this->assertEquals('graph.facebook.com', $request->getUri()->getHost());
-        $this->assertEquals('/v7.0/', $request->getUri()->getPath());
+        $this->assertEquals('/v18.0/', $request->getUri()->getPath());
         $this->assertEquals(
-            'id=' . urlencode('https://www.heise.de') . '&fields=engagement&access_token=foo%7Cbar',
+            'id=' . urlencode('https://www.heise.de') . '&fields=og_object%7Bengagement%7D&access_token=foo%7Cbar',
             $request->getUri()->getQuery()
         );
     }
