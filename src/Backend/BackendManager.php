@@ -14,44 +14,58 @@ use Psr\Log\LoggerInterface;
  */
 class BackendManager
 {
-    /** @var string */
+    /**
+     * @var string
+     */
     protected $baseCacheKey;
 
-    /** @var CacheInterface */
+    /**
+     * @var CacheInterface
+     */
     protected $cache;
 
-    /** @var ClientInterface */
+    /**
+     * @var ClientInterface
+     */
     protected $client;
 
-    /** @var array */
+    /**
+     * @var array
+     */
     protected $domains = [];
 
-    /** @var ServiceInterface[] */
+    /**
+     * @var ServiceInterface[]
+     */
     protected $services;
 
-    /** @var LoggerInterface */
+    /**
+     * @var LoggerInterface
+     */
     protected $logger;
 
     /**
-     * @param string             $baseCacheKey
-     * @param CacheInterface     $cache
-     * @param ClientInterface    $client
-     * @param array|string       $domains
+     * @param string $baseCacheKey
+     * @param CacheInterface $cache
+     * @param ClientInterface $client
+     * @param array|string $domains
      * @param ServiceInterface[] $services
      */
     public function __construct(
-        $baseCacheKey,
-        CacheInterface $cache,
+        string          $baseCacheKey,
+        CacheInterface  $cache,
         ClientInterface $client,
-        $domains,
-        array $services
-    ) {
+                        $domains,
+        array           $services
+    )
+    {
         $this->baseCacheKey = $baseCacheKey;
         $this->cache = $cache;
         $this->client = $client;
         if (is_array($domains)) {
             $this->domains = $domains;
-        } elseif (is_string($domains)) {
+        }
+        elseif (is_string($domains)) {
             trigger_error(
                 'Passing a domain string is deprecated since 5.1, please use an array instead.',
                 E_USER_DEPRECATED
@@ -62,9 +76,9 @@ class BackendManager
     }
 
     /**
-     * @param LoggerInterface $logger
+     * @param LoggerInterface|null $logger
      */
-    public function setLogger(LoggerInterface $logger = null)
+    public function setLogger(LoggerInterface $logger = null): void
     {
         $this->logger = $logger;
     }
@@ -74,10 +88,10 @@ class BackendManager
      *
      * @return array|mixed|null
      */
-    public function get($url)
+    public function get(string $url)
     {
         // Changing configuration invalidates the cache
-        $cacheKey = md5($url.$this->baseCacheKey);
+        $cacheKey = md5($url . $this->baseCacheKey);
 
         if (!filter_var($url, FILTER_VALIDATE_URL)) {
             return null;
@@ -93,7 +107,6 @@ class BackendManager
 
         $requests = array_map(
             function ($service) use ($url) {
-                /* @var ServiceInterface $service */
                 return $service->getRequest($url);
             },
             $this->services
@@ -109,11 +122,12 @@ class BackendManager
                 if ($this->logger !== null) {
                     $this->logger->warning($results[$i]->getMessage(), ['exception' => $results[$i]]);
                 }
-            } else {
+            }
+            else {
                 try {
                     $content = $service->filterResponse($results[$i]->getBody()->getContents());
                     $json = json_decode($content, true);
-                    $counts[$service->getName()] = is_array($json) ? (int) $service->extractCount($json) : 0;
+                    $counts[$service->getName()] = is_array($json) ? (int)$service->extractCount($json) : 0;
                 } catch (\Exception $e) {
                     if ($this->logger !== null) {
                         $this->logger->warning($e->getMessage(), ['exception' => $e]);
@@ -133,7 +147,7 @@ class BackendManager
      *
      * @return bool
      */
-    private function isValidDomain($url)
+    private function isValidDomain(string $url): bool
     {
         if (!empty($this->domains)) {
             $parsed = parse_url($url);

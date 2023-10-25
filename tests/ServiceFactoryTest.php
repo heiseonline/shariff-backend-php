@@ -20,8 +20,7 @@ class ServiceFactoryTest extends PHPUnit\TestCase
 
         $mockService->expects($this->once())
             ->method('setConfig')
-            ->with(array('foo' => 'bar'))
-        ;
+            ->with(['foo' => 'bar']);
 
         /** @var ClientInterface|PHPUnit\MockObject\MockObject $mockClient */
         $mockClient = $this->getMockBuilder(ClientInterface::class)->getMock();
@@ -30,8 +29,8 @@ class ServiceFactoryTest extends PHPUnit\TestCase
         $serviceFactory->registerService('MockService', $mockService);
 
         $services = $serviceFactory->getServicesByName(
-            array('MockService'),
-            array('MockService' => array('foo' => 'bar'))
+            ['MockService'],
+            ['MockService' => ['foo' => 'bar']]
         );
         $this->assertCount(1, $services);
     }
@@ -50,8 +49,8 @@ class ServiceFactoryTest extends PHPUnit\TestCase
         $serviceFactory->registerService('MockService', $mockService);
 
         $services = $serviceFactory->getServicesByName(
-            array('MockService'),
-            array('OtherService' => array('foo' => 'bar'))
+            ['MockService'],
+            ['OtherService' => ['foo' => 'bar']]
         );
         $this->assertCount(1, $services);
     }

@@ -2,6 +2,8 @@
 
 namespace Heise\Shariff\Backend;
 
+use Psr\Http\Message\RequestInterface;
+
 /**
  * Class Buffer.
  */
@@ -10,7 +12,7 @@ class Buffer extends Request implements ServiceInterface
     /**
      * {@inheritdoc}
      */
-    public function getName()
+    public function getName(): string
     {
         return 'buffer';
     }
@@ -18,19 +20,19 @@ class Buffer extends Request implements ServiceInterface
     /**
      * {@inheritdoc}
      */
-    public function getRequest($url)
+    public function getRequest($url): RequestInterface
     {
         return new \GuzzleHttp\Psr7\Request(
             'GET',
-            'https://api.bufferapp.com/1/links/shares.json?url='.urlencode($url)
+            'https://api.bufferapp.com/1/links/shares.json?url=' . urlencode($url)
         );
     }
 
     /**
      * {@inheritdoc}
      */
-    public function extractCount(array $data)
+    public function extractCount(array $data): int
     {
-        return isset($data['shares']) ? $data['shares'] : 0;
+        return $data['shares'] ?? 0;
     }
 }
