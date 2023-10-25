@@ -10,10 +10,14 @@ use Psr\Http\Message\RequestInterface;
  */
 abstract class Request
 {
-    /** @var ClientInterface */
+    /**
+     * @var ClientInterface
+     */
     protected $client;
 
-    /** @var array */
+    /**
+     * @var array
+     */
     protected $config;
 
     /**
@@ -25,9 +29,10 @@ abstract class Request
     }
 
     /**
-     * {@inheritdoc}
+     * @param string $content
+     * @return string
      */
-    public function filterResponse($content)
+    public function filterResponse(string $content): string
     {
         return $content;
     }
@@ -35,7 +40,7 @@ abstract class Request
     /**
      * @param array $config
      */
-    public function setConfig(array $config)
+    public function setConfig(array $config): void
     {
         $this->config = $config;
     }
@@ -49,10 +54,10 @@ abstract class Request
      * @deprecated This method is not used anymore and will be removed with version 6.
      *             Use \GuzzleHttp\Psr7\Request directly instead
      */
-    protected function createRequest($url, $method = 'GET')
+    protected function createRequest(string $url, string $method = 'GET'): RequestInterface
     {
         trigger_error('This method is not used anymore and will be removed with version 6.'
-                    .' Use \GuzzleHttp\Psr7\Request directly instead.', E_USER_DEPRECATED);
+            . ' Use \GuzzleHttp\Psr7\Request directly instead.', E_USER_DEPRECATED);
 
         return new \GuzzleHttp\Psr7\Request($method, $url);
     }

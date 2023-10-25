@@ -21,13 +21,16 @@
         }
     ],
     "require": {
-        "php": "^7.2",
-        "guzzlehttp/guzzle": "^6.1",
+        "php": "^7.2 || ^8.0",
+        "guzzlehttp/guzzle": "^7.4.1",
         "psr/log": "^1.0",
-        "laminas/laminas-cache": "^2.7"
+        "laminas/laminas-cache": "^3.1",
+        "laminas/laminas-cache-storage-adapter-filesystem": "^2.0",
+        "laminas/laminas-cache-storage-adapter-memory": "^2.0",
+        "laminas/laminas-cache-storage-deprecated-factory": "^1.0"
     },
     "require-dev": {
-        "phpunit/phpunit": "^8.5"
+        "phpunit/phpunit": "^9.5"
     },
     "config": {
         "optimize-autoloader": true,
