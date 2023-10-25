@@ -27,6 +27,8 @@ To run Shariff PHP Backend on your server you need one of these PHP versions:
 * 7.2
 * 7.3
 * 7.4
+* 8.0
+* 8.1
 
 Older versions and HHVM are not supported.
 
@@ -50,12 +52,12 @@ The following configuration options are available:
 
 By default Shariff uses the Filesystem cache. By specifying a different adapter from Laminas\Cache\Storage\Adapter you can tell Shariff to use another cache. Also you can specify options for that cache adapter
 
-| Key         | Type | Description |
-|-------------|------|-------------|
-| `ttl` | `integer` | Time that the counts are cached (in seconds) |
-| `cacheDir` | `string` | Directory used for the cache. Default: system temp directory |
-| `adapter` | `string` | Name of cache adapter (e.g. Apc, Memcache, etc.) |
-| `adapterOptions` | `object` | Options for the cache adapter |
+| Key         | Type | Description                                                                                                                                                                                                                                                                                                                 |
+|-------------|------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `ttl` | `integer` | Time that the counts are cached (in seconds)                                                                                                                                                                                                                                                                                |
+| `cacheDir` | `string` | Directory used for the cache. Default: system temp directory                                                                                                                                                                                                                                                                |
+| `adapter` | `string` | Name of cache adapter (e.g. Apc, Memcache, etc.) <br/>You can find an overview of all available Adapters [here](https://docs.laminas.dev/laminas-cache/v3/storage/adapter/). It is required to [install these separately](https://docs.laminas.dev/laminas-cache/v3/migration/to-version-3/#satellite-packages) through composer |
+| `adapterOptions` | `object` | Options for the cache adapter                                                                                                                                                                                                                                                                                               |
 
 *These option apply for the default Cache class (`LaminasCache`) only. If you implement custom caching, you can specify your own options.*
 
@@ -155,6 +157,6 @@ $options = [
 	"services" => ["Facebook", "Reddit", "StumbleUpon", "Flattr", "Pinterest", "AddThis", "Buffer", "Vk"]
 ];
 $shariff = new Backend($options);
-$counts = $shariff->get("http://www.heise.de/");
+$counts = $shariff->get("https://www.heise.de/");
 echo $counts["facebook"];
 ```

@@ -2,6 +2,7 @@
 
 namespace Heise\Tests\Shariff;
 
+use GuzzleHttp\Client;
 use GuzzleHttp\ClientInterface;
 use Heise\Shariff\Backend\Facebook;
 use PHPUnit\Framework as PHPUnit;
@@ -17,27 +18,27 @@ class FacebookTest extends PHPUnit\TestCase
         $client = $this->getMockBuilder(ClientInterface::class)->getMock();
 
         $facebook = new Facebook($client);
-        $facebook->setConfig(array('app_id' => 'foo', 'secret' => 'bar'));
-        $request = $facebook->getRequest('http://www.heise.de');
+        $facebook->setConfig(['app_id' => 'foo', 'secret' => 'bar']);
+        $request = $facebook->getRequest('https://www.heise.de');
         $this->assertEquals(
-            'id='.urlencode('http://www.heise.de').'&fields=engagement&access_token=foo%7Cbar',
+            'id=' . urlencode('https://www.heise.de') . '&fields=engagement&access_token=foo%7Cbar',
             $request->getUri()->getQuery()
         );
     }
 
     public function testUsesGraphApi()
     {
-        /** @var \GuzzleHttp\Client|PHPUnit\MockObject\MockObject $client */
+        /** @var Client|PHPUnit\MockObject\MockObject $client */
         $client = $this->getMockBuilder(ClientInterface::class)->getMock();
 
         $facebook = new Facebook($client);
-        $facebook->setConfig(array('app_id' => 'foo', 'secret' => 'bar'));
-        $request = $facebook->getRequest('http://www.heise.de');
+        $facebook->setConfig(['app_id' => 'foo', 'secret' => 'bar']);
+        $request = $facebook->getRequest('https://www.heise.de');
 
         $this->assertEquals('graph.facebook.com', $request->getUri()->getHost());
         $this->assertEquals('/v7.0/', $request->getUri()->getPath());
         $this->assertEquals(
-            'id='.urlencode('http://www.heise.de').'&fields=engagement&access_token=foo%7Cbar',
+            'id=' . urlencode('https://www.heise.de') . '&fields=engagement&access_token=foo%7Cbar',
             $request->getUri()->getQuery()
         );
     }

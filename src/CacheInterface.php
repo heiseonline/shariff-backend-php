@@ -15,7 +15,7 @@ interface CacheInterface
      * @param string $key
      * @param string $content
      */
-    public function setItem($key, $content);
+    public function setItem(string $key, string $content): void;
 
     /**
      * Get cache entry.
@@ -24,7 +24,7 @@ interface CacheInterface
      *
      * @return string
      */
-    public function getItem($key);
+    public function getItem(string $key): string;
 
     /**
      * Check if cache entry exists.
@@ -33,5 +33,5 @@ interface CacheInterface
      *
      * @return bool
      */
-    public function hasItem($key);
+    public function hasItem(string $key): bool;
 }
