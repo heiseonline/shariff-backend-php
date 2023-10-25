@@ -14,7 +14,7 @@ class Application
      *
      * @var array
      */
-    private static $configuration = [
+    private static array $configuration = [
         'cache' => [
             'ttl' => 60
         ],
@@ -37,7 +37,7 @@ class Application
     {
         header('Content-type: application/json');
 
-        $url = isset($_GET['url']) ? $_GET['url'] : '';
+        $url = $_GET['url'] ?? '';
         if ($url) {
             $shariff = new Backend(self::$configuration);
             echo json_encode($shariff->get($url));

@@ -9,15 +9,12 @@ use GuzzleHttp\ClientInterface;
  */
 class ServiceFactory
 {
-    /**
-     * @var ClientInterface
-     */
-    protected $client;
+    protected ClientInterface $client;
 
     /**
      * @var ServiceInterface[]
      */
-    protected $serviceMap = [];
+    protected array $serviceMap = [];
 
     /**
      * @param ClientInterface $client

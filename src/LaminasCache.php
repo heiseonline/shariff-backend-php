@@ -12,10 +12,7 @@ use Laminas\Cache\StorageFactory;
  */
 class LaminasCache implements CacheInterface
 {
-    /**
-     * @var StorageInterface
-     */
-    protected $cache;
+    protected StorageInterface $cache;
 
     /**
      * @param array $configuration
@@ -42,7 +39,7 @@ class LaminasCache implements CacheInterface
 
         $options = $cache->getOptions();
         $options->setNamespace('Shariff');
-        $options->setTtl($configuration['ttl']);
+        $options->setTtl((int)($configuration['ttl'] ?? 60));
 
         if ($options instanceof FilesystemOptions) {
             $options->setCacheDir($configuration['cacheDir'] ?? sys_get_temp_dir());

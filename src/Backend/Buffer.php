@@ -33,6 +33,6 @@ class Buffer extends Request implements ServiceInterface
      */
     public function extractCount(array $data): int
     {
-        return $data['shares'] ?? 0;
+        return (int)($data['shares'] ?? 0);
     }
 }

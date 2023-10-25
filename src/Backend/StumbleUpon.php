@@ -33,6 +33,6 @@ class StumbleUpon extends Request implements ServiceInterface
      */
     public function extractCount(array $data): int
     {
-        return (isset($data['result']['views'])) ? $data['result']['views'] + 0 : 0;
+        return (int)($data['result']['views'] ?? 0);
     }
 }

@@ -1,5 +1,9 @@
 # Changelog
 
+##
+
+* Add support for PHP 8.2 (liayn)
+
 ## 10.0.0, 2023-10-25
 
 * Dropped support for PHP 7.2 + PHP 7.3.
