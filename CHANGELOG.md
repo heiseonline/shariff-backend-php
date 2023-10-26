@@ -1,5 +1,15 @@
 # Changelog
 
+## 10.0.0, 2023-10-25
+
+* Dropped support for PHP 7.2 + PHP 7.3.
+* Added support for PHP-8. (erkenes)
+* Updated Facebook service to latest Facebook Graph API version v7.0. (richard67)
+* Set user-agent in example readme. (onli)
+* Updated Facebook service to latest Facebook Graph API version v18.0 and change field from engagement to og_object. (richard67)
+* Remove Flattr service. (richard67)
+* Remove AddThis service. (richard67)
+
 ## 9.0.2, 2020-02-28
 
 * Updated Facebook Graph API to version 6.0. (richard67)
