@@ -1,4 +1,5 @@
 <?php
+
 namespace Heise\Tests\Shariff;
 
 use Heise\Shariff\Backend;

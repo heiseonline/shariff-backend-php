@@ -33,20 +33,18 @@ class BackendManager
      * @param ServiceInterface[] $services
      */
     public function __construct(
-        string          $baseCacheKey,
-        CacheInterface  $cache,
+        string $baseCacheKey,
+        CacheInterface $cache,
         ClientInterface $client,
-                        $domains,
-        array           $services
-    )
-    {
+        $domains,
+        array $services
+    ) {
         $this->baseCacheKey = $baseCacheKey;
         $this->cache = $cache;
         $this->client = $client;
         if (is_array($domains)) {
             $this->domains = $domains;
-        }
-        elseif (is_string($domains)) {
+        } elseif (is_string($domains)) {
             trigger_error(
                 'Passing a domain string is deprecated since 5.1, please use an array instead.',
                 E_USER_DEPRECATED
@@ -100,8 +98,7 @@ class BackendManager
                 if ($this->logger !== null) {
                     $this->logger->warning($results[$i]->getMessage(), ['exception' => $results[$i]]);
                 }
-            }
-            else {
+            } else {
                 try {
                     $content = $service->filterResponse($results[$i]->getBody()->getContents());
                     $json = json_decode($content, true);
