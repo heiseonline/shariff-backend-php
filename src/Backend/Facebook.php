@@ -45,10 +45,6 @@ class Facebook extends Request implements ServiceInterface
      */
     public function extractCount(array $data): int
     {
-        if (isset($data['og_object']['engagement']['count'])) {
-            return $data['og_object']['engagement']['count'];
-        }
-
-        return 0;
+        return (int)($data['og_object']['engagement']['count'] ?? 0);
     }
 }

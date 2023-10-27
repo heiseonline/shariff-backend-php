@@ -14,35 +14,16 @@ use Psr\Log\LoggerInterface;
  */
 class BackendManager
 {
-    /**
-     * @var string
-     */
-    protected $baseCacheKey;
-
-    /**
-     * @var CacheInterface
-     */
-    protected $cache;
-
-    /**
-     * @var ClientInterface
-     */
-    protected $client;
-
-    /**
-     * @var array
-     */
-    protected $domains = [];
+    protected string $baseCacheKey;
+    protected CacheInterface $cache;
+    protected ClientInterface $client;
+    protected array $domains = [];
 
     /**
      * @var ServiceInterface[]
      */
-    protected $services;
-
-    /**
-     * @var LoggerInterface
-     */
-    protected $logger;
+    protected array $services;
+    protected ?LoggerInterface $logger = null;
 
     /**
      * @param string $baseCacheKey
@@ -75,10 +56,7 @@ class BackendManager
         $this->services = $services;
     }
 
-    /**
-     * @param LoggerInterface|null $logger
-     */
-    public function setLogger(LoggerInterface $logger = null): void
+    public function setLogger(?LoggerInterface $logger = null): void
     {
         $this->logger = $logger;
     }
@@ -127,7 +105,7 @@ class BackendManager
                 try {
                     $content = $service->filterResponse($results[$i]->getBody()->getContents());
                     $json = json_decode($content, true);
-                    $counts[$service->getName()] = is_array($json) ? (int)$service->extractCount($json) : 0;
+                    $counts[$service->getName()] = is_array($json) ? $service->extractCount($json) : 0;
                 } catch (\Exception $e) {
                     if ($this->logger !== null) {
                         $this->logger->warning($e->getMessage(), ['exception' => $e]);
@@ -142,11 +120,6 @@ class BackendManager
         return $counts;
     }
 
-    /**
-     * @param string $url
-     *
-     * @return bool
-     */
     private function isValidDomain(string $url): bool
     {
         if (!empty($this->domains)) {

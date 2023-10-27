@@ -10,15 +10,8 @@ use Psr\Http\Message\RequestInterface;
  */
 abstract class Request
 {
-    /**
-     * @var ClientInterface
-     */
-    protected $client;
-
-    /**
-     * @var array
-     */
-    protected $config;
+    protected ClientInterface $client;
+    protected array $config = [];
 
     /**
      * @param ClientInterface $client

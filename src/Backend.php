@@ -12,17 +12,14 @@ use Psr\Log\LoggerInterface;
  */
 class Backend
 {
-    /**
-     * @var BackendManager
-     */
-    protected $backendManager;
+    protected BackendManager $backendManager;
 
     /**
      * @param array $config
      */
     public function __construct(array $config)
     {
-        $domains = $config['domains'];
+        $domains = $config['domains'] ?? [];
         // stay compatible to old configs
         if (isset($config['domain'])) {
             $domains[] = $config['domain'];
@@ -35,13 +32,8 @@ class Backend
         $client = new Client($clientOptions);
         $baseCacheKey = md5(json_encode($config));
 
-        if (isset($config['cacheClass'])) {
-            $cacheClass = $config['cacheClass'];
-        }
-        else {
-            $cacheClass = LaminasCache::class;
-        }
-        $cache = new $cacheClass($config['cache']);
+        $cacheClass = $config['cacheClass'] ?? LaminasCache::class;
+        $cache = new $cacheClass($config['cache'] ?? []);
 
         $serviceFactory = new ServiceFactory($client);
         $this->backendManager = new BackendManager(
@@ -49,7 +41,7 @@ class Backend
             $cache,
             $client,
             $domains,
-            $serviceFactory->getServicesByName($config['services'], $config)
+            $serviceFactory->getServicesByName($config['services'] ?? [], $config)
         );
     }
 

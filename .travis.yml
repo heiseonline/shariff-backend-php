@@ -3,11 +3,10 @@ language: php
 sudo: false
 
 php:
- - 7.2
- - 7.3
  - 7.4
  - 8.0
  - 8.1
+ - 8.2
 
 env:
   - SHARIFF_RUN_LINT=1
@@ -45,5 +44,5 @@ deploy:
   on:
     repo: heiseonline/shariff-backend-php
     tags: true
-    php: 7.2
+    php: 7.4
     condition: $SHARIFF_RUN_TEST = 1

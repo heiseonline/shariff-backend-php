@@ -41,6 +41,6 @@ class Pinterest extends Request implements ServiceInterface
      */
     public function extractCount(array $data): int
     {
-        return $data['count'] ?? 0;
+        return (int)($data['count'] ?? 0);
     }
 }

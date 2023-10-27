@@ -36,7 +36,7 @@ class Vk extends Request implements ServiceInterface
         // 'VK.Share.count(1, x);' with x being the count
         $strCount = mb_substr($content, 18, mb_strlen($content) - 20);
 
-        return ($strCount ? '{"count": ' . $strCount . '}' : '');
+        return $strCount ? '{"count": ' . $strCount . '}' : '';
     }
 
     /**
@@ -44,6 +44,6 @@ class Vk extends Request implements ServiceInterface
      */
     public function extractCount(array $data): int
     {
-        return $data['count'] ?? 0;
+        return (int)($data['count'] ?? 0);
     }
 }
