@@ -1,26 +1,34 @@
 <?php
 
-return PhpCsFixer\Config::create()
+$config = new PhpCsFixer\Config();
+$config
     ->setRiskyAllowed(true)
-    ->setRules(array(
-        'combine_consecutive_unsets' => true,
-        'heredoc_to_nowdoc' => true,
-        'no_extra_consecutive_blank_lines' => array('break', 'continue', 'extra', 'return', 'throw', 'use', 'parenthesis_brace_block', 'square_brace_block', 'curly_brace_block'),
-        'no_unreachable_default_argument_value' => true,
-        'no_useless_else' => true,
-        'no_useless_return' => true,
-        'ordered_class_elements' => true,
-        'ordered_imports' => true,
-        'php_unit_strict' => true,
-        'phpdoc_add_missing_param_annotation' => true,
-        'phpdoc_order' => true,
-        'psr4' => true,
-        'strict_comparison' => true,
-        'strict_param' => true,
-    ))
+    ->setRules(
+        [
+            // Basic ruleset is PSR 12
+            '@PSR12'                          => true,
+            // Short array syntax
+            'array_syntax'                    => ['syntax' => 'short'],
+            // Lists should not have a trailing comma like list($foo, $bar,) = ...
+            'no_trailing_comma_in_singleline' => true,
+            // Arrays on multiline should have a trailing comma
+            'trailing_comma_in_multiline'     => ['elements' => ['arrays']],
+            // Align elements in multiline array and variable declarations on new lines below each other
+            'binary_operator_spaces'          => ['operators' => ['=>' => 'align_single_space_minimal', '=' => 'align']],
+            // The "No break" comment in switch statements
+            'no_break_comment'                => ['comment_text' => 'No break'],
+            // Remove unused imports
+            'no_unused_imports'               => true,
+            // Classes from the global namespace should not be imported
+            'global_namespace_import'         => ['import_classes' => false, 'import_constants' => false, 'import_functions' => false],
+            // Alpha order imports
+            'ordered_imports'                 => ['imports_order' => ['class', 'function', 'const'], 'sort_algorithm' => 'alpha'],
+        ]
+    )
     ->setFinder(
         PhpCsFixer\Finder::create()
             ->exclude('tests/Fixtures')
             ->in(__DIR__ . '/src')
-    )
-;
+    );
+
+return $config;

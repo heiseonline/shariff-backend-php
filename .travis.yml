@@ -19,9 +19,9 @@ before_script:
  - bash -c 'if [ -n "$SHARIFF_RUN_LINT" ]; then composer require friendsofphp/php-cs-fixer --dev; fi;'
 
 script:
- - bash -c 'if [ -n "$SHARIFF_RUN_LINT" ]; then vendor/bin/phpcs --standard=PSR2 src/ tests/; fi;'
+ - bash -c 'if [ -n "$SHARIFF_RUN_LINT" ]; then vendor/bin/phpcs --standard=PSR12 src/ tests/; fi;'
  - bash -c 'if [ -n "$SHARIFF_RUN_LINT" ]; then make cs_dry_run; fi;'
- - bash -c 'if [ -n "$SHARIFF_RUN_TEST" ]; then vendor/bin/phpunit --coverage-text; fi;'
+ - bash -c 'if [ -n "$SHARIFF_RUN_TEST" ]; then export XDEBUG_MODE=coverage; vendor/bin/phpunit --coverage-text -v; fi;'
 
 addons:
  apt:
