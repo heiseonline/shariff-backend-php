@@ -12,14 +12,14 @@
          bootstrap="./vendor/autoload.php"
          xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/9.3/phpunit.xsd"
 >
-  <coverage>
-    <include>
-      <directory>./src/</directory>
-    </include>
-  </coverage>
-  <testsuites>
-    <testsuite name="Shariff Test Suite">
-      <directory>./tests/</directory>
-    </testsuite>
-  </testsuites>
+    <coverage>
+        <include>
+            <directory>./src/</directory>
+        </include>
+    </coverage>
+    <testsuites>
+        <testsuite name="Shariff Test Suite">
+            <directory>./tests/</directory>
+        </testsuite>
+    </testsuites>
 </phpunit>
