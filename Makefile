@@ -1,5 +1,5 @@
 cs:
-	vendor/bin/php-cs-fixer fix -vvv
+	vendor/bin/php-cs-fixer fix --verbose
 
 cs_dry_run:
-	vendor/bin/php-cs-fixer fix -vvv --dry-run --diff
+	vendor/bin/php-cs-fixer fix --verbose --dry-run --diff
