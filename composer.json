@@ -15,6 +15,7 @@
         }
     ],
     "require": {
+        "php": "^7.4 || ^8.0 <8.3",
         "ext-json": "*",
         "ext-mbstring": "*",
         "guzzlehttp/guzzle": "^7.4.1",
@@ -22,10 +23,11 @@
         "laminas/laminas-cache-storage-adapter-filesystem": "^2.0",
         "laminas/laminas-cache-storage-adapter-memory": "^2.0",
         "laminas/laminas-cache-storage-deprecated-factory": "^1.0",
-        "php": "^7.4 || ^8.0 <8.3",
         "psr/log": "^1 | ^2 | ^3"
     },
     "require-dev": {
+        "captainhook/captainhook": "^5.19",
+        "friendsofphp/php-cs-fixer": "^3.47",
         "phpunit/phpunit": "^9.5"
     },
     "config": {

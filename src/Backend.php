@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace Heise\Shariff;
 
@@ -20,28 +20,30 @@ class Backend
     public function __construct(array $config)
     {
         $domains = $config['domains'] ?? [];
+
         // stay compatible to old configs
         if (isset($config['domain'])) {
             $domains[] = $config['domain'];
         }
 
         $clientOptions = [];
+
         if (isset($config['client'])) {
             $clientOptions = $config['client'];
         }
-        $client       = new Client($clientOptions);
+        $client = new Client($clientOptions);
         $baseCacheKey = md5(json_encode($config));
 
         $cacheClass = $config['cacheClass'] ?? LaminasCache::class;
-        $cache      = new $cacheClass($config['cache'] ?? []);
+        $cache = new $cacheClass($config['cache'] ?? []);
 
-        $serviceFactory       = new ServiceFactory($client);
+        $serviceFactory = new ServiceFactory($client);
         $this->backendManager = new BackendManager(
             $baseCacheKey,
             $cache,
             $client,
             $domains,
-            $serviceFactory->getServicesByName($config['services'] ?? [], $config)
+            $serviceFactory->getServicesByName($config['services'] ?? [], $config),
         );
     }
 

@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace Heise\Shariff\Backend;
 
@@ -24,7 +24,7 @@ class Buffer extends Request implements ServiceInterface
     {
         return new \GuzzleHttp\Psr7\Request(
             'GET',
-            'https://api.bufferapp.com/1/links/shares.json?url=' . urlencode($url)
+            'https://api.bufferapp.com/1/links/shares.json?url=' . urlencode($url),
         );
     }
 

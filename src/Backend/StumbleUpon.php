@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace Heise\Shariff\Backend;
 
@@ -24,7 +24,7 @@ class StumbleUpon extends Request implements ServiceInterface
     {
         return new \GuzzleHttp\Psr7\Request(
             'GET',
-            'https://www.stumbleupon.com/services/1.01/badge.getinfo?url=' . urlencode($url)
+            'https://www.stumbleupon.com/services/1.01/badge.getinfo?url=' . urlencode($url),
         );
     }
 
