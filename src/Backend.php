@@ -29,13 +29,13 @@ class Backend
         if (isset($config['client'])) {
             $clientOptions = $config['client'];
         }
-        $client = new Client($clientOptions);
+        $client       = new Client($clientOptions);
         $baseCacheKey = md5(json_encode($config));
 
         $cacheClass = $config['cacheClass'] ?? LaminasCache::class;
-        $cache = new $cacheClass($config['cache'] ?? []);
+        $cache      = new $cacheClass($config['cache'] ?? []);
 
-        $serviceFactory = new ServiceFactory($client);
+        $serviceFactory       = new ServiceFactory($client);
         $this->backendManager = new BackendManager(
             $baseCacheKey,
             $cache,
