@@ -15,13 +15,12 @@ env:
 before_script:
  - bash -c 'if [ -n "$GH_TOKEN" ]; then composer config github-oauth.github.com ${GH_TOKEN}; fi;'
  - bash -c 'if [ -n "$SHARIFF_RUN_TEST" ]; then composer install --prefer-dist --no-interaction; fi;'
- - bash -c 'if [ -n "$SHARIFF_RUN_LINT" ]; then composer require "squizlabs/php_codesniffer=*"; fi;'
- - bash -c 'if [ -n "$SHARIFF_RUN_LINT" ]; then composer require friendsofphp/php-cs-fixer --dev; fi;'
 
 script:
- - bash -c 'if [ -n "$SHARIFF_RUN_LINT" ]; then vendor/bin/phpcs --standard=PSR12 index.php src/ tests/; fi;'
- - bash -c 'if [ -n "$SHARIFF_RUN_LINT" ]; then make cs_dry_run; fi;'
- - bash -c 'if [ -n "$SHARIFF_RUN_TEST" ]; then export XDEBUG_MODE=coverage; vendor/bin/phpunit --coverage-text -v; fi;'
+ - bash -c 'if [ -n "$SHARIFF_RUN_LINT" ]; then composer run cs-fixer-dry; fi;'
+ - bash -c 'if [ -n "$SHARIFF_RUN_LINT" ]; then composer run phpmd; fi;'
+ - bash -c 'if [ -n "$SHARIFF_RUN_LINT" ]; then composer run phpstan; fi;'
+ - bash -c 'if [ -n "$SHARIFF_RUN_TEST" ]; then composer run phpunit; fi;'
 
 addons:
  apt:
