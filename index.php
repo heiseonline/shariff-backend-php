@@ -9,6 +9,8 @@ require_once __DIR__ . '/vendor/autoload.php';
 
 /**
  * Demo Application using Shariff Backend
+ *
+ * @SuppressWarnings(PHPMD.Superglobals)
  */
 class Application
 {
