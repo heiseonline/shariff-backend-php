@@ -1,8 +1,9 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace Heise\Shariff\Backend;
 
 use GuzzleHttp\ClientInterface;
+use InvalidArgumentException;
 
 /**
  * Class ServiceFactory.
@@ -42,10 +43,11 @@ class ServiceFactory
     public function getServicesByName(array $serviceNames, array $config): array
     {
         $services = [];
+
         foreach ($serviceNames as $serviceName) {
             try {
                 $service = $this->createService($serviceName, $config);
-            } catch (\InvalidArgumentException $e) {
+            } catch (InvalidArgumentException $e) {
                 continue;
             }
             $services[] = $service;
@@ -66,8 +68,9 @@ class ServiceFactory
             $service = $this->serviceMap[$serviceName];
         } else {
             $serviceClass = '\\Heise\\Shariff\\Backend\\' . $serviceName;
+
             if (!class_exists($serviceClass)) {
-                throw new \InvalidArgumentException('Invalid service name "' . $serviceName . '".');
+                throw new InvalidArgumentException('Invalid service name "' . $serviceName . '".');
             }
             $service = new $serviceClass($this->client);
         }

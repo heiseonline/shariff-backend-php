@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace Heise\Shariff;
 
@@ -19,11 +19,11 @@ class Application
      */
     private static array $configuration = [
         'cache' => [
-            'ttl' => 60
+            'ttl' => 60,
         ],
         'domains' => [
             'www.heise.de',
-            'www.ct.de'
+            'www.ct.de',
         ],
         'services' => [
             'Facebook',
@@ -31,8 +31,8 @@ class Application
             'Pinterest',
             'Xing',
             'Buffer',
-            'Vk'
-        ]
+            'Vk',
+        ],
     ];
 
     public static function run()
@@ -40,6 +40,7 @@ class Application
         header('Content-type: application/json');
 
         $url = $_GET['url'] ?? '';
+
         if ($url) {
             $shariff = new Backend(self::$configuration);
             echo json_encode($shariff->get($url));
