@@ -22,18 +22,10 @@ class LaminasCache implements CacheInterface
      */
     public function __construct(array $configuration)
     {
-        if (!isset($configuration['adapter'])) {
-            $configuration['adapter'] = 'Filesystem';
-        }
-
-        if (!isset($configuration['adapterOptions'])) {
-            $configuration['adapterOptions'] = [];
-        }
-
         $cache = StorageFactory::factory([
             'adapter' => [
-                'name'    => $configuration['adapter'],
-                'options' => $configuration['adapterOptions'],
+                'name'    => $configuration['adapter'] ?? 'Filesystem',
+                'options' => $configuration['adapterOptions'] ?? [],
             ],
         ]);
 
