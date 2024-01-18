@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace Heise\Shariff\Backend;
 
@@ -24,7 +24,7 @@ class Pinterest extends Request implements ServiceInterface
     {
         return new \GuzzleHttp\Psr7\Request(
             'GET',
-            'https://api.pinterest.com/v1/urls/count.json?callback=x&url=' . urlencode($url)
+            'https://api.pinterest.com/v1/urls/count.json?callback=x&url=' . urlencode($url),
         );
     }
 

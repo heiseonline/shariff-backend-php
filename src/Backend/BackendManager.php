@@ -1,7 +1,8 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace Heise\Shariff\Backend;
 
+use Exception;
 use GuzzleHttp\ClientInterface;
 use GuzzleHttp\Exception\TransferException;
 use GuzzleHttp\Pool;
@@ -37,17 +38,18 @@ class BackendManager
         CacheInterface $cache,
         ClientInterface $client,
         $domains,
-        array $services
+        array $services,
     ) {
         $this->baseCacheKey = $baseCacheKey;
-        $this->cache        = $cache;
-        $this->client       = $client;
+        $this->cache = $cache;
+        $this->client = $client;
+
         if (is_array($domains)) {
             $this->domains = $domains;
         } elseif (is_string($domains)) {
             trigger_error(
                 'Passing a domain string is deprecated since 5.1, please use an array instead.',
-                E_USER_DEPRECATED
+                E_USER_DEPRECATED,
             );
             $this->domains = [$domains];
         }
@@ -85,25 +87,36 @@ class BackendManager
             function ($service) use ($url) {
                 return $service->getRequest($url);
             },
-            $this->services
+            $this->services,
         );
 
         /** @var ResponseInterface[]|TransferException[] $results */
         $results = Pool::batch($this->client, $requests);
 
+        $counts = $this->buildCounts($results);
+
+        $this->cache->setItem($cacheKey, json_encode($counts));
+
+        return $counts;
+    }
+
+    private function buildCounts(array $results): array
+    {
         $counts = [];
-        $i      = 0;
+        $i = 0;
+
         foreach ($this->services as $service) {
             if ($results[$i] instanceof TransferException) {
                 if ($this->logger !== null) {
                     $this->logger->warning($results[$i]->getMessage(), ['exception' => $results[$i]]);
                 }
             } else {
+                /** @var ResponseInterface[] $results */
                 try {
-                    $content                     = $service->filterResponse($results[$i]->getBody()->getContents());
-                    $json                        = json_decode($content, true);
+                    $content = $service->filterResponse($results[$i]->getBody()->getContents());
+                    $json = json_decode($content, true);
                     $counts[$service->getName()] = is_array($json) ? $service->extractCount($json) : 0;
-                } catch (\Exception $e) {
+                } catch (Exception $e) {
                     if ($this->logger !== null) {
                         $this->logger->warning($e->getMessage(), ['exception' => $e]);
                     }
@@ -111,8 +124,6 @@ class BackendManager
             }
             ++$i;
         }
-
-        $this->cache->setItem($cacheKey, json_encode($counts));
 
         return $counts;
     }

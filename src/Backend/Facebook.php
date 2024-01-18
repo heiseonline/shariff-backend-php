@@ -1,7 +1,8 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace Heise\Shariff\Backend;
 
+use InvalidArgumentException;
 use Psr\Http\Message\RequestInterface;
 
 /**
@@ -23,7 +24,7 @@ class Facebook extends Request implements ServiceInterface
     public function setConfig(array $config): void
     {
         if (empty($config['app_id']) || empty($config['secret'])) {
-            throw new \InvalidArgumentException('The Facebook app_id and secret must not be empty.');
+            throw new InvalidArgumentException('The Facebook app_id and secret must not be empty.');
         }
         parent::setConfig($config);
     }
@@ -34,7 +35,7 @@ class Facebook extends Request implements ServiceInterface
     public function getRequest(string $url): RequestInterface
     {
         $accessToken = urlencode($this->config['app_id']) . '|' . urlencode($this->config['secret']);
-        $query       = 'https://graph.facebook.com/v18.0/?id='
+        $query = 'https://graph.facebook.com/v18.0/?id='
             . urlencode($url) . '&fields=og_object%7Bengagement%7D&access_token=' . $accessToken;
 
         return new \GuzzleHttp\Psr7\Request('GET', $query);

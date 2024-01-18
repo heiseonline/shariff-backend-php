@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace Heise\Shariff\Backend;
 
@@ -31,6 +31,7 @@ class Reddit extends Request implements ServiceInterface
     public function extractCount(array $data): int
     {
         $count = 0;
+
         if (!empty($data['data']['children'])) {
             foreach ($data['data']['children'] as $child) {
                 if (!empty($child['data']['score'])) {
