@@ -50,6 +50,7 @@
         "cs-fixer-fix": "vendor/bin/php-cs-fixer fix --diff",
         "phpunit": "XDEBUG_MODE=coverage vendor/bin/phpunit --coverage-text -v",
         "phpmd": "vendor/bin/phpmd . gitlab phpmd.xml",
-        "phpstan": "vendor/bin/phpstan analyse --no-progress --error-format gitlab src index.php"
+        "phpstan": "vendor/bin/phpstan analyse --no-progress --error-format gitlab src index.php",
+        "lint": "bash lint.sh"
     }
 }
