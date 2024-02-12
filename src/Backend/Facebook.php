@@ -34,7 +34,7 @@ class Facebook extends Request implements ServiceInterface
     public function getRequest(string $url): RequestInterface
     {
         $accessToken = urlencode($this->config['app_id']) . '|' . urlencode($this->config['secret']);
-        $query       = 'https://graph.facebook.com/v18.0/?id='
+        $query       = 'https://graph.facebook.com/v19.0/?id='
             . urlencode($url) . '&fields=og_object%7Bengagement%7D&access_token=' . $accessToken;
 
         return new \GuzzleHttp\Psr7\Request('GET', $query);
