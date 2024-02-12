@@ -1,8 +1,11 @@
 <?php
 
-require_once __DIR__ . '/vendor/autoload.php';
+namespace Heise\Shariff;
 
 use Heise\Shariff\Backend;
+
+// phpcs:disable PSR1.Files.SideEffects
+require_once __DIR__ . '/vendor/autoload.php';
 
 /**
  * Demo Application using Shariff Backend
@@ -41,8 +44,7 @@ class Application
         if ($url) {
             $shariff = new Backend(self::$configuration);
             echo json_encode($shariff->get($url));
-        }
-        else {
+        } else {
             echo json_encode(null);
         }
     }

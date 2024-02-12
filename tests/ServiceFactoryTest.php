@@ -12,7 +12,6 @@ use PHPUnit\Framework as PHPUnit;
  */
 class ServiceFactoryTest extends PHPUnit\TestCase
 {
-
     public function testSetConfig()
     {
         /** @var ServiceInterface|PHPUnit\MockObject\MockObject $mockService */
