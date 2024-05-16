@@ -2,6 +2,7 @@
 
 ##
 
+* Add support for PHP 8.3 (liayn)
 * Add support for PHP 8.2 (liayn)
 
 ## 10.0.0, 2023-10-25

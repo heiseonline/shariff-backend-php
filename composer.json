@@ -22,7 +22,7 @@
         "laminas/laminas-cache-storage-adapter-filesystem": "^2.0",
         "laminas/laminas-cache-storage-adapter-memory": "^2.0",
         "laminas/laminas-cache-storage-deprecated-factory": "^1.0",
-        "php": "^7.4 || ^8.0 <8.3",
+        "php": "^7.4 || ^8.0 <8.4",
         "psr/log": "^1 | ^2 | ^3"
     },
     "require-dev": {
