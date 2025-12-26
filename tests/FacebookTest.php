@@ -36,7 +36,7 @@ class FacebookTest extends PHPUnit\TestCase
         $request = $facebook->getRequest('https://www.heise.de');
 
         $this->assertEquals('graph.facebook.com', $request->getUri()->getHost());
-        $this->assertEquals('/v22.0/', $request->getUri()->getPath());
+        $this->assertEquals('/v24.0/', $request->getUri()->getPath());
         $this->assertEquals(
             'id=' . urlencode('https://www.heise.de') . '&fields=og_object%7Bengagement%7D&access_token=foo%7Cbar',
             $request->getUri()->getQuery()
