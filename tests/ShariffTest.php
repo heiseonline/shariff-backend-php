@@ -16,7 +16,6 @@ class ShariffTest extends PHPUnit\TestCase
      */
     protected $services = [
         // "Facebook",
-        // "Flattr",
         "Pinterest",
         "Reddit",
         // "StumbleUpon",
@@ -34,12 +33,6 @@ class ShariffTest extends PHPUnit\TestCase
         ]);
 
         $counts = $shariff->get('https://www.heise.de');
-
-        // $this->assertArrayHasKey('flattr', $counts);
-        if (array_key_exists('flattr', $counts)) {
-            $this->assertIsInt($counts['flattr']);
-            $this->assertGreaterThanOrEqual(0, $counts['flattr']);
-        }
 
         // $this->assertArrayHasKey('pinterest', $counts);
         if (array_key_exists('pinterest', $counts)) {
