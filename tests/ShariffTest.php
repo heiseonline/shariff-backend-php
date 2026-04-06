@@ -19,7 +19,6 @@ class ShariffTest extends PHPUnit\TestCase
         // "Flattr",
         "Pinterest",
         "Reddit",
-        // "StumbleUpon",
         "Xing",
         "Buffer",
         "Vk"
@@ -45,12 +44,6 @@ class ShariffTest extends PHPUnit\TestCase
         if (array_key_exists('pinterest', $counts)) {
             $this->assertIsInt($counts['pinterest']);
             $this->assertGreaterThanOrEqual(0, $counts['pinterest']);
-        }
-
-        // $this->assertArrayHasKey('stumbleupon', $counts);
-        if (array_key_exists('stumbleupon', $counts)) {
-            $this->assertIsInt($counts['stumbleupon']);
-            $this->assertGreaterThanOrEqual(0, $counts['stumbleupon']);
         }
 
         // $this->assertArrayHasKey('xing', $counts);
