@@ -2,6 +2,7 @@
 
 ##
 
+* Add PHP 8.3 and 8.4 support, drop PHP 7.4 and 8.0 support, update dependencies (richard67)
 * Add support for PHP 8.2 (liayn)
 
 ## 10.0.0, 2023-10-25
