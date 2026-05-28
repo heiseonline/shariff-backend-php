@@ -7,7 +7,6 @@ shariff-backend-php.tar.gz
 ### Composer ###
 composer.phar
 vendor/
-
 .php-cs-fixer.cache
 .phpunit.result.cache
 
