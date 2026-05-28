@@ -48,9 +48,17 @@
     "scripts": {
         "cs-fixer-dry": "vendor/bin/php-cs-fixer fix --dry-run --diff",
         "cs-fixer-fix": "vendor/bin/php-cs-fixer fix --diff",
-        "phpunit": "XDEBUG_MODE=coverage vendor/bin/phpunit --coverage-text -v",
-        "phpmd": "vendor/bin/phpmd . gitlab phpmd.xml",
+        "phpunit": "vendor/bin/phpunit",
+        "phpunit-coverage": "XDEBUG_MODE=coverage vendor/bin/phpunit --coverage-text -v",
+        "phpmd": "vendor/bin/phpmd src,index.php gitlab phpmd.xml",
         "phpstan": "vendor/bin/phpstan analyse --no-progress --error-format gitlab src index.php",
-        "lint": "bash lint.sh"
+        "lint": "sh lint.sh",
+        "check": [
+            "@lint",
+            "@cs-fixer-dry",
+            "@phpmd",
+            "@phpstan",
+            "@phpunit"
+        ]
     }
 }

@@ -7,7 +7,7 @@
         "enabled": true,
         "actions": [
             {
-                "action": "XDEBUG_MODE=coverage vendor/bin/phpunit --coverage-text -v"
+                "action": "composer run check"
             }
         ]
     },
@@ -15,16 +15,16 @@
         "enabled": true,
         "actions": [
             {
-                "action": "\\CaptainHook\\App\\Hook\\PHP\\Action\\Linting"
+                "action": "composer run lint"
             },
             {
-                "action": "vendor/bin/php-cs-fixer fix --verbose --dry-run --diff"
+                "action": "composer run cs-fixer-dry"
             },
             {
-                "action": "vendor/bin/phpmd . gitlab phpmd.xml"
+                "action": "composer run phpmd"
             },
             {
-                "action": "vendor/bin/phpstan analyse --no-progress --error-format gitlab src index.php"
+                "action": "composer run phpstan"
             }
         ]
     },
