@@ -38,7 +38,7 @@ class BackendManager
         CacheInterface $cache,
         ClientInterface $client,
         $domains,
-        array $services,
+        array $services
     ) {
         $this->baseCacheKey = $baseCacheKey;
         $this->cache = $cache;
