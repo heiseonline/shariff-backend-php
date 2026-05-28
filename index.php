@@ -28,7 +28,6 @@ class Application
         'services' => [
             'Facebook',
             'Reddit',
-            'StumbleUpon',
             'Pinterest',
             'Xing',
             'Buffer',

@@ -13,7 +13,6 @@ Supported services
 - Facebook
 - Pinterest
 - Reddit
-- StumbleUpon
 - Xing
 - Vk
 
@@ -117,7 +116,6 @@ private static array $configuration = [
     'services' => [
         'Facebook',
         'Reddit',
-        'StumbleUpon',
         'Pinterest',
         'Xing',
         'Buffer',
@@ -137,7 +135,7 @@ Testing your installation
 If the backend runs under `http://example.com/my-shariff-backend/`, calling the URL `http://example.com/my-shariff-backend/?url=http%3A%2F%2Fwww.example.com` should return a JSON structure with numbers in it, e.g.:
 
 ```json
-{"facebook":1452,"reddit":7,"stumbleupon":4325,"pinterest":3,"buffer":29,"vk":326}
+{"facebook":1452,"reddit":7,"pinterest":3,"buffer":29,"vk":326}
 ```
 
 
@@ -152,7 +150,7 @@ use Heise\Shariff\Backend;
 $options = [
 	"domains"  => ["www.heise.de", "www.ct.de"],
 	"cache"    => ["ttl" => 1],
-	"services" => ["Facebook", "Reddit", "StumbleUpon", "Pinterest", "Buffer", "Vk"]
+	"services" => ["Facebook", "Reddit", "Pinterest", "Buffer", "Vk"]
 ];
 $shariff = new Backend($options);
 $counts = $shariff->get("https://www.heise.de/");
