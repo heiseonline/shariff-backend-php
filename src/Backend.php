@@ -5,6 +5,8 @@ namespace Heise\Shariff;
 use GuzzleHttp\Client;
 use Heise\Shariff\Backend\BackendManager;
 use Heise\Shariff\Backend\ServiceFactory;
+use InvalidArgumentException;
+use JsonException;
 use Psr\Log\LoggerInterface;
 
 /**
@@ -16,6 +18,9 @@ class Backend
 
     /**
      * @param array $config
+     *
+     * @throws JsonException
+     * @throws InvalidArgumentException
      */
     public function __construct(array $config)
     {
@@ -32,9 +37,15 @@ class Backend
             $clientOptions = $config['client'];
         }
         $client = new Client($clientOptions);
-        $baseCacheKey = md5(json_encode($config));
+        $baseCacheKey = md5(json_encode($config, JSON_THROW_ON_ERROR));
 
         $cacheClass = $config['cacheClass'] ?? LaminasCache::class;
+
+        if (!is_a($cacheClass, CacheInterface::class, true)) {
+            throw new InvalidArgumentException(
+                sprintf('Cache class "%s" must implement %s.', $cacheClass, CacheInterface::class)
+            );
+        }
         $cache = new $cacheClass($config['cache'] ?? []);
 
         $serviceFactory = new ServiceFactory($client);

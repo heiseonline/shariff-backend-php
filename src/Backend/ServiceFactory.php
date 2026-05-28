@@ -73,6 +73,12 @@ class ServiceFactory
                 throw new InvalidArgumentException('Invalid service name "' . $serviceName . '".');
             }
             $service = new $serviceClass($this->client);
+
+            if (!$service instanceof ServiceInterface) {
+                throw new InvalidArgumentException(
+                    'Service "' . $serviceName . '" must implement ' . ServiceInterface::class . '.'
+                );
+            }
         }
 
         if (isset($config[$serviceName])) {

@@ -9,8 +9,6 @@ require_once __DIR__ . '/vendor/autoload.php';
 
 /**
  * Demo Application using Shariff Backend
- *
- * @SuppressWarnings(PHPMD.Superglobals)
  */
 class Application
 {
@@ -37,7 +35,10 @@ class Application
         ],
     ];
 
-    public static function run()
+    /**
+     * @SuppressWarnings(PHPMD.Superglobals)
+     */
+    public static function run(): void
     {
         header('Content-type: application/json');
 
