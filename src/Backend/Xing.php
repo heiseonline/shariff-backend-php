@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace Heise\Shariff\Backend;
 
@@ -24,7 +24,7 @@ class Xing extends Request implements ServiceInterface
     {
         return new \GuzzleHttp\Psr7\Request(
             'POST',
-            'https://www.xing-share.com/spi/shares/statistics?url=' . urlencode($url)
+            'https://www.xing-share.com/spi/shares/statistics?url=' . urlencode($url),
         );
     }
 

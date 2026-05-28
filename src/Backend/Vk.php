@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace Heise\Shariff\Backend;
 
@@ -24,7 +24,7 @@ class Vk extends Request implements ServiceInterface
     {
         return new \GuzzleHttp\Psr7\Request(
             'GET',
-            'https://vk.com/share.php?act=count&index=1&url=' . urlencode($url)
+            'https://vk.com/share.php?act=count&index=1&url=' . urlencode($url),
         );
     }
 
