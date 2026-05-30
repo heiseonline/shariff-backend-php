@@ -79,19 +79,29 @@ class ShariffTest extends PHPUnit\TestCase
 
     public function testCacheOptions()
     {
-        $this->expectException(OutOfSpaceException::class);
+        $cacheFolder = sys_get_temp_dir() . '/shariff-test-' . time();
+
+        mkdir($cacheFolder);
 
         $shariff = new Backend([
             "domains" => ['www.heise.de'],
             "cache" => [
-                "adapter" => "Memory",
-                "adapterOptions" => ["memoryLimit" => 10],
-                "ttl" => 1
+                "adapter" => "Filesystem",
+                "adapterOptions" => ["dir_level" => 2],
+                "cacheDir" => $cacheFolder,
+                "ttl" => 120
             ],
             "services" => $this->services
         ]);
         $shariff->get('https://www.heise.de');
-        $this->fail('10 bytes should not be enough for the cache');
+
+        $cacheFolderIterator  = new \RecursiveIteratorIterator(
+            new \RecursiveDirectoryIterator($cacheFolder, \RecursiveDirectoryIterator::SKIP_DOTS),
+            \RecursiveIteratorIterator::CHILD_FIRST
+        );
+
+        // There should be 2 subdirectory levels + 1 file
+        $this->assertCount(3, iterator_to_array($cacheFolderIterator));
     }
 
     public function testClientOptions()

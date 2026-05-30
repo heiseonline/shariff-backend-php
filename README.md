@@ -21,10 +21,10 @@ Requirements
 
 To run Shariff PHP Backend on your server you need one of these PHP versions:
 
-* 8.1
 * 8.2
 * 8.3
 * 8.4
+* 8.5
 
 Older versions and HHVM are not supported.
 
@@ -52,7 +52,7 @@ By default Shariff uses the Filesystem cache. By specifying a different adapter 
 |-------------|------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `ttl` | `integer` | Time that the counts are cached (in seconds)                                                                                                                                                                                                                                                                                |
 | `cacheDir` | `string` | Directory used for the cache. Default: system temp directory                                                                                                                                                                                                                                                                |
-| `adapter` | `string` | Name of cache adapter (e.g. Apc, Memcache, etc.) <br/>You can find an overview of all available Adapters [here](https://docs.laminas.dev/laminas-cache/v3/storage/adapter/). It is required to [install these separately](https://docs.laminas.dev/laminas-cache/v3/migration/to-version-3/#satellite-packages) through composer |
+| `adapter` | `string` | Name of cache adapter (e.g. Apc, Memcache, etc.) <br/>You can find an overview of all available Adapters [here](https://docs.laminas.dev/laminas-cache/v4/storage/adapter/). It is required to [install these separately](https://docs.laminas.dev/laminas-cache/v3/migration/to-version-3/#satellite-packages) through composer |
 | `adapterOptions` | `object` | Options for the cache adapter                                                                                                                                                                                                                                                                                               |
 
 *These option apply for the default Cache class (`LaminasCache`) only. If you implement custom caching, you can specify your own options.*
