@@ -12,7 +12,7 @@ interface CacheInterface
     /**
      * Set cache entry.
      *
-     * @param string $key
+     * @param non-empty-string $key
      * @param string $content
      */
     public function setItem(string $key, string $content): void;
@@ -20,7 +20,7 @@ interface CacheInterface
     /**
      * Get cache entry.
      *
-     * @param string $key
+     * @param non-empty-string $key
      *
      * @return string
      */
@@ -29,7 +29,7 @@ interface CacheInterface
     /**
      * Check if cache entry exists.
      *
-     * @param string $key
+     * @param non-empty-string $key
      *
      * @return bool
      */

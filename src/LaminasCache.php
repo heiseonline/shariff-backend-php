@@ -2,10 +2,10 @@
 
 namespace Heise\Shariff;
 
+use Laminas\Cache\Storage\Adapter\AdapterOptions;
 use Laminas\Cache\Storage\Adapter\FilesystemOptions;
 use Laminas\Cache\Storage\ClearExpiredInterface;
 use Laminas\Cache\Storage\StorageInterface;
-use Laminas\Cache\StorageFactory;
 
 /**
  * Implement LaminasCache.
@@ -22,13 +22,12 @@ class LaminasCache implements CacheInterface
      */
     public function __construct(array $configuration)
     {
-        $cache = StorageFactory::factory([
-            'adapter' => [
-                'name'    => $configuration['adapter'] ?? 'Filesystem',
-                'options' => $configuration['adapterOptions'] ?? [],
-            ],
-        ]);
+        $className = '\\Laminas\\Cache\\Storage\\Adapter\\' . ($configuration['adapter'] ?? 'Filesystem');
 
+        /** @var StorageInterface $cache */
+        $cache = new $className($configuration['adapterOptions'] ?? []);
+
+        /** @var AdapterOptions $options */
         $options = $cache->getOptions();
         $options->setNamespace('Shariff');
         $options->setTtl((int)($configuration['ttl'] ?? 60));
