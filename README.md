@@ -114,12 +114,12 @@ private static array $configuration = [
         'www.ct.de'
     ],
     'services' => [
-        'Facebook',
-        'Reddit',
-        'Pinterest',
-        'Xing',
         'Buffer',
-        'Vk'
+        'Facebook',
+        'Pinterest',
+        'Reddit',
+        'Vk',
+        'Xing'
     ],
     'Facebook' => [
       'app_id' => '1234567890',
@@ -135,7 +135,7 @@ Testing your installation
 If the backend runs under `http://example.com/my-shariff-backend/`, calling the URL `http://example.com/my-shariff-backend/?url=http%3A%2F%2Fwww.example.com` should return a JSON structure with numbers in it, e.g.:
 
 ```json
-{"facebook":1452,"reddit":7,"pinterest":3,"buffer":29,"vk":326}
+{"buffer":29,"facebook":1452,"pinterest":3,"reddit":7,"vk":326}
 ```
 
 
